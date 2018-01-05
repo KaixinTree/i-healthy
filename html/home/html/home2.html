@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>全科医生</title>
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" href="../../../common/iconfont/iconfont.css" />
+		<link rel="stylesheet" href="../../../common/cross/css/cross.min.css" />
+		<link rel="stylesheet" href="../../../common/cross/css/ui.all.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../common/css/ss-doctor.css">
+	</head>
+
+	<body>
+		<div class="header-doctor">
+			<div class="doc-avatar">
+				<img id="doc_photo" src="../../../images/d-default.png" alt="医生头像" />
+			</div>
+			<div class="doc-info">
+				<p>
+					<span class="name" id="doc_name">张三</span>
+					<span id="doc_type">全科医生</span>
+				</p>
+				<p class="mt10" id="sign_amount">
+					<span class="mr10" id="sign_amount">总签约数：<u>0</u></span>
+					<span id="waiting_sign_amount">待审核数：<u>0</u></span>
+				</p>
+			</div>
+		</div>
+		<div class="no-read-msg">
+			<div>您有<span id="msg_count">0</span>条未读信息</div>
+		</div>
+		<div class="mod mod-juming">
+			<div class="mod-hd">
+				<span class="circle-22 bgc-4bb7be"><i class="iconfont icon-wodejumin"></i></span> 我的居民
+			</div>
+			<div class="mod-bd clearfix">
+				<div class="left fl patient-type" data-type="1">
+					<p class="title">慢病居民<span class="tag-orange ml5">三师</span></p>
+					<p id="patient_amount">（0人）</p>
+				</div>
+				<div class="right fr">
+					<div class="top patient-type" data-type="2">
+						<p>普通居民</p>
+						<p id="normal_amount">（0人）</p>
+					</div>
+					<div class="bottom patient-type" data-type="3">
+						<p>65岁以上居民</p>
+						<p id="old-amount">（0人）</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mod mod-fuwu mt10">
+			<div class="mod-hd">
+				<span class="circle-22 bgc-f79a3f"><i class="iconfont icon-wodefuwu"></i></span> 我的服务
+			</div>
+			<div class="mod-bd clearfix">
+				<ul class="list-fuwu">
+					<li data-href="suifangjihua.html">
+						<div class="circle-40 bgc-41d7b1">
+							<i class="iconfont icon-suifangjihua"></i>
+						</div>
+						<p class="mt10">随访计划</p>
+					</li>
+					<li data-href="../../mine/html/dailiqianyue.html">
+						<div class="circle-40 bgc-62d0f3">
+							<i class="iconfont icon-dailiqianyue"></i>
+						</div>
+						<p class="mt10">代理签约</p>
+					</li>
+					<li data-href="../../xiaoxi/html/jiankangzixun.html">
+						<div class="circle-40 bgc-f79a3f">
+							<i class="iconfont icon-jiankangzixun"></i>
+						</div>
+						<p class="mt10">健康咨询</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="mod mod-team mt10">
+			<div class="mod-hd">
+				<span class="circle-22 bgc-4fcd6f"><i class="iconfont icon-wodetuandui"></i></span> 我的团队
+			</div>
+			<div class="mod-bd clearfix">
+				<div class="c-mor-hold">
+					<ul class="c-lab-mor c-f15">
+						<li class="curr">
+							<a href="javascript:;" id="doc_type_tab">健康管理师</a>
+						</li>
+						<li>
+							<a href="javascript:;">专科医生</a>
+						</li>
+					</ul>
+				</div>
+				<ul class="my-team">
+					<li>
+						<ul class="c-list list-doctor" id="doc_list">
+							<li>
+								<div class="avatar">
+									<img src="../../../images/d-default.png" alt="医生头像" />
+								</div>
+								<div class="info">
+									<p><span class="name">黄小致</span></p>
+									<p class="c-909090">签约总数：515</p>
+								</div>
+							</li>
+							<li>
+								<div class="avatar">
+									<img src="../../../images/d-default.png" alt="医生头像" />
+								</div>
+								<div class="info">
+									<p><span class="name">黄小致</span></p>
+									<p class="c-909090">签约总数：515</p>
+								</div>
+							</li>
+							<li>
+								<div class="avatar">
+									<img src="../../../images/d-default.png" alt="医生头像" />
+								</div>
+								<div class="info">
+									<p><span class="name">黄小致</span></p>
+									<p class="c-909090">签约总数：515</p>
+								</div>
+							</li>
+						</ul>
+					</li>
+					<li class="c-hide">
+						<ul class="c-list list-doctor" id="pro_doc_list">
+							<li>
+								<div class="avatar">
+									<img src="../../../images/d-default.png" alt="医生头像" />
+								</div>
+								<div class="info">
+									<p>
+										<span class="name">黄小致</span>
+										<span class="c-909090">骨科</span>
+										<span class="c-909090">厦门市中医院</span>
+									</p>
+									<p class="c-909090 clearfix">
+										<span class="fl">总咨询次数：212</span>
+										<span class="fr">今日咨询次数：21</span>
+									</p>
+								</div>
+							</li>
+							<li>
+								<div class="avatar">
+									<img src="../../../images/d-default.png" alt="医生头像" />
+								</div>
+								<div class="info">
+									<p>
+										<span class="name">黄小致</span>
+										<span class="c-909090">骨科</span>
+										<span class="c-909090">厦门市中医院</span>
+									</p>
+									<p class="c-909090 clearfix">
+										<span class="fl">总咨询次数：212</span>
+										<span class="fr">今日咨询次数：21</span>
+									</p>
+								</div>
+							</li>
+							<li>
+								<div class="avatar">
+									<img src="../../../images/d-default.png" alt="医生头像" />
+								</div>
+								<div class="info">
+									<p>
+										<span class="name">黄小致</span>
+										<span class="c-909090">骨科</span>
+										<span class="c-909090">厦门市中医院</span>
+									</p>
+									<p class="c-909090 clearfix">
+										<span class="fl">总咨询次数：212</span>
+										<span class="fr">今日咨询次数：21</span>
+									</p>
+								</div>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<script src="../../../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var docType;
+			mui.plusReady(function() {
+				var sDocInfo = plus.storage.getItem("docInfo");
+				var docInfo = JSON.parse(sDocInfo);
+				var docSex = docInfo.sex;
+				var docPhoto = docInfo.photo;
+				docType = docInfo.doctorType;
+				if(!docPhoto || docPhoto.length == 0) {
+					if(docSex == 1) {
+						document.getElementById("doc_photo").src = "../../../images/d-male.png";
+					} else if(docSex == 2) {
+						document.getElementById("doc_photo").src = "../../../images/d-female.png";
+					}
+				}
+
+				if(docType == "3") {
+					document.getElementById("doc_type").innerText = "健康管理师"
+					document.getElementById("doc_type_tab").innerText = "全科医生";
+					$(".list-fuwu li").eq(1).remove();
+				} else if(docType == "2") {
+					document.getElementById("doc_type").innerText = "全科医生"
+				}
+
+			});
+			/*
+			 * 获取消息条数
+			 */
+			function getMsgAmount() {
+				var postUrl = "";
+				var params = {};
+				sendPost(postUrl, params, null, function(res) {
+					if(res.status == 200) {
+						document.getElementById("msg_count").innerText = res.data;
+					} else {
+						console.error(res.msg);
+					}
+				});
+			}
+			/*
+			 * 获取患者类型数量
+			 */
+			function getPatiTypeAmount() {
+				var postUrl = "";
+				var params = {};
+				sendPost(postUrl, params, null, function(res) {
+					if(res.status == 200) {
+						document.getElementById("patient_amount").innerText = "(" + ")";
+						document.getElementById("normal_amount").innerText = "(" + ")";
+						document.getElementById("old-amount").innerText = "(" + ")";
+					} else {
+						console.error(res.msg);
+					}
+				});
+			}
+			/*
+			 * 获取签约情况
+			 */
+			function getSignCount() {
+				var postUrl = "";
+				var params = {};
+				sendPost(postUrl, params, null, function(res) {
+					if(res.status == 200) {
+						if(docType == 2) {
+							document.getElementById("sign_amount").innerHTML = '总签约数：<span class="mr10"><u>' + AA + '</u></span>待审核数：<span><u>' + BB + '</u></span>';
+						} else if(docType == 3) {
+							document.getElementById("sign_amount").innerHTML = '总签约数：<span class="mr10"><u>' + AA + '</u></span>';
+						}
+
+					}
+				})
+			}
+
+			/*
+			 * 获取医学交流数据
+			 */
+			function getOtherDoc() {
+
+			}
+			/*
+			 * 未读消息点击
+			 */
+			document.getElementById("msg_count").parentElement.addEventListener("tap", function() {
+				var mainWv = plus.webview.getWebviewById("main");
+				if(mainWv) {
+					mui.fire(mainWv, "activeXiaoxi");
+				}
+			});
+			/*
+			 * 跳转到居民
+			 */
+			mui(".mod-bd").on("tap", ".patient-type", function() {
+				var patiType = this.getAttribute("data-type");
+				//				mui.openWindow('huanzhe.html', 'huanzhe', {
+				//					extras: {
+				//						patiType: patiType
+				//					}
+				//				});
+				var mainWv = plus.webview.getWebviewById("main");
+				if(mainWv) {
+					mui.fire(mainWv, "activeHuanzhe");
+				}
+			});
+			/*
+			 * 我的服务跳转
+			 */
+			mui(".list-fuwu").on("tap", "li", function() {
+				var patiType = this.getAttribute("data-href");
+				openWebview(patiType);
+			});
+			/*
+			 * 医学交流跳转
+			 */
+			mui(".list-doctor").on("tap", "li", function() {
+				var code = this.getAttribute("data-code");
+				mui.openWindow('url', 'id', {});
+			});
+
+			$(function() {
+				$(".mod-team .c-lab-mor >li").on("click", function() {
+					var i = $(this).index();
+					$(this).addClass('curr').siblings().removeClass('curr');
+					$(".my-team> li").eq(i).show().siblings().hide();
+				})
+			});
+
+			/*
+			 * 代理签约成功后刷新我的居民个数、签约数
+			 */
+			window.addEventListener("refreshPatCount", function() {
+				getPatiAmount();
+				getSignCount();
+			});
+		</script>
+	</body>
+
+</html>

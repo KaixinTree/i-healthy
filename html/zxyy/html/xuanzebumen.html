@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>选择科室</title>
+		<link rel="stylesheet" href="../../../common/cross/css/cross.css" type="text/css" />
+		<link rel="stylesheet" href="../../../common/cross/css/../../../common/cross/css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" href="../iconfont/iconfont.css" type="text/css" />
+		<link rel="stylesheet" href="../css/style.css" type="text/css" />
+	</head>
+
+	<body>
+		<div class="c-main">
+			<div class="h45">
+				<div class="demo-comtop">
+					<a class="mui-action-back"></a>
+					<h1>选择科室</h1>
+				</div>
+			</div>
+			<!--<div class="dept-top c-border-b" >
+				<h4 id="hos_title" class="c-nowrap c-boxs"></h4>
+				<i class="iconfont icon-qiehuan"></i>
+			</div>-->
+			<div class="area-box c-boxs " style="margin: 45px 0">
+				<div class="area-province c-boxs" id="dept-first">
+					<ul id="depa_list">
+						<!--<li class="c-boxs c-nowrap" data-sec="1"><label><i class="ui-arrow"></i></label>内科</li>
+						<li class="c-boxs c-nowrap" data-sec="0"><label><i class="ui-arrow"></i></label>外科</li>
+						<li class="c-boxs c-nowrap" data-sec="1"><label><i class="ui-arrow"></i></label>妇产科</li>
+						<li class="c-boxs c-nowrap" data-sec="0"><label><i class="ui-arrow"></i></label>骨科</li>
+						<li class="c-boxs c-nowrap" data-sec="1"><label><i class="ui-arrow"></i></label>口腔科</li>
+						<li class="c-boxs c-nowrap" data-sec="1"><label><i class="ui-arrow"></i></label>眼科</li>
+						<li class="c-boxs c-nowrap" data-sec="0"><label><i class="ui-arrow"></i></label>中医科</li>
+						<li class="c-boxs c-nowrap" data-sec="1"><label><i class="ui-arrow"></i></label>精神心理科</li>
+						<li class="c-boxs c-nowrap" data-sec="1"><label><i class="ui-arrow"></i></label>妇产科</li>
+						<li class="c-boxs c-nowrap" data-sec="0"><label><i class="ui-arrow"></i></label>骨科</li>
+						<li class="c-boxs c-nowrap" data-sec="1"><label><i class="ui-arrow"></i></label>口腔科</li>
+						<li class="c-boxs c-nowrap" data-sec="1"><label><i class="ui-arrow"></i></label>眼科</li>
+						<li class="c-boxs c-nowrap" data-sec="1"><label><i class="ui-arrow"></i></label>中医科</li>
+						<li class="c-boxs c-nowrap" data-sec="1"><label><i class="ui-arrow"></i></label>妇产科</li>
+						<li class="c-boxs c-nowrap" data-sec="1"><label><i class="ui-arrow"></i></label>骨科</li>
+						<li class="c-boxs c-nowrap" data-sec="1"><label><i class="ui-arrow"></i></label>口腔科</li>
+						<li class="c-boxs c-nowrap" data-sec="1"><label><i class="ui-arrow"></i></label>眼科</li>
+						<li class="c-boxs c-nowrap" data-sec="1"><label><i class="ui-arrow"></i></label>中医科</li>-->
+					</ul>
+				</div>
+				<!--<div class="area-city c-boxs" id="dept-sec">
+					<ul id="depar_list">
+						<li class="c-boxs">消化内科</li>
+						<li class="c-boxs">肝炎门诊</li>
+						<li class="c-boxs">呼吸内科</li>
+						<li class="c-boxs">内分泌科</li>
+					</ul>
+				</div>-->
+			</div>
+			<div class="ser-defu" style="display:none;"><i class="noopen"></i>
+				<p>未找到科室数据</p>
+			</div>
+		</div>
+		<script type="text/html" id="depa_tmpl">
+			{{each data as val i}}
+			<li class="c-boxs c-nowrap c-f16" data-code="{{val.code}}">
+				<label>
+					<i class="ui-arrow"></i>
+				</label>{{val.name}}
+			</li>
+			{{/each}}
+		</script>
+		<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<script type="text/javascript" src="../../../widget/iscroll/5.1.3/js/iscroll.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var hosCode;
+			var hosName;
+			var deptfirst, deptsec;
+			mui.plusReady(function() {
+				plus.nativeUI.showWaiting("加载中...", {
+					back: "none"
+				});
+				var self = plus.webview.currentWebview();
+				hosCode = self.hospitalCode;
+				hosName = self.hospitalName;
+				var he = $(window).height();
+				$(".area-box").height(he - 45);
+				$("#hos_title").text(hosName);
+				sendPost("user/guaihao/GetDeptListByOrg", {
+					orgCode: hosCode
+				}, null, function(res) {
+					if(res.status == 200) {
+						var cont = template("depa_tmpl", res);
+						$("#depa_list").html(cont);
+
+						deptfirst = new IScroll('#dept-first', {
+							click: true
+						});
+					}
+					plus.nativeUI.closeWaiting();
+				});
+			});
+			mui("#depa_list").on("tap", "li", function() {
+				var dparCode = this.getAttribute("data-code");
+				var dparName = this.innerText;
+				mui.openWindow({
+					url: "xuanzeyisheng.html",
+					id: "xuanzeyisheng",
+					extras: {
+						hospitalCode: hosCode,
+						deparCode: dparCode,
+						hospitalName: hosName,
+						deparName: dparName
+					}
+				});
+			})
+
+			//			function loaded() {
+			//				deptfirst = new IScroll('#dept-first', {
+			//						click: true
+			//					}),
+			//					deptsec = new IScroll('#dept-sec', {
+			//						click: true
+			//					});
+			//			} 
+			//			$(document).on('click', '.area-province li', function() {
+			//				var hasdept = $(this).attr("data-sec"); //是否有二级的参数
+			//				if (hasdept == "0") {
+			//					//没有二级科室时直接跳转
+			//					mui.openWindow({
+			//						url: "choose-doctor.html",
+			//						id: "choose-doctor",
+			//						extras: {
+			//							hospi: hospital
+			//						}
+			//					});
+			//				} else {
+			//					//有二级时展开二级
+			//					$(".area-province li").removeClass("curr");
+			//					$(this).addClass("curr");
+			//					$(".area-city").show().animate({
+			//						"right": "0"
+			//					}, 200);
+			//					$(".area-province").width("35%");
+			//				}
+			//			});
+		</script>
+	</body>
+
+</html>

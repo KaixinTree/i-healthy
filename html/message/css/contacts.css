@@ -1,0 +1,34 @@
+@charset "utf-8";
+html,body {background-color: #f2f2f2;}
+em.number {display: inline-block; width: 20px; height: 20px; border-radius: 50%; background: #f00; color: #fff; text-align: center;}
+
+.news-list .c-list-badge {right: 10px;}
+.news-list .c-list-badge p {padding-right: 10px !important;}
+
+.contacts-info .c-list-img {width: 60px; height: 50px;}
+.contacts-info .c-list-img img {height: 50px;}
+.inherit-class-1 .list-icon{margin-top:0px;width:20px;height:20px;}
+.inherit-class-1 .list-icon img{width:20px;height:20px;}
+
+/* 医患沟通开始 */
+.c-chat-box { border: none; padding-left: 15px; padding-right: 15px; }
+.time-tips { margin: 10px 0 0 0; text-align: center; clear: both; }
+.time-tips span { position: relative; display: inline-block; padding: 0 60px; color: #aeaeae; font-size: 13px; }
+.time-tips span:before, .time-tips span:after { position: absolute; content: ""; display: block; width: 50px; height: 1px; background: #e6e4e1; top: 50%; }
+.time-tips span:before { left: 0; }
+.time-tips span:after { right: 0; }
+.chat-left, .chat-right { clear: both; overflow: hidden; padding: 10px 0; }
+.chat-left > dt, .chat-right > dt { width: 40px; height: 40px; }
+.chat-left > dt { float: left; margin-right: 15px; }
+.chat-right > dt { float: right; margin-left: 15px; }
+.chat-left > dt img, .chat-right > dt img { width: 40px; height: 40px; border-radius: 50%; }
+.chat-left > dd, .chat-right > dd { position: relative; min-height: 18px; font-size: 15px; display: inline-block; max-width: 60%; background: #fff; border: 1px solid #e1e1e1; border-radius: 6px; padding: 8px 15px; box-shadow: 1px 1px 1px rgba(0,0,0,.1); }
+.chat-left > dd { float: left; white-space: pre-wrap; word-wrap: break-word; }
+.chat-right > dd { float: right; background: #bce0ff; border: 1px solid #81bdf7; white-space: pre-wrap; word-wrap: break-word; }
+.chat-left > dd:after { content: ""; position: absolute; top: 14px; left: -6px; display: block; width: 8px; height: 8px; background: #fff; border-color: #e1e1e1; border-style: solid; border-width: 1px 0 0 1px; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); transform: rotate(-45deg); }
+.chat-right > dd:after { content: ""; position: absolute; top: 14px; right: -6px; display: block; width: 8px; height: 8px; background: #bce0ff; border-color: #81bdf7; border-style: solid; border-width: 1px 0 0 1px; -webkit-transform: rotate(135deg); -moz-transform: rotate(135deg); transform: rotate(135deg); }
+.chat-left > dd p img, .chat-right > dd p img { max-width: 150px; max-height: 150px; margin: 5px 0; }
+.chat-msg-box {bottom: 0; left: 0}
+.chat-msg-box .input-group .form-control {height: 32px;}
+.pull-more { text-align: center; color: #5b5b5b; font-size: 14px; padding: 14px 0; }
+/* 医患沟通结束 */

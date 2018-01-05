@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>设置</title>
+		<link rel="stylesheet" href="../css/cross.css" type="text/css" />
+		<link rel="stylesheet" href="../css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" href="../css/setting.css" type="text/css" />
+	</head>
+
+	<body>
+		<div class="h45">
+			<div class="demo-comtop">
+				<a class="mui-action-back"></a>
+				<h1 class="c-f18">设置</h1>
+			</div>
+		</div>
+		<!--<div class="mt10">
+			<div class="c-list-group">
+				<ul class="c-list c-border-tb">
+					<li class="c-list-link c-list-function">
+						<div class="c-avatar-s"><img src="../images/settings/icon1.png" alt="" /></div>
+						<div class="c-list-info">
+							<h4 class="c-nowrap">提醒设置</h4>
+							<span class="list-icon arrow-right"></span> </div>
+					</li>
+				</ul>
+			</div>
+		</div>-->
+		<!--<div class="mt10">
+    <div class="c-list-group">
+        <ul class="c-list c-border-tb">
+            <li class="c-list-link c-list-function">
+                <div class="c-avatar-s"><img src="../images/settings/icon2.png" alt="" /></div>
+                <div class="c-list-info">
+                    <h4 class="c-nowrap">图文咨询</h4>
+                    <span class="list-icon arrow-right"></span> </div>
+            </li>
+            <li class="c-list-link c-list-function">
+                <div class="c-avatar-s"><img src="../images/settings/icon3.png" alt="" /></div>
+                <div class="c-list-info">
+                    <h4 class="c-nowrap">电话咨询</h4>
+                    <span class="list-icon arrow-right"></span> </div>
+            </li>
+        </ul>
+    </div>
+</div>-->
+		<!--<div class="mt10">
+			<div class="c-list-group">
+				<ul class="c-list c-border-tb">
+					<li class="c-list-link c-list-function">
+						<div class="c-avatar-s"><img src="../images/settings/icon3.png" alt="" /></div>
+						<div class="c-list-info">
+							<h4 class="c-nowrap">隐私策略</h4>
+							<span class="list-icon arrow-right"></span> </div>
+					</li>
+					<li class="c-list-link c-list-function">
+						<div class="c-avatar-s"><img src="../images/settings/icon4.png" alt="" /></div>
+						<div class="c-list-info">
+							<h4 class="c-nowrap">修改密码</h4>
+							<span class="list-icon arrow-right"></span> </div>
+					</li>
+				</ul>
+			</div>
+		</div>-->
+		<div class="mt10">
+			<div class="c-list-group">
+				<ul class="c-list c-border-tb" style="display: ;">
+					<!--<li class="c-list-link c-list-function">
+						<div class="c-avatar-s"><img src="../images/settings/icon5.png" alt="" /></div>
+						<div class="c-list-info">
+							<h4 class="c-nowrap">清除系统缓存</h4>
+							<span class="list-icon arrow-right"></span> </div>
+					</li>
+					<li class="c-list-link c-list-function">
+						<div class="c-avatar-s"><img src="../images/settings/icon7.png" alt="" /></div>
+						<div class="c-list-info">
+							<h4 class="c-nowrap">使用协议</h4>
+							<span class="list-icon arrow-right"></span> </div>
+					</li>-->
+					<li class=" c-list-function">
+						<div class="c-avatar-s"><img src="../images/settings/icon6.png" alt="" /></div>
+						<div class="c-list-info">
+							<h4 class="c-nowrap">当前版本<span class="fr mr20">1.0.0</span></h4>
+
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="mt15 plr15 pb15">
+			<a id="exit_btn" class="c-btn c-btn-full c-btn-ff3 c-f16 c-btn-radius">退出登录</a>
+		</div>
+
+		<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<script type="text/javascript" src="../js/base.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<link rel="stylesheet" href="../../../widget/mobiscroll/2.17.1/css/mobiscroll.css" />
+		<script type="text/javascript" src="../../../widget/mobiscroll/2.17.1/js/mobiscroll.js"></script>
+		<link rel="stylesheet" href="../../../widget/artDialog/6.0.5/css/ui-dialog.min.css" />
+		<script type="text/javascript" src="../../../widget/artDialog/6.0.5/js/dialog-plus.min.js"></script>
+		<!--<script type="text/javascript" src="../../../js/rtcsdk.js"></script>-->
+		<script type="text/javascript" src="../../../js/common_http.js.js"></script>
+		<script type="text/javascript" src="../../../js/im_new.js"></script>
+		<script type="text/javascript">
+			mui.plusReady(function() {
+
+				//				var ver = plus.runtime.version;
+				//				$("#banben").text(ver);
+				//rtcPlusReady();
+				var self = plus.webview.currentWebview();
+
+				$("#exit_btn").click(function() {
+					$(this).css("background", "#FFFFFF");
+					mui.confirm("确定注销当前用户？", "", ["注销", "取消"], function(e) {
+						var index = e.index;
+						if(index == 0) {
+							// IM退出功能！！！！ 安卓系统才显示
+							//								if(plus.os.name == "Android") {
+							//									im.logout();
+							//								}
+							var userAgent = JSON.parse(plus.storage.getItem("userAgent"));
+							var userId = userAgent.uid;
+							im.logout(userId);
+							mui.openWindow('../../login/html/login.html', 'login', {
+								extras: {
+									exit: "exit"
+								},
+								createNew: true,
+								styles: {
+									softinputMode: "adjustResize"
+								}
+							});
+							mui.later(function() {
+								self.close();
+							}, 1000)
+						}
+					})
+				});
+			});
+		</script>
+	</body>
+
+</html>

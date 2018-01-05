@@ -1,0 +1,347 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>体征预警</title>
+		<link rel="stylesheet" type="text/css" href="../../../common/iconfont/iconfont.css">
+		<link rel="stylesheet" href="../../../common/cross/css/cross.css" type="text/css" />
+		<link rel="stylesheet" href="../../../common/cross/css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" href="../../../common/css/jy-style.css" type="text/css" />
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="h45">
+			<div class="demo-comtop">
+				<a class="mui-action-back"></a>
+				<h1>体征预警</h1>
+			</div>
+		</div>
+		<div class="c-main">
+			<div class="setwarn-box">
+				<ul class="c-list" id="yj_list">
+					<!--<li class="c-list-function c-list-cover">
+						<div class="c-list-value">
+							<div class="c-avatar-m c-images-cycle c-border health-border-1 c-f12">血糖</div>
+						</div>
+						<div class="c-list-info">
+							<div class="sb-right">
+								<div class="sbr-title c-pack">血糖值：</div>
+								<div class="sbr-input c-pack"><input type="text" id="xtq" onkeyup="num(this)" /></div>
+								<div class="sbr-comp c-pack">mmol/L</div>
+							</div>
+							<div class="sb-right">
+								<div class="sbr-title c-pack">餐后血糖值：</div>
+								<div class="sbr-input c-pack"><input type="text" id="xth" onkeyup="num(this)" /></div>
+								<div class="sbr-comp c-pack">mmol/L</div>
+							</div>
+						</div>
+					</li>
+					<li class="c-list-function c-list-cover">
+						<div class="c-list-value">
+							<div class="c-avatar-m c-images-cycle c-border health-border-2 c-f12">血压</div>
+						</div>
+						<div class="c-list-info">
+							<div class="sb-right">
+								<div class="sbr-title c-pack">收缩压：</div>
+								<div class="sbr-input c-pack"><input type="text" id="xyq" onkeyup="num(this)" /></div>
+								<div class="sbr-comp c-pack">mmHg</div>
+							</div>
+							<div class="sb-right">
+								<div class="sbr-title c-pack">舒张压：</div>
+								<div class="sbr-input c-pack"><input type="text" id="xyh" onkeyup="num(this)" /></div>
+								<div class="sbr-comp c-pack">mmHg</div>
+							</div>
+						</div>
+					</li>
+					<li class="c-list-function c-list-cover">
+						<div class="c-list-value">
+							<div class="c-avatar-m c-images-cycle c-border health-border-3 c-f12">体重</div>
+						</div>
+						<div class="c-list-info">
+							<div class="sb-right">
+								<div class="sbr-title c-pack">体重：</div>
+								<div class="sbr-input c-pack"><input type="text" id="tz" onkeyup="num(this)" /></div>
+								<div class="sbr-comp c-pack">kg</div>
+							</div>
+						</div>
+					</li>
+					<li class="c-list-function c-list-cover">
+						<div class="c-list-value">
+							<div class="c-avatar-m c-images-cycle c-border health-border-5 c-f12">腰围</div>
+						</div>
+						<div class="c-list-info">
+							<div class="sb-right">
+								<div class="sbr-title c-pack">腰围：</div>
+								<div class="sbr-input c-pack"><input type="text" id="qtq" onkeyup="num(this)" /></div>
+								<div class="sbr-comp c-pack">cm</div>
+							</div>
+							<!--<div class="sb-right">
+								<div class="sbr-title c-pack">甘油三酯：</div>
+								<div class="sbr-input c-pack"><input type="text" id="qth" onkeyup="num(this)" /></div>
+								<div class="sbr-comp c-pack">mmol/L</div>
+							</div>-->
+					<!--</div>
+					</li>-->
+				</ul>
+			</div>
+			<div class="plr15 mt15 pb20">
+				<a class="c-btn c-btn-full c-btn-37a6ec border-radius-rounded" onclick="sub()">提 交</a>
+			</div>
+		</div>
+		<script type="text/html" id="yj_list_tmpl">
+			{{each custom as val i}}
+			<li class="c-list-function c-list-cover">
+				<div class="c-list-value">
+					{{if val.type==1}}
+					<div class="c-avatar-m c-images-cycle c-border health-border-1 c-f15">
+						血糖
+					</div>
+					{{/if}} {{if val.type==2}}
+					<div class="c-avatar-m c-images-cycle c-border health-border-1 c-f15">
+						血压
+					</div>
+					{{/if}} {{if val.type==3}}
+					<div class="c-avatar-m c-images-cycle c-border health-border-1 c-f15">
+						体重
+					</div>
+					{{/if}} {{if val.type==4}}
+					<div class="c-avatar-m c-images-cycle c-border health-border-1 c-f15">
+						腰围
+					</div>
+					{{/if}}
+				</div>
+				<div class="c-list-info">
+					{{if val.type==1}}
+					<div class="sb-right">
+						<div class="sbr-title c-pack">餐前血糖值：</div>
+						<div class="sbr-input c-pack"><input type="text" id="xtq" onkeyup="num(this)" value="{{val.max_value_1 | setXt1}}" /></div>
+						<div class="sbr-comp c-pack">mmol/L</div>
+					</div>
+					<div class="sb-right">
+						<div class="sbr-title c-pack">餐后血糖值：</div>
+						<div class="sbr-input c-pack"><input type="text" id="xth" onkeyup="num(this)" value="{{val.max_value_2 | setXt2}}" /></div>
+						<div class="sbr-comp c-pack">mmol/L</div>
+					</div>
+					{{/if}} {{if val.type==2}}
+					<div class="sb-right">
+						<div class="sbr-title c-pack">收缩压：</div>
+						<div class="sbr-input c-pack"><input type="text" id="xyq" onkeyup="num(this)" value="{{val.max_value_1 | setXy1}}" /></div>
+						<div class="sbr-comp c-pack">mmHg</div>
+					</div>
+					<div class="sb-right">
+						<div class="sbr-title c-pack">舒张压：</div>
+						<div class="sbr-input c-pack"><input type="text" id="xyh" onkeyup="num(this)" value="{{val.max_value_2 | setXy2}}" /></div>
+						<div class="sbr-comp c-pack">mmHg</div>
+					</div>
+					{{/if}} {{if val.type==3}}
+					<div class="sb-right">
+						<div class="sbr-title c-pack">体重：</div>
+						<div class="sbr-input c-pack"><input type="text" id="tz" onkeyup="num(this)" value="{{val.max_value_1}}" /></div>
+						<div class="sbr-comp c-pack">kg</div>
+					</div>
+					{{/if}} {{if val.type==4}}
+					<div class="sb-right">
+						<div class="sbr-title c-pack">腰围：</div>
+						<div class="sbr-input c-pack"><input type="text" id="yw" onkeyup="num(this)" value="{{val.max_value_1}}" /></div>
+						<div class="sbr-comp c-pack">cm</div>
+					</div>
+					{{/if}}
+				</div>
+			</li>
+			{{/each}}
+		</script>
+		<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<link rel="stylesheet" href="../../../widget/mobiscroll/2.17.1/css/mobiscroll.css" type="text/css" />
+		<script type="text/javascript" src="../../../widget/mobiscroll/2.17.1/js/mobiscroll.js"></script>
+		<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+	<script type="text/javascript">
+		var code = "";
+		var self;
+		var stand_xt_1, stand_xt_2, stand_xy_1, stand_xy_2;
+		mui.plusReady(function() {
+			self = plus.webview.getWebviewById("tzyj");
+			code = self.code;
+			getData();
+		});
+
+		function getData() {
+			plus.nativeUI.showWaiting();
+			sendPost("doctor/health_index/standard", {
+				patient: code,
+			}, null, handleSucc1);
+		}
+
+		function handleSucc1(res) {
+			console.log(JSON.stringify(res));
+			if (res.status == 200) {
+				var stand = res.data.standard;
+				for (var i = 0; i < stand.length; i++) {
+					var temp = stand[i];
+					switch (temp.type) {
+						case 1:
+							stand_xt_1 = temp.max_value_1 + "";
+							stand_xt_2 = temp.max_value_2 + "";
+							break;
+						case 2:
+							stand_xy_1 = temp.max_value_1 + "";
+							stand_xy_2 = temp.max_value_2 + "";
+							break;
+						default:
+							break;
+					}
+				}
+
+				template.helper("setXt1", function(t) {
+					if (!t || t.length == 0) {
+						return stand_xt_1;
+					}
+					return t;
+				});
+				template.helper("setXt2", function(t) {
+					if (!t || t.length == 0) {
+						return stand_xt_2;
+					}
+					return t;
+				});
+				template.helper("setXy1", function(y) {
+					if (!y || y.length == 0) {
+						return stand_xy_1;
+					}
+					return y;
+				});
+				template.helper("setXy2", function(y) {
+					if (!y || y.length == 0) {
+						return stand_xy_2;
+					}
+					return y;
+
+				});
+				//				template.helper("setTz",function (z) {
+				//					if (!z || z.length==0) {
+				//						return stand_tz_1;
+				//					}
+				//					return z;
+				//				});
+				//				template.helper("setYw",function (w) {
+				//					if (!w || w.length==0) {
+				//						return stand_yw_1;
+				//					}
+				//					return w;
+				//				});
+				if (res.data.custom.length == 0) {
+					res.data.custom = [{
+						"max_value_1": 6.1,
+						"max_value_2": 7.8,
+						"type": 1
+					}, {
+						"max_value_1": 139,
+						"max_value_2": 89,
+						"type": 2
+					}, {
+						"type": 3,
+						"max_value_1": ""
+					}, {
+						"type": 4,
+						"max_value_1": ""
+					}];
+				}
+				var cont = template("yj_list_tmpl", res.data);
+				$("#yj_list").html(cont);
+				plus.nativeUI.closeWaiting();
+			} else {
+				plus.nativeUI.closeWaiting();
+				mui.toast(res.msg);
+			}
+		}
+		/*$(function(){
+			
+		});*/
+
+		function sub() {
+			var jsonxt = {
+				'max_value1': '',
+				'max_value2': '',
+				'min_value1': '0',
+				'min_value2': '0',
+				'type': 1
+			};
+			var jsonxy = {
+				'max_value1': '',
+				'max_value2': '',
+				'min_value1': '0',
+				'min_value2': '0',
+				'type': 2
+			};
+			var jsontz = {
+				'max_value1': '',
+				'min_value1': '0',
+				'max_value2': '0',
+				'min_value2': '0',
+				'type': 3
+			};
+			var jsonyw = {
+				'max_value1': '',
+				'min_value1': '0',
+				'max_value2': '0',
+				'min_value2': '0',
+				'type': 4
+			};
+
+			var xt1 = $("#xtq").val();
+			var xt2 = $("#xth").val();
+			var xy1 = $("#xyq").val();
+			var xy2 = $("#xyh").val();
+			var tz = $("#tz").val();
+			var yw = $("#yw").val();
+			if (!xt1 && !xt2 && !xy1 && !xy2 && !tz && !yw) {
+				mui.toast("请填写数据");
+				return;
+			}
+
+			jsonxt.max_value1 = xt1 || stand_xt_1;
+			jsonxt.max_value2 = xt2 || stand_xt_2;
+			jsonxy.max_value1 = xy1 || stand_xy_1;
+			jsonxy.max_value2 = xy2 || stand_xy_2;
+			jsontz.max_value1 = tz || "0";
+			jsonyw.max_value1 = yw || "0";
+
+			var jsons = [];
+			jsons.push(jsonxt);
+			jsons.push(jsonxy);
+			jsons.push(jsontz);
+			jsons.push(jsonyw);
+			console.log(code + "   " + JSON.stringify(jsons));
+			var url = "doctor/health_index/standard_save";
+			sendPost(url, {
+				patient: code,
+				json: JSON.stringify(jsons)
+			}, null, handleSucc);
+
+			function handleSucc(res) {
+				console.log(JSON.stringify(res));
+				if (res.status == 200) {
+					mui.toast("提交成功");
+					mui.later(function() {
+						mui.back();
+					}, 1000)
+				} else {
+					mui.toast(res.msg);
+				}
+			}
+		}
+
+		function num(th) {
+			th.value = th.value.replace(/[^\d\.\-]*$/g, '');
+		}
+	</script>
+
+</html>

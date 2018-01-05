@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>首页</title>
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" href="../../../common/cross/css/cross.min.css" />
+		<link rel="stylesheet" href="../../../common/cross/css/ui.all.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../common/css/ss-doctor.css">
+	</head>
+
+	<body>
+		<div class="header-doctor">
+			<div class="doc-avatar">
+				<img id="doc_photo" src="../../../images/d-default.png" alt="医生头像" />
+			</div>
+			<div class="doc-info">
+				<p>
+					<span class="name" id="doc_name">张三</span>
+					<span>专科医生</span>
+				</p>
+				<p class="mt10">
+					<span class="mr10">总咨询次数：293</span>
+					<span>今日签约数：23</span>
+				</p>
+			</div>
+		</div>
+		<div class="c-ser-hold">
+			<div class="c-ser-div bgc-f2f4f6">
+				<div class="c-ser-into c-t-center c-f15">
+					<i class="ser-icon ser-icon-search mr5"></i>请输入医生姓名
+				</div>
+			</div>
+		</div>
+		<ul class="c-list list-doctor">
+			<li>
+				<div class="avatar">
+					<img src="../../../images/d-default.png" alt="医生头像" />
+				</div>
+				<div class="info">
+					<p>
+						<span class="name">黄小致</span><span class="c-909090">（全）</span>、
+						<span class="name mr5">李民民</span><span class="c-909090">(健)</span>
+					</p>
+					<p class="c-909090">湖里区陆玲玲社区医疗服务中心</p>
+					<p class="c-f35439">23条未读求助消息</p>
+				</div>
+				<div class="num circle-blue-50">
+					<p>签约总数</p>
+					<p>1820</p>
+				</div>
+			</li>
+			<li>
+				<div class="avatar">
+					<img src="../../../images/d-default.png" alt="医生头像" />
+				</div>
+				<div class="info">
+					<p>
+						<span class="name">黄小致</span><span class="c-909090">（全）</span>、
+						<span class="name mr5">李民民</span><span class="c-909090">(健)</span>
+					</p>
+					<p class="c-909090">湖里区陆玲玲社区医疗服务中心</p>
+					<p class="c-f35439">23条未读求助消息</p>
+				</div>
+				<div class="num circle-blue-50">
+					<p>签约总数</p>
+					<p>1820</p>
+				</div>
+			</li>
+			<li>
+				<div class="avatar">
+					<img src="../../../images/d-default.png" alt="医生头像" />
+				</div>
+				<div class="info">
+					<p>
+						<span class="name">黄小致</span><span class="c-909090">（全）</span>、
+						<span class="name mr5">李民民</span><span class="c-909090">(健)</span>
+					</p>
+					<p class="c-909090">湖里区陆玲玲社区医疗服务中心</p>
+					<p class="c-f35439">23条未读求助消息</p>
+				</div>
+				<div class="num circle-blue-50">
+					<p>签约总数</p>
+					<p>1820</p>
+				</div>
+			</li>
+		</ul>
+		<script src="../../../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var docType;
+			mui.plusReady(function() {
+				var sDocInfo = plus.storage.getItem("docInfo");
+				var docInfo = JSON.parse(sDocInfo);
+				var docSex = docInfo.sex;
+				var docPhoto = docInfo.photo;
+				docType = docInfo.doctorType;
+
+				if(!docPhoto || docPhoto.length == 0) {
+					if(docSex == 1) {
+						document.getElementById("doc_photo").src = "../../../images/d-male.png";
+					} else if(docSex == 2) {
+						document.getElementById("doc_photo").src = "../../../images/d-female.png";
+					}
+				}
+
+//				if(docType == 3) {
+//					document.getElementById("doc_type").innerText = "健康管理师"
+//					document.getElementById("doc_type_tab").innerText = "全科医生";
+//				} else if(docType == 2) {
+//					document.getElementById("doc_type").innerText = "全科医生"
+//				}
+
+			});
+		</script>
+	</body>
+
+</html>

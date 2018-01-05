@@ -1,0 +1,378 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>签约处理</title>
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" type="text/css" href="../../../common/iconfont/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="../../../common/cross/css/cross.css">
+		<link rel="stylesheet" href="../../../common/cross/css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../../../common/css/jy-style.css">
+
+	</head>
+
+	<body>
+		<div class="h45">
+			<div class="demo-comtop">
+				<a class="mui-action-back"></a>
+				<h1>签约处理</h1>
+			</div>
+		</div>
+		<div class="c-main">
+
+			<div class="qyjy" id="pati_info">
+				<!--<div class="n-list">
+					<div class="n-list-li n-list-cover ptb12 list-arrow-r">
+						<div class="n-list-info">
+							<span class="c-17b3ec c-f16">全科医生（乡村医生）签约服务协议书</span>
+						</div>
+					</div>
+					<div class="n-list-li n-list-cover ptb12">
+						<div class="n-list-key pr10">
+							<div class="doc-avatar"><img src="http://ued.yihu.cn/framework/images/face.png" alt=""></div>
+						</div>
+						<div class="n-list-info">
+							<h4 class="c-333 c-f17">李大国<em class="c-909090 c-f15 ml10">45岁</em></h4>
+							<p><span class="c-909090 c-f15">糖尿病</span></p>
+						</div>
+					</div>
+				</div>
+				<div class="mt10 ">
+					<ul class="n-list c-f16">
+						<li class="ptb12">
+							<div class="n-list-key">身份证</div>
+							<div class="n-list-info c-t-right c-909090">350215198805284368</div>
+						</li>
+						<li class="ptb12">
+							<div class="n-list-key">出生年月</div>
+							<div class="n-list-info c-t-right c-909090">1988-11-27</div>
+						</li>
+						<li class="ptb12">
+							<div class="n-list-key">手机号码</div>
+							<div class="n-list-info c-t-right c-909090">158855885552</div>
+						</li>
+						<li class="ptb12">
+							<div class="n-list-key">居住省份</div>
+							<div class="n-list-info c-t-right c-909090">西藏林芝县</div>
+						</li>
+						<li class="ptb12">
+							<div class="n-list-key">详细地址</div>
+							<div class="n-list-info c-t-right c-909090">38号</div>
+						</li>
+					</ul>
+				</div>-->
+
+			</div>
+
+			<div class="n-list bgc-fff c-border-tb mt10 " id="div_qianyue">
+				<div class="n-list-li">
+					<div class="n-list-key width-30 required c-f16 c-5b5b5b">所在分组</div>
+					<div class="n-list-info c-t-right">
+						<input type="text" placeholder="请选择居民分组" class="width-100 c-boxs c-t-right ptb15" readonly data-val="group" />
+					</div>
+				</div>
+			</div>
+
+			<div class="bgc-fff c-border-tb mt10 c-hide" id="div_jieyue">
+				<div class="ptb10 plr10 c-border-b c-f16 c-5b5b5b">解约理由</div>
+				<div class="ptb10 plr10">
+					<textarea name="" id="" rows="3" class="width-100 c-boxs textarea-noborder c-f16" maxlength="150" readonly=""></textarea>
+				</div>
+			</div>
+
+			<div class="mtb20 plr10" id="btns">
+				<a id="btn_agree" class="c-btn c-btn-37a6ec c-btn-rounded c-btn-full c-f16">同 意</a>
+				<a id="btn_refuse" class="c-btn c-btn-fff c-btn-rounded c-btn-full c-f16 mt10"><span class="c-f00">拒 绝</span></a>
+			</div>
+		</div>
+
+		<script type="text/html" id="pati_info_tmpl">
+			<div class="n-list">
+				<div class="n-list-li n-list-cover ptb12 list-arrow-r">
+					<div class="n-list-info" onclick="location.href='xieyishu.html'">
+						<span class="c-17b3ec c-f16">全科医生（乡村医生）签约服务协议书</span>
+					</div>
+				</div>
+
+				<div class="n-list-li n-list-cover ptb12">
+					<div class="n-list-key pr10">
+						<div class="doc-avatar"><img src="{{photo | setPhoto}}" alt=""></div>
+					</div>
+					<div class="n-list-info">
+						<h4 class="c-333 c-f17">{{name}}<em class="c-909090 c-f15 ml10">{{sex | setSex}}{{age}}岁</em></h4>
+						<p><span class="c-909090 c-f15">{{diseaseName}}</span></p>
+					</div>
+				</div>
+			</div>
+			<div class="mt10">
+				<ul class="n-list c-f16">
+					<li class="ptb12">
+						<div class="n-list-key">身份证</div>
+						<div class="n-list-info c-t-right c-909090">{{idCard}}</div>
+					</li>
+					<li class="ptb12">
+						<div class="n-list-key">出生年月</div>
+						<div class="n-list-info c-t-right c-909090">{{birthday}}</div>
+					</li>
+					<li class="ptb12">
+						<div class="n-list-key">手机号码</div>
+						<div class="n-list-info c-t-right c-909090">{{mobile}}</div>
+					</li>
+					<li class="ptb12">
+						<div class="n-list-key">居住省份</div>
+						<div class="n-list-info c-t-right c-909090">{{provinceName}}</div>
+					</li>
+					<li class="ptb12">
+						<div class="n-list-key">详细地址</div>
+						<div class="n-list-info c-t-right c-909090">{{address}}</div>
+					</li>
+				</ul>
+			</div>
+		</script>
+		<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../../widget/mobiscroll/2.17.1/css/mobiscroll.css" />
+		<script type="text/javascript" src="../../../widget/mobiscroll/2.17.1/js/mobiscroll.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript">
+			var msgId, patiCode;
+			var groupCode = [],
+				groupName = [];
+			var type, self;
+			mui.plusReady(function() {
+				self = plus.webview.currentWebview();
+				msgId = self.msgId;
+				patiCode = self.patiCode;
+				type = self.type;
+				var status = self.status;
+				//				if (status == 0) {
+				//					if (type == 1) {
+				//						$("#div_qianyue").css("display", "none");
+				//					} else if (type == 4) {
+				//						$("#div_jieyue").css("display", "none");
+				//					}
+				//					$("#btns").addClass("c-hide");
+				//				}
+
+				if(type == 1) { //签约
+					$(".demo-comtop").find("h1").text("签约处理");
+					$("#div_qianyue").removeClass("c-hide");
+					$("#div_jieyue").addClass("c-hide");
+				} else if(type == 4) { //解约
+					$(".demo-comtop").find("h1").text("解约处理");
+					$("#div_jieyue").removeClass("c-hide");
+					$("#div_qianyue").addClass("c-hide");
+
+					if(self.reason) {
+						$("#div_jieyue").find("textarea").val(self.reason);
+					} else {
+						$("#div_jieyue").find("textarea").attr("placeholder", "该居民无说明解约理由")
+					}
+				}
+				//居民信息
+				var postUrl = "doctor/patient_group/patient";
+				sendPost(postUrl, {
+					code: patiCode
+				}, null, function(res) {
+					if(res.status == 200) {
+						template.helper("setPhoto", function(p) {
+							if(!p || p.length == 0) {
+								return "../../../images/p-default.png";
+							} else {
+								return p
+							}
+						});
+						template.helper("setSex", function(s) {
+							if(s == 1) {
+								return "男"
+							} else if(s == 2) {
+								return "女"
+							}
+						});
+						var cont = template("pati_info_tmpl", res.data);
+						$("#pati_info").html(cont);
+					}
+				});
+
+				//分组查询
+				var groupUrl = "doctor/patient_group/groups";
+				sendPost(groupUrl, {}, null, function(res) {
+					if(res.status == 200) {
+						var groupList = res.list;
+						for(var i = 0; i < groupList.length; i++) {
+							groupCode[i] = groupList[i].code;
+							groupName[i] = groupList[i].name;
+						}
+						activMob();
+					};
+				})
+			});
+
+			//			$(function() {
+			//			$(".updown-arrow a").on("click", function() {
+			//				if ($(this).hasClass("up")) {
+			//					$(this).parent().hide();
+			//					$(".qyjy-more ul, .qyjy-more p").hide();
+			//					$(".updown-arrow a.down").parent().show();
+			//				} else {
+			//					$(this).parent().hide();
+			//					$(".qyjy-more ul, .qyjy-more p").show();
+			//					$(".updown-arrow a.up").parent().show();
+			//				};
+			//			});
+
+			//分组选择
+			var currGroupCode;
+
+			function activMob() {
+				$('[data-val=group]').mobiscroll({
+					theme: 'ios',
+					lang: 'zh',
+					customWheels: true,
+					wheels: [
+						[{
+							keys: groupCode,
+							values: groupName
+						}]
+					],
+					onSelect: function(valueText, inst) {
+						var dd = eval("[" + valueText + "]");
+						$(this).val(dd[0].values);
+						currGroupCode = dd[0].keys;
+					}
+				});
+			};
+			//同意、拒绝
+			var signUrl = "doctor/family_contract/sign"; //签约
+			var surrUrl = "doctor/family_contract/surrender"; //解约
+			$("#btn_agree").click(function() { //同意
+				if(type == 1) {
+					var val = $("input").val().trim();
+					if(val.length == 0) {
+						mui.toast("请选择居民分组");
+						return
+					}
+
+					sendPost(signUrl, {
+						group: currGroupCode,
+						msgid: msgId,
+						patient: patiCode,
+						type: 1
+					}, null, function(res) {
+						console.error(JSON.stringify(res));
+						if(res.status == 200) {
+							mui.fire(self.opener(), "updata");
+							var xxWv = plus.webview.getWebviewById("xiaoxi.html");
+							if(xxWv) {
+								mui.fire(xxWv, "updateQy");
+							}
+							var hzWv = plus.webview.getWebviewById("huanzhe.html");
+							if(hzWv) {
+								mui.fire(hzWv, "update");
+							}
+							var mainWv = plus.webview.getWebviewById("main");
+							if(mainWv) {
+								mui.fire(mainWv, "mainupdate");
+							}
+							mui.later(function() {
+								mui.back();
+							}, 500)
+						}
+					});
+				} else if(type == 4) {
+					sendPost(surrUrl, {
+						msgid: msgId,
+						patient: patiCode,
+						type: 1
+					}, null, function(res) {
+						if(res.status == 200) {
+							mui.toast("解约成功！");
+							mui.fire(self.opener(), "updata");
+
+							var xxWv = plus.webview.getWebviewById("xiaoxi.html");
+							if(xxWv) {
+								mui.fire(xxWv, "updateQy");
+							}
+							var hzWv = plus.webview.getWebviewById("huanzhe.html");
+							if(hzWv) {
+								mui.fire(hzWv, "update");
+							}
+
+							var mainWv = plus.webview.getWebviewById("main");
+							if(mainWv) {
+								mui.fire(mainWv, "mainupdate");
+							}
+							mui.later(function() {
+								mui.back();
+							}, 500)
+						}
+					});
+				}
+
+			});
+
+			$("#btn_refuse").click(function() { //拒绝
+				if(type == 1) {
+					sendPost(signUrl, {
+						group: "",
+						msgid: msgId,
+						patient: patiCode,
+						type: 2
+					}, null, function(res) {
+						if(res.status == 200) {
+							mui.toast("已拒绝签约！");
+
+							mui.fire(self.opener(), "updata");
+
+							var xxWv = plus.webview.getWebviewById("xiaoxi.html");
+							if(xxWv) {
+								mui.fire(xxWv, "updateQy");
+							}
+							var mainWv = plus.webview.getWebviewById("main");
+							if(mainWv) {
+								mui.fire(mainWv, "mainupdate");
+							}
+
+							mui.later(function() {
+								mui.back();
+							}, 500)
+						}
+					});
+				} else if(type == 4) {
+					sendPost(surrUrl, {
+						msgid: msgId,
+						patient: patiCode,
+						type: 2
+					}, null, function(res) {
+						if(res.status == 200) {
+							mui.toast("已拒绝解约！");
+
+							mui.fire(self.opener(), "updata");
+
+							var xxWv = plus.webview.getWebviewById("xiaoxi.html");
+							if(xxWv) {
+								mui.fire(xxWv, "updateQy");
+							}
+							var mainWv = plus.webview.getWebviewById("main");
+							if(mainWv) {
+								mui.fire(mainWv, "mainupdate");
+							}
+
+							mui.later(function() {
+								mui.back();
+							}, 500)
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+
+</html>

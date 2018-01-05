@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../../js/mui.min.js"></script>
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" charset="UTF-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">随访计划</h1>
+		</header>
+		<script src="../../../js/common_http.js"></script>
+		<script type="text/javascript">
+			mui.plusReady(function() {
+
+				var sf_url = getsuifangUrl();
+
+				var wv = plus.webview.create(sf_url, "suifang", {
+					top: '45px',
+					bottom: '0px'
+				});
+				var self = plus.webview.currentWebview();
+				self.append(wv);
+				/*
+				 * evalJS,在ios系统，只有在loaded事件后才能触发
+				 */
+				wv.addEventListener('loaded', function() {
+					wv.evalJS('$("body").css("max-width","none")');
+				});
+
+				var first = null;
+//				mui.back = function() {
+//					if (wv.getTitle() == "随访管理") {
+//						if (plus.os.name == "Android") {
+//							if (!first) {
+//								first = new Date().getTime();
+//								plus.nativeUI.toast("再按一次退出");
+//								setTimeout(function() {
+//									first = null;
+//								}, 1000);
+//							} else {
+//								if (new Date().getTime() - first < 1000) {
+//									plus.runtime.quit();
+//								}
+//							}
+//						}
+//					} else {
+//						wv.evalJS('window.history.back()');
+//					}
+//				}
+			});
+		</script>
+
+	</body>
+
+</html>

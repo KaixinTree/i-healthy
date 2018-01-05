@@ -1,0 +1,719 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>工作组</title>
+		<link rel="stylesheet" href="../css/cross.css" type="text/css" />
+		<link rel="stylesheet" href="../css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../iconfont/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../css/yy-style.css">
+		<link rel="stylesheet" type="text/css" href="../css/scal.css" />
+		<!--<link rel="stylesheet" type="text/css" href="../js/iscroll2/5.1.3/css/iscroll.css">-->
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<style type="text/css">
+			.doc-name {
+				font-size: 15px;
+			}
+			
+			@media only screen and (max-width: 640px) {
+				.doc-name {
+					font-size: 13px;
+				}
+			}
+		</style>
+
+		<script type="text/javascript" charset="UTF-8">
+			mui.init({
+				//				beforeback: function() {
+				//					var histy = plus.storage.getItem("history");
+				//					if (histy) {
+				//						plus.storage.removeItem("history");
+				//					}
+				//					var liHtml = document.querySelector("#contain").innerHTML;
+				//					plus.storage.setItem("history", liHtml);
+				//					return true;
+				//				}
+			});
+		</script>
+
+	</head>
+
+	<body>
+		<div class="h45">
+			<div class="demo-comtop">
+				<a class="mui-action-back"></a>
+				<h1>工作组</h1>
+				<div class="header-group">
+					<a id="qun_detail" class="group"><img src="../images/iconfont-zhu.png" /> </a>
+				</div>
+			</div>
+		</div>
+		<div class="c-main">
+			<!--<div class="view-more"><a id="view_more" class="c-hide">查看聊天记录</a></div>-->
+			<div class="c-chat-box pb50" id="contain" style="position: absolute;width: 95%;">
+				<!--<div class="time-tips"><span>2015-03-07 14:22</span></div>
+				<dl class="chat-left">
+					<dt><a  ><img src="../../../images/p-default.png" alt="" class="c-images-cycle" /></a> </dt>
+					<dd class="chat-t word-bread"> <span>请问间歇性帕金森症状平时需要注意什么?</span> </dd>
+				</dl>
+				<dl class="chat-right">
+					<dt><a  ><img src="../../../images/d-default.png" alt="" class="c-images-cycle" /></a><span>聂青</span></dt>
+					<dd class="word-bread"><span>居民你好，记得吃药，多喝水，别吃辣！</span> </dd>
+				</dl>
+				<dl class="chat-right">
+					<dt><a  ><img src="../../../images/d-default.png" alt="" class="c-images-cycle" /></a> </dt>
+					<dd class="word-bread audio"><img src="../images/more-tb3.png" alt="" /></dd>
+				</dl>
+				<dl class="chat-left">
+					<dt><a  ><img src="../../../images/p-default.png" alt="" class="c-images-cycle" /></a> </dt>
+					<dd class="chat-t word-bread"> <span>谢谢医生</span> </dd>
+				</dl>
+				<dl class="chat-left">
+					<dt><a  ><img src="../../../images/p-default.png" alt="" class="c-images-cycle" /></a> </dt>
+					<dd class="chat-t word-bread"><img src="../images/report-img1.png" /></dd>
+				</dl>-->
+
+			</div>
+		</div>
+
+		<div class="bgc-f3f3f3 c-border-t c-position-f width-100 pb5 chat-msg-box" id="input_div">
+			<div class="ui-grid">
+				<div class="ui-col-0 mlr5 pt15 tw-add" data-inner="dialo">
+					<img src="../images/down.png" width="25" height="25" class="c-hide" />
+					<img src="../images/up.png" width="25" height="25" />
+				</div>
+				<div class="ui-col-1 mr5">
+					<div class="input-group width-100 ptb10">
+						<input id="input_content" type="text" class="form-control width-100" placeholder="" value="">
+					</div>
+				</div>
+				<!--<div class="ui-col-0 pt13 tw-add"><img src="../images/tw-add.png" width="25"></div>-->
+				<div class="ui-col-0 mr5 pt13">
+					<a onclick="clickReply()" href="javascript:;" class="c-btn c-btn-588cd5 c-btn-tiny c-btn-radius c-f15">发送</a>
+				</div>
+			</div>
+			<div class="tw-add-detail clearfix c-hide" id="other_div">
+				<ul>
+					<li><img src="../images/more-tb1.png" width="43" onclick="clickGallery()">
+						<p class="c-f15">发送图片</p>
+					</li>
+					<li><img src="../images/more-tb2.png" width="43" onclick="clickCamera()">
+						<p class="c-f15">拍照</p>
+					</li>
+					<!--<li><img src="../images/more-tb3.png" width="43" onclick="clickAudio()">
+						<p>语音</p>
+					</li>-->
+				</ul>
+			</div>
+		</div>
+
+		<!--<div class="" id="doc-poi" style="display:none;text-align:left;padding-left: 60px;">
+
+		</div>-->
+		<!--录音-->
+		<!--<div class="win-broadcast c-hide">
+			<span class="bg"></span>
+			<p class="c-666 c-f14 c-t-center title word">倾听中</p>
+			<div>
+				<i class="broadcast"></i>
+			</div>
+			<ul class="c-666 c-f14 c-t-center mt5 stop word">
+				<!--<li class="width-50 fl c-border-r c-boxs win-finish" id="voice-finish">说完了<span class="c-ff8011">(60秒)</span></li>-->
+		<!--<li class="width-50 fl c-border-r c-boxs win-finish" onclick="voiceFinish()">说完了</li>
+				<li class="width-50 fl win-cancle" onClick="voicePopClose();">取消</li>
+			</ul>
+		</div>-->
+		<!--<div class="win-broadcast-mb"></div>-->
+
+		<section class="imgzoom-pack">
+			<div class="imgzoom-x">关闭</div>
+			<div class="imgzoom-del"></div>
+			<div class="imgzoom-img"><img src="" /></div>
+		</section>
+
+		<script type="text/html" id="chat_content_tmpl">
+			{{each list as val i}}
+			<div class="time-tips" data-id="{{val.id}}"><span>{{val.time}}</span></div>
+			{{if val.type !=1 }}
+			<dl class="chat-left" data-id="{{val.id}}">
+				<dt><a ><img src="../../../images/p-default.png" alt="" class="c-images-cycle patient-img" /></a> </dt>
+				<!--<dd class="chat-t word-bread"> <span>{{val.content}}</span> </dd>-->
+				{{if val.chatType==1}}
+				<dd class="chat-t word-bread"> <span>{{val.content}}</span> </dd>
+				{{/if}} {{if val.chatType==2}}
+				<dd class="chat-t word-bread"><img width="100" height="100" src="{{val.content}}" /> </dd>
+				{{/if}} {{if val.chatType==3}}
+				<dd class="chat-t word-bread audio" data-audio="{{val.content}}" onclick="playRecord(this)">语音 ：{{val.content}}</dd>
+				{{/if}}
+
+			</dl>
+			{{else}}
+			<dl class="chat-right">
+				<dt style="height: auto; text-align: center;">
+					<a>
+						<img src="{{val.photo | setPhoto2}}" alt="" class="c-images-cycle" />
+					</a>
+					<span class="doc-name">{{val.doctorName}}</span></dt> {{if val.chatType==1}}
+				<dd class="word-bread"><span>{{val.content}}</span></dd>
+				<!--<dd class="word-bread"><span>adsfasdfasdfasdfwe啊打发啊都发生啊的事发生啊阿斯蒂芬啊</span> </dd>-->
+				{{/if}} {{if val.chatType==2}}
+				<dd class="word-bread"><img width="100" height="100" src="{{val.content}}" /></dd>
+				{{/if}} {{if val.chatType==3}}
+				<dd class="word-bread audio" data-audio="{{val.content}}" onclick="playRecord(this)">语音 ：{{val.content}}</dd>
+				{{/if}}
+			</dl>
+			{{/if}} {{/each}}
+		</script>
+
+		<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<script type="text/javascript" src="../js/base.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="../../../widget/artDialog/6.0.5/css/ui-dialog.min.css">
+		<script src="../../../widget/artDialog/6.0.5/js/dialog-plus.min.js"></script>
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="../../../js/im.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="../../../js/rtcsdk.js" type="text/javascript" charset="utf-8"></script>-->
+		<script src="../../../js/im_new.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../widget/scale/scale.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//			mui.init();
+			//			var consultCode, patientCode, docName, docPhoto;
+			//			mui.plusReady(function() {
+			//				var infoStr = plus.storage.getItem("docInfo");
+			//				if (infoStr) {
+			//					var info = JSON.parse(infoStr);
+			//					docName = info.docName;
+			//					docPhoto = info.docPhoto || "../../../images/d-default.png";
+			//				}
+			//				var self = plus.webview.currentWebview();
+			//				consultCode = self.consult;
+			//				patientCode = self.patient;
+			//				charLogs();
+			//				//window.scrollTo(100, document.querySelector(".c-main").height);
+			//			});.
+			/*
+			function onMsg() {
+				var send_gid = plus.storage.getItem("send_gid");
+				var receive_gid = plus.storage.getItem("receive_gid");
+				if(send_gid != receive_gid) {
+					return;
+				}
+				getMsgList(1, 1);
+
+			}
+			setMsgCallback(onMsg);
+
+			var mebsInfo; //成员对象
+			var aInfos; //成员list数组
+			var infoObj;
+			var docPhoto, docName;
+			*/
+			Date.prototype.format = function(format) {
+				var date = {
+					"M+": this.getMonth() + 1,
+					"d+": this.getDate(),
+					"h+": this.getHours(),
+					"m+": this.getMinutes(),
+					"s+": this.getSeconds(),
+					"q+": Math.floor((this.getMonth() + 3) / 3),
+					"S+": this.getMilliseconds()
+				};
+				if(/(y+)/i.test(format)) {
+					format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+				}
+				for(var k in date) {
+					if(new RegExp("(" + k + ")").test(format)) {
+						format = format.replace(RegExp.$1, RegExp.$1.length == 1 ?
+							date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+					}
+				}
+				return format;
+			}
+			var pageIndex = 1;
+
+			mui.plusReady(function() {
+				try {
+					plus.push.clear();
+				} catch(e) {}
+
+				document.addEventListener("resume", function() {
+					getMsgList(1, 200);
+				}, false);
+
+				var self = plus.webview.currentWebview();
+				var infoStr = self.info;
+				infoObj = JSON.parse(infoStr);
+				//		var history = plus.storage.getItem("history");
+				//		if (history != null && history.length > 0) {
+				//			document.querySelector(".chat-thread").innerHTML = history;
+				//			var sl = mui('.mui-scroll-wrapper').scroll();
+				//			sl.refresh();
+				//			sl.scrollToBottom();
+				//		}
+
+				/*zyt
+				 * 在对话聊天下点击返回触发事件
+				 */
+				var leave_num = 0;
+				var old_back = mui.back;
+				mui.back = function() {
+					var G_l = infoObj.code + '_leave';
+					leave_num = plus.storage.getItem(infoObj.code);
+					plus.storage.setItem(G_l, leave_num); //设定离开对话框时的消息数					
+
+					var mainWv = plus.webview.getWebviewById("gongzuozu");
+					mui.fire(mainWv, "zero_xinxi", {
+						id: infoObj.code,
+					});
+
+					old_back();
+				}
+
+				/*
+				 * 获取成员信息
+				 */
+				plus.storage.setItem("receive_gid", infoObj.code);
+				sendPost("doctor/team_members", {
+					team: infoObj.code
+				}, null, function(res) {
+					if(res.status == 200) {
+						mebsInfo = res;
+						aInfos = res.list;
+						getMsgList(pageIndex, 200); //读取对话消息，最新20条
+					} else {
+						//						alert('获取成员列表失败！');
+						mui.toast(res.msg);
+					}
+				});
+				var name = infoObj.name;
+				if(name) {
+					document.querySelector("h1").innerText = name;
+				}
+				/*
+				 * 医生缓存信息 姓名和头像
+				 */
+				var infoStr = plus.storage.getItem("docInfo");
+				if(infoStr) {
+					var info = JSON.parse(infoStr);
+					docName = info.docName;
+					docPhoto = info.docPhoto || "../../../images/d-default.png";
+				}
+				//				charLogs();
+				//				console.log("读取历史");
+			});
+			/*
+			 * 聊天记录
+			 */
+			var patiPhoto;
+
+			function charLogs() {
+				var history = plus.storage.getItem("history");
+				if(history != null && history.length > 0) {
+					document.querySelector("#contain").innerHTML = history;
+					$("#contain").width(plus.screen.resolutionWidth * 0.95)
+					window.scrollTo(0, $("#contain").height());
+				}
+			};
+			/*
+			 * 回复消息
+			 */
+			function clickReply() {
+				var text = $("#input_content").val().trim();
+				if(text.length == 0) {
+					mui.toast("发送内容不能为空，请重新输入");
+					return;
+				}
+				uploadMsg(1, text);
+			}
+			/*
+			 * 自定义日期
+			 */
+			//			function getSysDate() {
+			//				var d = new Date();
+			//				var year = d.getFullYear();
+			//				var month = d.getMonth() + 1;
+			//				var day = d.getDate();
+			//				//				var week = d.getDay();
+			//				var h = d.getHours();
+			//				var mins = d.getMinutes();
+			//				var s = d.getSeconds();
+			//				if (month < 10) month = "0" + month;
+			//				if (day < 10) month = "0" + day;
+			//				if (h < 10) h = "0" + h;
+			//				if (mins < 10) mins = "0" + mins;
+			//				if (s < 10) s = "0" + s;
+			//				return year + "-" + month + "-" + day + "" + h + ":" + mins + ":" + s;
+			//			}
+
+			function setContainHight() {
+				//				var _height = document.body.clientHeight;
+			}
+
+			function getUserId() {
+				var userInfo = plus.storage.getItem("userAgent");
+				if(typeof(userInfo) == "undefind" || userInfo == null) {
+					mui.toast("登录信息过时,请重新登录!");
+					return;
+				}
+				var userJson = $.parseJSON(userInfo);
+				return userJson.uid;
+			}
+
+			function getMsgList(pageIndex, pageSize) {
+
+				/*
+								var msgList = getGroupMsg(infoObj.code, pageIndex, pageSize);
+								//console.log("msgList:"+msgList.length);
+								if(msgList == null || msgList.length <= 0) {
+									return;
+								}
+								//console.log(JSON.stringify(msgList));
+								*/
+				var start = 0;
+				if(pageIndex > 0) {
+					start = (pageIndex - 1) * pageSize;
+				};
+				count = pageSize;
+				im.getGroupMsg(infoObj.code, start, count, function(data) {
+					//alert(JSON.stringify(data));
+					showMsg(data);
+					//appendHtml('2016-01-01', msgList);
+				});
+
+			}
+
+			function uploadMsg(type, content) {
+				var userInfo = plus.storage.getItem("userAgent");
+				if(typeof(userInfo) == "undefind" || userInfo == null) {
+					mui.toast("登录信息过时,请重新登录!");
+					return;
+				}
+				var userJson = $.parseJSON(userInfo);
+				var userId = userJson.uid;
+
+				im.sendGroup(userId, infoObj.code, content, type, function(data) {
+					if(data.errno == 0) {
+						//alert('发送成功');
+						//						getMsgList(1, 200);
+						getMsgList(1, 1);
+					} else {
+						mui.toast("消息发送失败");
+					}
+
+				});
+				/*
+								if(sendMessage(infoObj.code, userId, type + content)) {
+
+									var data = "{\"from_gid\":\"" + infoObj.code + "\",\"from_uid\":\"" + userId + "\",\"time\":\"\",\"content\":\"" + type + content + "\"}";
+									//var data = "{\"from_gid\":\"1\",\"from_uid\":\"D20160322000001\",\"time\":\"11\",\"content\":\"123456\"}";
+
+									saveGroupMsg(infoObj.code, data);
+
+									getMsgList(1, 1);
+								} else {
+									mui.toast("发送失败");
+								}
+				*/
+			}
+
+			function showMsg(data) {
+
+				if(data == null || data.list == null) {
+					return;
+				}
+				var html = ""; //'<div class="time-tips"><span>' + timer + '</span></div>';
+				var preTime = 0;
+				var msgList = data.list;
+				var typeMsg = 1;
+				console.error(JSON.stringify(msgList));
+				for(var i = msgList.length - 1; i >= 0; i--) {
+					var doctor_img = "../../../images/d-default.png";
+					var doctor_name = "";
+
+					if(aInfos == null) {
+						//						alert('未获取到成员列表！');
+						return;
+					}
+					//获取发信息医生的名字和头像
+					if(aInfos.length > 0) {
+						for(var n = 0; n < aInfos.length; n++) {
+							if(aInfos[n].code == msgList[i].from_uid) {
+								doctor_name = aInfos[n].name;
+								if(aInfos[n].photo != null && aInfos[n].photo != "") {
+									doctor_img = aInfos[n].photo;
+								}
+								break;
+							}
+						}
+					}
+
+					var contentMsg = "";
+
+					if(msgList[i].content != null && msgList[i].content != "") {
+						typeMsg = msgList[i].type;
+						contentMsg = msgList[i].content;
+					}
+					var _class = 'class="chat-right"';
+					if(getUserId() != msgList[i].from_uid) {
+						_class = 'class="chat-left"';
+					}
+					if(msgList[i].timestamp - preTime > 60 * 1000) {
+						preTime = msgList[i].timestamp;
+						var date = new Date();
+						date.setTime(msgList[i].timestamp);
+						var time = date.format('yyyy-MM-dd h:m:s');
+						html += '<div class="time-tips"><span>' + time + '</span></div>';
+					}
+					//					console.error(contentMsg);
+					//type:1.文字 2.图片 3.音频
+					var temp = '<dl ' + _class + '><dt style="height: auto; text-align: center;"><a><img src=" ' + doctor_img + '" class="c-images-cycle" /></a><span class="c-f12">' + doctor_name + '</span></dt>';
+					switch(typeMsg) {
+						case 1:
+							temp += '<dd class="word-bread"><span>' + contentMsg + '</span></dd></dl>';
+							break;
+						case 2:
+							temp += '<dd class="word-bread"><img width="100" height="100" src=" ' + contentMsg + '" /></dd></dl>';
+							break;
+						case 3:
+							temp += '<dd class="word-bread audio" data-audio=" ' + contentMsg + '" onclick="playRecord(this)"><img src="../images/more-tb3.png" alt="" /></dd></dl>';
+							break;
+					}
+					html += temp;
+				}
+				$("#input_content").val("");
+				if(typeMsg != null && typeMsg != 1) {
+					$(".tw-add").find("img").toggle();
+					$(".tw-add-detail").toggle(500);
+				}
+
+				$("#contain").append(html);
+				window.scrollTo(0, $("#contain").height());
+				scaleRefresh("#contain dd");
+			}
+
+			window.addEventListener("update", function() {
+				getMsgList(1, 200);
+			});
+
+			/*
+			 * 拼接消息
+			 */
+			//			function appendHtml(timer, msgList) {
+			//				plus.nativeUI.showWaiting();
+			//				var html = ""; //'<div class="time-tips"><span>' + timer + '</span></div>';
+			//				var msgType = "1";
+			//				for(var i = msgList.length - 1; i >= 0; i--) {
+			//					var doctor_img = "../../../images/d-default.png";
+			//					var doctor_name = "";
+			//
+			//					if(aInfos == null) {
+			//						alert('未获取到成员列表！');
+			//					}
+			//					//获取发信息医生的名字和头像
+			//					if(aInfos.length > 0) {
+			//						for(var n = 0; n < aInfos.length; n++) {
+			//							if(aInfos[n].code == msgList[i].from_uid) {
+			//								doctor_name = aInfos[n].name;
+			//								if(aInfos[n].photo != null && aInfos[n].photo != "") {
+			//									doctor_img = aInfos[n].photo;
+			//								}
+			//								break;
+			//							}
+			//						}
+			//					}
+			//					
+			//					var contentMsg = "";
+			//
+			//					if(msgList[i].content != null && msgList[i].content != "") {
+			//						msgType = msgList[i].content.substr(0, 1);
+			//						contentMsg = msgList[i].content.substr(1, msgList[i].content.length - 1);
+			//
+			//					}
+			//					var _class = 'class="chat-right"';
+			//					if(getUserId() != msgList[i].from_uid) {
+			//						_class = 'class="chat-left"';
+			//					}
+			//					//					console.error(contentMsg);
+			//					//type:1.文字 2.图片 3.音频
+			//					var temp = '<dl ' + _class + '><dt style="height: auto; text-align: center;"><a><img src=" ' + doctor_img + '" class="c-images-cycle" /></a><span class="c-f13">' + doctor_name + '</span></dt>';
+			//					switch(msgType) {
+			//						case "1":
+			//							temp += '<dd class="word-bread"><span>' + contentMsg + '</span></dd></dl>';
+			//							break;
+			//						case "2":
+			//							temp += '<dd class="word-bread"><img width="100" height="100" src=" ' + contentMsg + '" /></dd></dl>';
+			//							break;
+			//						case "3":
+			//							temp += '<dd class="word-bread audio" data-audio=" ' + contentMsg + '" onclick="playRecord(this)"><img src="../images/more-tb3.png" alt="" /></dd></dl>';
+			//							break;
+			//					}
+			//
+			//					html += temp;
+			//				}
+			//
+			//				
+			//				$("#contain").append(html);
+			//				scaleRefresh("#contain dd");
+			//				window.scrollTo(0, $("#contain").height());
+			//				console.log("!!!!"+typeMsg);
+			//					$("#input_content").val("");
+			//				if(msgType != 1) {
+			//					$(".tw-add").find("img").toggle();
+			//					$(".tw-add-detail").toggle();
+			//				}
+			//				plus.nativeUI.closeWaiting();
+			//			}
+
+			/*
+			 * 图片缩放
+			 */
+			function scaleRefresh(dom) {
+				ImagesZoom.init({
+					"elem": dom,
+					"delBack": function(index) {
+						//						$(".pic-count").text($(".pic-count").text() - 1); //删除图片后的回调
+						//						$(dom).find("li").eq(index).remove();
+					}
+				});
+			}
+			//			/**
+			//			 * 根据医生标识获取医生信息 
+			//			 * @param {Object} doctor 医生标识
+			//			 */
+			//			function getDoctorInfo()
+			//			{
+			//				var doctorList = null;
+			//				plus.ajax("doctor/team/list",{
+			//					
+			//					dataType: 'json', //服务器返回json格式数据
+			//					type: 'post', //HTTP请求类型
+			//					timeout: 10000, //超时时间设置为10秒；
+			//					async: false,
+			//					success: function(data) {
+			//						if(data.status!=200 || data.list == null || data.list.length<=0)
+			//						{
+			//							return null;
+			//						}
+			//						
+			//						doctorList = data.list.doctors;
+			//					},
+			//					error: function(xhr, type, errorThrown) {
+			//						
+			//					}
+			//				});
+			//				
+			//				return doctorList;
+			//			}
+
+			/*
+			 * 附加功能
+			 */
+			//			var flag = false;
+			$(".tw-add").click(function() {
+				$(this).find("img").toggle();
+				$(".tw-add-detail").toggle(500);
+				var inputHeight = $("#input_div").height();
+			});
+			/*
+			 * 发送照片
+			 */
+			//			var galleryImgPath;
+
+			function clickGallery() {
+				plus.gallery.pick(function(path) {
+
+					plus.zip.compressImage({
+						src: path,
+						dst: "_doc/chat/gallery/" + path,
+						quality: 20,
+						overwrite: true
+					}, function(e) {
+						var task = plus.uploader.createUpload(server + "upload/chat", {
+							method: "post"
+						}, function(t, sta) {
+							//							console.error(JSON.stringify(t));
+							if(sta == 200) {
+								var msg = t.responseText;
+								var oImg = JSON.parse(msg);
+								var imgUrl = oImg.urls;
+								var re = new RegExp("\\\\", "g");
+								imgUrl = imgUrl.replace(re, "/");
+								console.error(imgUrl);
+								uploadMsg(2, imgUrl);
+							}
+						});
+						task.addFile(e.target, {});
+						task.start();
+					}, function(err) {
+						console.error("压缩失败：" + err.message);
+					});
+
+				}, function(err) {});
+			};
+			/*
+			 * 拍照
+			 */
+			var cameraImgPath;
+
+			function clickCamera() {
+				var cmr = plus.camera.getCamera();
+				var res = cmr.supportedImageResolutions[0];
+				var fmt = cmr.supportedImageFormats[0];
+				cmr.captureImage(function(path) {
+					//					plus.io.resolveLocalFileSystemURL(path, function(entry) {
+					plus.io.resolveLocalFileSystemURL(path, function(entry) {
+						var localUrl = entry.toLocalURL();
+						plus.zip.compressImage({
+							src: localUrl,
+							dst: "_doc/chat/camera/" + localUrl,
+							quality: 20,
+							overwrite: true
+						}, function(e) {
+							var task = plus.uploader.createUpload(server + "upload/chat", {
+								method: "post"
+							}, function(t, sta) {
+								if(sta == 200) {
+									var msg = t.responseText;
+									var oImg = JSON.parse(msg);
+									var imgUrl = oImg.urls;
+									var re = new RegExp("\\\\", "g");
+									imgUrl = imgUrl.replace(re, "/");
+									console.log(imgUrl);
+									uploadMsg(2, imgUrl);
+								}
+							});
+							task.addFile(e.target, {});
+							task.start();
+						}, function(err) {
+							console.log("压缩失败：  " + err.message);
+						});
+					});
+				}, function(err) {
+					console.error("拍照失败：" + err.message);
+				}, {
+					index: 1
+				});
+			};
+
+			document.getElementById("qun_detail").addEventListener('tap', function() {
+				mui.openWindow({
+					url: "qunzu_xiangqing.html",
+					id: "qunzu_xiangqing",
+					extras: {
+						teamIcon: infoObj.icon,
+						teamName: infoObj.name,
+						members: JSON.stringify(mebsInfo)
+					},
+				});
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,721 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>填写信息</title>
+		<link rel="stylesheet" href="../css/cross.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../../../common/cross/css/cross.ui.css"/>
+		<link rel="stylesheet" href="../iconfont/iconfont.css" type="text/css" />
+		<link rel="stylesheet" href="../css/style.css" type="text/css" />
+	</head>
+
+	<body>
+		<div class="c-main">
+			<div class="h45">
+				<div class="demo-comtop">
+					<a class="mui-action-back"></a>
+					<h1>填写信息</h1>
+				</div>
+			</div>
+			<div class="doc-suggst c-border-b" id="info">
+				<!--<ul>
+					<li class="s-nolink">
+						<div class="doc-avatar"><img src="../../../images/d-default.png" alt=""></div>
+						<div class="doc-info pr10">
+							<h4><span id="name" class="c-333 c-f15 mr10">李晓霞</span>主治医师<span class="ml10">专家门诊</span></h4>
+							<p class="c-nowrap"><label id="hospital">厦门大学附属第一医院</label><i class="ml10">消化内科</i></p>
+							<p class="c-nowrap">挂号费：<i class="c-ff8100">25元（代缴）</i></p>
+						</div>
+					</li>
+				</ul>-->
+			</div>
+			<div class="mess-form c-border-tb mt10 c-f15">
+				<ul>
+					<li>
+						<div class="mform-tit" onClick="timeChoo(this);">
+							<h4 class="c-909090">就诊日期</h4>
+							<div id="time" class="mtmess c-909090">点击选择就诊日期</div>
+							<i class="arrow-right seljt"></i>
+						</div>
+						<div class="mform-con c-hide">
+							<div class="mform-time c-f12 c-666">
+								<div class="mtleft">
+									<dl>
+										<dt class="go-left" onClick="timeGoLeft();"><span><i class="arrow-right"></i></span></dt>
+										<dd>
+											<label>上<br />午</label>
+											<label>下<br />午</label>
+										</dd>
+									</dl>
+								</div>
+								<div class="mtmid clearfix" id="time-hold">
+									<div class="c-position-a" id="time-list">
+										<!--<dl>
+											<dt>3-31<br />周四</dt>
+											<dd>
+												<label><a href="javascript:;" class="mt-open" onClick="chooClose(this)">预约</a></label>
+												<label></label>
+											</dd>
+										</dl>
+										<dl>
+											<dt>4-01<br />周五</dt>
+											<dd>
+												<label><a href="javascript:;" class="mt-full">约满</a></label>
+												<label></label>
+											</dd>
+										</dl>
+										<dl>
+											<dt>4-02<br />周六</dt>
+											<dd>
+												<label></label>
+												<label><a href="javascript:;" class="mt-open" onClick="chooClose(this)">预约</a></label>
+											</dd>
+										</dl>
+										<dl>
+											<dt>4-03<br />周日</dt>
+											<dd>
+												<label><a href="javascript:;" class="mt-open" onClick="chooClose(this)">预约</a></label>
+												<label></label>
+											</dd>
+										</dl>
+										<dl>
+											<dt>4-04<br />周一</dt>
+											<dd>
+												<label></label>
+												<label></label>
+											</dd>
+										</dl>
+										<dl>
+											<dt>4-05<br />周二</dt>
+											<dd>
+												<label><a href="javascript:;" class="mt-open" onClick="chooClose(this)">预约</a></label>
+												<label></label>
+											</dd>
+										</dl>
+										<dl>
+											<dt>4-06<br />周三</dt>
+											<dd>
+												<label><a href="javascript:;" class="mt-open" onClick="chooClose(this)">预约</a></label>
+												<label></label>
+											</dd>
+										</dl>
+										<dl>
+											<dt>4-07<br />周四</dt>
+											<dd>
+												<label><a href="javascript:;" class="mt-open" onClick="chooClose(this)">预约</a></label>
+												<label></label>
+											</dd>
+										</dl>
+										<dl>
+											<dt>4-08<br />周五</dt>
+											<dd>
+												<label><a href="javascript:;" class="mt-full">约满</a></label>
+												<label></label>
+											</dd>
+										</dl>
+										<dl>
+											<dt>4-09<br />周六</dt>
+											<dd>。
+												<label></label>
+												<label><a href="javascript:;" class="mt-open" onClick="chooClose(this,event)">预约</a></label>
+											</dd>
+										</dl>
+										<dl>
+											<dt>4-10<br />周日</dt>
+											<dd>
+												<label><a href="javascript:;" class="mt-open" onClick="chooClose(this)">预约</a></label>
+												<label></label>
+											</dd>
+										</dl>
+										<dl>
+											<dt>4-11<br />周一</dt>
+											<dd>
+												<label><a href="javascript:;" class="mt-open" onClick="chooClose(this)">预约</a></label>
+												<label></label>
+											</dd>
+										</dl>
+										<dl>
+											<dt>4-12<br />周二</dt>
+											<dd>
+												<label><a href="javascript:;" class="mt-open" onClick="chooClose(this)">预约</a></label>
+												<label></label>
+											</dd>
+										</dl>-->
+									</div>
+								</div>
+								<div class="mtright">
+									<dl>
+										<dt class="go-right" onClick="timeGoRight();"><span><i class="arrow-right"></i></span></dt>
+										<dd>
+											<label></label>
+											<label></label>
+										</dd>
+									</dl>
+								</div>
+							</div>
+							<div class="mt-filter">
+								<!--<div class="input-group-checkbox">-->
+								<!--<div>
+										<div class="input-group-pack" data-checked="true">
+											<input type="checkbox">
+											<span class="tick"></span>
+										</div>
+										只显示可约日期
+									</div>-->
+								<!--</div>-->
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="mform-tit" onClick="numChoo();">
+							<h4 class="c-909090">选择号源</h4>
+							<span class="mtmess c-909090" id="num-value">点击选择就诊号源</span>
+							<i class="iconfont icon-haoyuan"></i>
+						</div>
+					</li>
+					<li>
+						<div class="mform-tit">
+							<h4 class="c-909090">就诊人</h4>
+							<span class="mtmess" id="human-value"></span>
+							<i class="iconfont icon-jiuzhenren"></i>
+						</div>
+					</li>
+					<li>
+						<div class="mform-tit">
+							<h4 class="c-909090">联系手机</h4>
+							<span class="mtmess"><input type="tel" placeholder="请填写手机号码" id="phone" maxlength="11"/></span>
+						</div>
+					</li>
+					<li>
+						<div class="mform-tit">
+							<h4 class="c-909090">证件类型</h4>
+							<span class="mtmess">身份证</span>
+							<i class="iconfont icon-zhengjianleixing"></i>
+							<!--<label class="mtmess">
+                    	<select class="mf-select"><option>身份证</option><option>学生证</option></select>
+                    </label>-->
+						</div>
+					</li>
+					<li>
+						<div class="mform-tit">
+							<h4 class="c-909090">证件号码</h4>
+							<span class="mtmess"><input type="tel" placeholder="请填写证件号码" id="idcard" readonly=""/></span>
+						</div>
+					</li>
+					<!--<li>
+						<div class="mform-tit">
+							<h4 class="c-909090">就诊类型</h4>
+							<span class="mtmess">
+                    	<div class="input-group-radio mr10">
+                            <div>
+                                <div class="input-group-pack">
+                                    <input type="radio">
+                                    <span class="disc"></span>
+						</div>
+						无就诊卡
+						</div>
+					</div>
+					<div class="input-group-radio">
+						<div>
+							<div class="input-group-pack checked">
+								<input type="radio" checked="checked">
+								<span class="disc"></span>
+							</div>
+							有就诊卡
+						</div>
+					</div>
+					</span>
+					</div>
+					</li>-->
+					<li>
+						<div class="mform-tit">
+							<h4 class="c-909090">就诊卡号</h4>
+							<span class="mtmess"><input type="text" placeholder="请填写就诊卡号" id="ssc" maxlength="12"/></span>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="notice-box mt15 c-border-tb">
+				<div class="nb-tit c-f15">
+					<div class="input-group-checkbox">
+						<div class="c-f15">
+							<div class="input-group-pack checked">
+								<input type="checkbox" id="rule_check">
+								<span class="tick"></span>
+							</div>
+							我已了解并同意以下规则
+						</div>
+					</div>
+					<span class="arrow-right"></span>
+				</div>
+				<div class="nb-con c-f15 c-666">
+					预约限制：每个用户每天只能预约三次，取消预约三次，若超过三次，当天就不能再预约和取消预约。 预约登记： 医保卡或市民健康卡（长期）要核对居民与提供的卡主名字是否相符。
+				</div>
+			</div>
+			<div class="plr10 mt20 pb20">
+				<a id="app_commit" class="c-btn c-btn-full c-btn-17b3ec c-f16 border-radius-rounded">提交预约订单</a>
+			</div>
+		</div>
+
+		<!--选择号源-->
+		<div class="choosepop" id="numchoo">
+			<span class="c-add">就诊时间  -  选择号源<i class="c-close" onClick="numclose()"></i></span>
+			<div id="num-hold">
+				<ul id="num_list">
+					<!--<li onclick="numValue(this)">第1号 08:00-09:00</li>
+					<li onclick="numValue(this)">第2号 08:00-09:00</li>
+					<li onclick="numValue(this)">第3号 08:00-09:00</li>
+					<li onclick="numValue(this)">第4号 08:00-09:00</li>
+					<li onclick="numValue(this)">第5号 08:00-09:00</li>
+					<li onclick="numValue(this)">第6号 08:00-09:00</li>
+					<li onclick="numValue(this)">第7号 08:00-09:00</li>
+					<li onclick="numValue(this)">第8号 08:00-09:00</li>-->
+				</ul>
+			</div>
+		</div>
+		<!--就诊人-->
+		<!--<div class="choosepop" id="humanchoo">
+			<span class="c-add">选择就诊人<i class="c-close" onClick="numclose()"></i></span>
+			<div id="human-hold">
+				<ul>
+					<li onclick="humanValue(this)">李天天</li>
+					<li onclick="humanValue(this)">李洪文</li>
+					<li onclick="humanValue(this)">林夕</li>
+				</ul>
+			</div>
+			<div class="human-add"><a href="add-patient.html">添加就诊人</a></div>
+		</div>
+		<div class="choosepop-mb c-hide" onClick="numclose();"></div>-->
+
+		<script type="text/html" id="info_tmpl">
+			<ul>
+				<li class="s-nolink">
+					<div class="doc-avatar"><img src="{{sex | setSex}}" alt=""></div>
+					<div class="doc-info pr10 c-f15">
+						<h4>
+							<span class="c-333 c-f16 mr10">{{name}}</span>
+							{{tech}}
+						</h4>
+						<p class="c-nowrap">
+							<label class="c-f15">{{orgname}}</label>
+							<i class="ml10">{{deptname}}</i>
+						</p>
+						<p class="c-nowrap">费用：
+							<i class="c-ff8100">{{fee}}元</i>
+						</p>
+					</div>
+				</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="time_tmpl">
+			{{each data as val i}}
+			<dl data-date="{{val.date}}">
+				<dt>{{val.date | setDate}}</dt>
+				<dd>
+					{{if val.time=="a"}} {{if val.status==1}}
+					<label>
+						<a href="javascript:;" class="mt-open" onClick="chooClose(this)" data-section='{{val.sections | setJson}}' data-time="a">预约</a>
+					</label> {{else if val.status==2}}
+					<label><a href="javascript:;" class="mt-full">约满</a></label> {{else}}
+					<label></label> {{/if}}
+					<label></label> {{/if}} {{if val.time=="b"}}
+					<label></label> {{if val.status==1}}
+					<label><a href="javascript:;" class="mt-open" onClick="chooClose(this)" data-section='{{val.sections | setJson}}' data-time="m">预约</a></label> {{else if val.status==2}}
+					<label><a href="javascript:;" class="mt-full">约满</a></label> {{else}}
+					<label></label> {{/if}} {{/if}}
+				</dd>
+			</dl>
+			{{/each}}
+		</script>
+
+		<script type="text/html" id="num_tmpl">
+			{{each secitons as val i}}
+			<li onclick="numValue(this)" data-haoyuan="{{val.start_time}}">第{{i+1}}号 {{val.start_time | setSec}}-{{val.end_time | setSec}}</li>
+			{{/each}}
+		</script>
+
+		<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<script type="text/javascript" src="../../../widget/mobiscroll/2.15.1/js/mobiscroll.min.js"></script>
+		<link rel="stylesheet" href="../../../widget/mobiscroll/2.15.1/css/mobiscroll.css" type="text/css" />
+		<script type="text/javascript" src="../../../widget/iscroll/5.1.3/js/iscroll.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/security.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var patiCode, patiName, mobile, idCard;
+			var sectionType, startTime, orgCode, orgName, deptCode, deptName, docCode, docName, docJob;
+			mui.plusReady(function() {
+				plus.nativeUI.showWaiting();
+
+				var self = plus.webview.currentWebview();
+				var appoInfo = self.appoInfo;
+				var appoDate = self.appoDate;
+				var infoObj = JSON.parse(appoInfo);
+				orgCode = infoObj.orgcode;
+				orgName = infoObj.orgname;
+				deptName = infoObj.deptname;
+				deptCode = infoObj.deptcode;
+				docName = infoObj.name;
+				docCode = infoObj.code;
+				docJob = infoObj.tech;
+
+				var patiInfo = plus.storage.getItem("patiInfo");
+				if (patiInfo) {
+					var info = JSON.parse(patiInfo);
+					patiCode = info.code || "";
+					patiName = info.name || "";
+					mobile = info.mobile || "";
+					idCard = info.idCard || "";
+					$("#human-value").text(patiName);
+					$("#phone").val(mobile);
+					$("#idcard").val(idCard);
+
+					//请求居民信息
+					//					var patiUrl = "doctor/patient_group/patient";
+					//					sendPost(patiUrl, {
+					//						code: patiCode
+					//					}, null, function(res) {
+					//						if (res.status == 200) {
+					//							$("#human-value").text(res.data.name);
+					//							$("#phone").val(res.data.mobile);
+					//							$("#idcard").val(res.data.idCard);
+					//						}
+					//					})
+
+				}
+
+				template.helper("setSex", function(s) {
+					if (s == 1) {
+						return "../../../images/d-male.png"
+					} else if (s == 2) {
+						return "../../../images/d-female.png"
+					}else{
+						return "../../../images/d-default.png"
+					}
+				});
+				var cont1 = template("info_tmpl", infoObj);
+				$("#info").html(cont1);
+
+
+				var startDate = getCurrDate("date");
+				var endDate = getSysDatePlus(7);
+
+				var postUrl = "user/guaihao/GetRegDeptDoctorSectionList";
+				var param = {
+					OrgCode: orgCode,
+					DeptCode: deptCode,
+					DocCode: docCode,
+					strStart: startDate,
+					strEnd: endDate
+				};
+
+				sendPost(postUrl, param, null, function(res) {
+					if (res.status == 200) {
+						template.config("escape", false);
+						template.helper("setJson", function(j) {
+							//							var temp={};
+							//							temp.section=j;
+							return JSON.stringify(j);
+						});
+
+						template.helper("setDate", function(d) {
+							var d1 = d.split(" ")[0];
+							var strWeek = ["日", "一", "二", "三", "四", "五", "六"];
+							var week = new Date(d1).getDay();
+							return d1.substr(5) + '<br />' + "周" + strWeek[week];
+						});
+						var cont = template("time_tmpl", res);
+						$("#time-list").html(cont);
+						plus.nativeUI.closeWaiting();
+					}
+				});
+			});
+
+			/*
+			 * 
+			 */
+			var srctime, srcnum, srchuman;
+			//就诊时间
+			function timeChoo(nth) {
+				srctime = new IScroll('#time-hold', {
+						eventPassthrough: true,
+						scrollX: true,
+						scrollY: false,
+						preventDefault: false,
+						click: true
+					}),
+					srcnum = new IScroll('#num-hold', {
+						click: true
+					});
+
+				//				srchuman = new IScroll('#human-hold', {
+				//					click: true
+				//				});
+
+				var mc = $(nth).siblings(".mform-con");
+				if (mc.is(":hidden")) {
+					mc.slideDown(200);
+					var totH = $(window).width();
+					var dlL = $("#time-list dl").length;
+					$("#time-list dl").css("width", (totH - 80) / 4);
+					$("#time-list").width((totH - 80) / 4 * dlL);
+					srctime.refresh();
+				} else {
+					mc.slideUp(200);
+				}
+			}
+
+			function timeGoLeft() {
+				var divL = srctime.x;
+				var srcW = Math.abs(divL) - $(window).width() + 80;
+				if (srcW > 0) {
+					srctime.scrollTo(-srcW, 0, 300);
+				} else {
+					srctime.scrollTo(0, 0, 300);
+				}
+			}
+
+			function timeGoRight() {
+				var divL = srctime.x;
+				var srcW = $(window).width() - 80 + Math.abs(divL);
+				if (Math.abs(srcW) > Math.abs(srctime.maxScrollX)) {
+					srctime.scrollTo(srctime.maxScrollX, 0, 300);
+				} else {
+					srctime.scrollTo(-srcW, 0, 300);
+				}
+			}
+			//关闭
+			function chooClose(nth) {
+				var timeInfo = $(nth).closest("dl").attr("data-date");
+				sectionType = $(nth).attr("data-time");
+				var secInfo = nth.getAttribute("data-section");
+
+				var secObj = JSON.parse(secInfo);
+				var temp = {};
+				temp.secitons = secObj;
+				template.helper("setSec", function(s) {
+					return s.substr(11, 5);
+				});
+				var cont = template("num_tmpl", temp);
+				$("#num_list").html(cont);
+
+				setTimeout(function() {
+					$("#time").text(timeInfo.substr(0, 10));
+
+					$(nth).parents(".mform-con").slideUp(200);
+				}, 300);
+				return false;
+			}
+			//选择号源
+			function numChoo() {
+				var totH = $(window).height();
+				$("body").height(totH).css("overflow", "hidden");
+				$(".choosepop-mb,#numchoo").show();
+				$("#num-hold").css("max-height", totH / 2 - 40);
+				srcnum.refresh();
+			}
+			//选择
+			function numValue(nth) {
+				numclose();
+				$("#num-value").html($(nth).html());
+				startTime = $(nth).attr("data-haoyuan");
+			}
+			//选择就诊人源
+			//			function humanChoo() {
+			//				var totH = $(window).height();
+			//				$("body").height(totH).css("overflow", "hidden");
+			//				$(".choosepop-mb,#humanchoo").show();
+			//				$("#human-hold").css("max-height", totH / 2 - 95);
+			//				srchuman.refresh();
+			//			}
+			//选择
+			function humanValue(nth) {
+				numclose();
+				$("#human-value").html($(nth).html());
+			}
+			//取消
+			function numclose() {
+				$(".choosepop-mb,.choosepop").hide();
+				$("body").height("auto").css("overflow", "auto");
+			}
+			$(function() {
+					//lab
+					$(".mt-hosplab-ul li").click(function() {
+						$(".mt-hosplab-ul li").removeClass("curr");
+						$(this).addClass("curr");
+					});
+					//收藏
+					$(".ml-collect").click(function() {
+						$(this).toggleClass("msaved");
+					});
+					//须知
+					$(".nb-tit").click(function() {
+						var arrow = $(this).find(".arrow-right");
+						if (arrow.hasClass("nhide")) {
+							arrow.removeClass("nhide");
+							$(this).find(".input-group-pack").addClass("checked").find("input").attr("checked", "true");
+							$(this).siblings(".nb-con").show();
+							var aT = $(".nb-tit").offset().top;
+							$("body").scrollTop(aT);
+						} else {
+							arrow.addClass("nhide");
+							$(this).find(".input-group-pack").removeClass("checked").find("input").removeAttr("checked");
+							$(this).siblings(".nb-con").hide();
+						}
+					});
+					//单选
+					$(".input-group-radio").click(function() {
+						$(this).siblings(".input-group-radio").find(".input-group-pack").removeClass("checked").find("input").removeAttr("checked");
+						$(this).find(".input-group-pack").addClass("checked").find("input").attr("checked", "true");
+					});
+					//复选
+					$(".input-group-checkbox").click(function() {
+						if ($(this).find(".input-group-pack").attr("data-checked") == "true") {
+							if ($(this).find(".input-group-pack").hasClass("checked")) {
+								$(this).find(".input-group-pack").removeClass("checked").find("input").removeAttr("checked");
+							} else {
+								$(this).find(".input-group-pack").addClass("checked").find("input").attr("checked", "true");
+							}
+						}
+//						$("#app_commit").toggle();
+					});
+					//选择出生日期
+					var opt1 = {
+						preset: 'date',
+						theme: 'ios',
+						lang: 'zh',
+						maxDate: new Date(2016, 5, 30)
+					};
+					//				$('input[data-time=date]').mobiscroll(opt1);
+				})
+				//			mui.plusReady(function() {
+				//				var self = plus.webview.currentWebview();
+				//				var doc_name = self.name;
+				//				var hospital = self.hospit;
+				//				if (doc_name) {
+				//					document.querySelector("#name").innerText = doc_name;
+				//				}
+				//				if (hospital) {
+				//					document.getElementById("hospital").innerText = hospital;
+				//				}
+			document.querySelector("#app_commit").addEventListener("tap", function() {
+				if (!$(".input-group-pack").hasClass("checked")) {
+					mui.toast("您还未了解预约规则");
+					return;
+				}
+					
+					
+				var time = $("#time").text();
+				if (time == "点击选择就诊日期") {
+					mui.toast("请选择就诊日期");
+					return
+				}
+
+				var hy = $("#num-value").text();
+				if (hy == "点击选择就诊号源") {
+					mui.toast("请选择就诊号源");
+					return
+				}
+
+				var phone = $("#phone").val().trim();
+				if (phone.length != 11) {
+					mui.toast("请输入有效的手机号码");
+					return
+				}
+
+				var patrn = /^[a-zA-Z0-9]+$/;
+				var ssc = $("#ssc").val().trim();
+				if (!patrn.test(ssc)) {
+					mui.toast("请填写有效的就诊卡号");
+					return;
+				}
+
+				plus.nativeUI.showWaiting("预约中，请稍后...")
+
+				var encryURL = "login/public_key";
+				RSAUtils.getKeyFromServer(encryURL, function(res) {
+					if (res.status == 200) {
+						var mod = res.data.modulus;
+						var exp = res.data.exponent;
+						var key = RSAUtils.getKeyPair(exp, "", mod);
+						var encyIdCard = RSAUtils.encryStr(key, idCard);
+						
+						submitAppo(encyIdCard,ssc,phone);
+					}
+				});
+
+				//				var ssc=$("#ssc").val().trim();
+				//				if (ssc.length!=12) {
+				//					mui.toast("请输入有效的就诊卡号");
+				//					return;
+				//				}
+
+				//				var submitUrl = "user/guaihao/WebRegisterVerify";
+				//				var params = {
+				//					patient: patiCode,
+				//					name:patiName,
+				//					idcard:idCard,
+				//					ssc:ssc,
+				//					mobile:mobile,
+				//					section_type: sectionType,
+				//					start_time: startTime,
+				//					org_code: orgCode,
+				//					org_name: orgName,
+				//					dept_code: deptCode,
+				//					dept_name: deptName,
+				//					doctor_code: docCode,
+				//					doctor_name: docName,
+				//					doctor_photo: "",
+				//					doctor_job: docJob
+				//				};
+				//				sendPost(submitUrl, params, function(xht, type, tr) {
+				//					mui.toast(type);
+				//				}, function(res) {
+				//					if (res.status == 200) {
+				//						plus.nativeUI.closeWaiting();
+				//						mui.toast("预约成功");
+				//					}
+				//				})
+
+			});
+
+			function submitAppo(entryIdcard,ssc,mobile) {
+				var submitUrl = "user/guaihao/WebRegisterVerify";
+				var params = {
+					patient: patiCode,
+					name: patiName,
+					idcard: entryIdcard,
+					ssc: ssc,
+					mobile: mobile,
+					section_type: sectionType,
+					start_time: startTime,
+					org_code: orgCode,
+					org_name: orgName,
+					dept_code: deptCode,
+					dept_name: deptName,
+					doctor_code: docCode,
+					doctor_name: docName,
+					doctor_photo: "",
+					doctor_job: docJob
+				};
+				sendPost(submitUrl, params, function(xht, type, tr) {
+					mui.toast(type);
+				}, function(res) {
+					if (res.status == 200) {
+						plus.nativeUI.closeWaiting();
+						mui.toast("预约成功");
+					}
+				})
+			}
+		</script>
+	</body>
+
+</html>

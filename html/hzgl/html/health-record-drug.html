@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta charset="utf-8">
+		<title>用药历史</title>
+		<link rel="stylesheet" type="text/css" href="../css/cross.css" />
+		<!--<link rel="stylesheet" type="text/css" href="../iconfont/iconfont.css" />-->
+		<link rel="stylesheet" type="text/css" href="../css/ss-style.css" />
+		<link rel="stylesheet" type="text/css" href="../css/cross.ui.css">
+		<!--<link rel="stylesheet" type="text/css" href="../../../home-wdzs/zdzx/css/zx-style.css">-->
+				<style type="text/css">
+		@media only screen and (min-width: 100px) and (max-width: 640px) {
+			.c-f-sm{
+				font-size:14px;
+			}
+		}
+		</style>
+		
+	</head>
+
+	<body>
+		<div class="c-main">
+			<div class="h45">
+				<div class="demo-comtop">
+					<a class="mui-action-back"></a>
+					<h1>用药历史</h1>
+				</div>
+			</div>
+			<div class="mt20">
+				<table class="c-table health-table-blue c-f16 c-boxs">
+					<tbody>
+						<tr>
+							<td class="width-30">日期</td>
+							<td class="width-70">用药</td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="c-table c-border-b c-f15 c-f-sm bg-fff">
+					<tbody id="drug_list">
+						<!--<tr>
+							<td class="width-30">03-23</td>
+							<td class="width-70">阿莫西林胶囊</td>
+						</tr>
+						<tr>
+							<td class="width-30">03-24</td>
+							<td class="width-70">基础胰岛素</td>
+						</tr>
+						<tr>
+							<td class="width-30">03-25</td>
+							<td class="width-70">预混胰岛素</td>
+						</tr>-->
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="labhold-con">
+		    <div class="doc-recoder" id="divRecoder"></div>
+		    <a href="javascript:;" class="view-more c-37a6ed" style="display: none;" id="view_more">点击查看更多</a>
+		</div>
+	</body>
+	<script src="../../../js/jquery/2.1.3/jquery.js"></script>
+	<script type="text/javascript" src="../../../js/mui.min.js"></script>
+	<script type="text/javascript" src="../../../js/common_http.js"></script>
+	<script type="text/javascript" src="../js/health-record.js"></script>
+	<script type="text/javascript" src="../js/health-record-drug.js"></script>
+</html>

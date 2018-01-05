@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>居民管理</title>
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" type="text/css" href="../iconfonts/iconfont.css">
+		<link rel="stylesheet" href="../../../common/cross/css/cross.css" type="text/css" />
+		<link rel="stylesheet" href="../../../common/cross/css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../../../common/css/doc-style.css">
+		<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<script src="../../../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			/*.patient-face-new {
+				width: 50px;
+				height: 50px;
+			}*/
+			
+			.face-title {
+				/*width: 20px;
+				height: 20px;*/
+				position: absolute;
+				margin-top: 38px;
+				margin-left: -29px;
+			}
+			
+			.face-title-name {
+				margin-left: -22px;
+				margin-top: 41px;
+				color: white;
+				font-size: 13px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="h45">
+			<div class="demo-comtop">
+				<a class="mui-action-back"></a>
+				<h1>选择居民</h1>
+			</div>
+		</div>
+		<div class="patient mt10 pb100">
+			<div class="patient-list">
+				<div class="my-work-secflo" id="other_group_list">
+
+				</div>
+			</div>
+
+		</div>
+		<div class="bottom-btn">
+			<a id="confirm" class="c-btn c-btn-37a6ec c-block c-btn-radius c-f16">确 定</a>
+		</div>
+		<script type="text/html" id="other_group_tmpl">
+			{{each data as value i}}
+			<div class="patient-list">
+				<div class="patient-type ">
+					<div class="arrow"> <i class="ui-arrow ui-arrow-b"></i></div>
+					<h3 class="t c-f16">{{value.name}}<em class="c-ccc ml10 c-f14">({{value.total}}人)</em></h3>
+				</div>
+				<ul class="n-list">
+					{{each value.patients as val j}}
+					<li class="n-list-link  n-list-cover">
+						<div class="n-list-key">
+							<i class="iconfont  pa-icon-dagou  mr5" data-patient="{{val.code}}"></i>
+						</div>
+						<div class="patient-face">
+							{{if val.photo}}
+							<img src="{{val.photo}}"> 
+								{{else}}
+							<img src="{{val.sex | setPhoto}}"> 
+								{{/if}}
+						</div>
+						
+						{{if val.disease==1}}
+						<div class="face-title">
+							<img src="../../../images/gaoyou@2x.png">
+						</div>
+						<div class="face-title face-title-name">
+							<a>高</a>
+						</div>
+						{{else if val.disease==2}}
+						<div class="face-title">
+							<img src="../../../images/tangyou@2x.png">
+						</div>
+						<div class="face-title face-title-name">
+							<a>糖</a>
+						</div>
+						{{else}} {{/if}}
+						
+						
+						<div class="n-list-info">
+							<h4 class="c-nowrap c-f15">{{val.name}}<em class="ml5 c-f12 c-909090">{{val.sex |setSex}}  {{val.age}}岁</em></h4>
+							<p class="c-f14 c-909090 pt5">{{val.disease |setDisease}}</p>
+						</div>
+						<!--<div class="n-list-info c-t-right c-909090">
+							<h4 class="c-nowrap c-f14">{{val.qyrq}}</h4>{{if val.diseaseLevel==0}}
+							<span class="c-f12 plr10 bgc-4bbe4d border-radius-rounded c-inblock c-fff mt5 ptb1">良好</span> {{else if val.diseaseLevel==1}}
+							<span class="c-f12 plr10 bgc-ffa54b border-radius-rounded c-inblock c-fff mt5 ptb1">警告</span> {{else if val.diseaseLevel==2}}
+							<span class="c-f12 plr10 bgc-ff4c4c border-radius-rounded c-inblock c-fff mt5 ptb1">严重</span> {{/if}}
+						</div>-->
+					</li>
+					{{/each}}
+				</ul>
+			</div>
+			{{/each}}
+		</script>
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var len = 0;
+			//			mui.init({
+			//				beforeback: function() {
+			//					if (len > 0) {
+			//						var destWv = plus.webview.getWebviewById("huanzheguanli");
+			//						mui.fire(destWv, "update");
+			//					}
+			//					return true;
+			//				}
+			//			});
+			var code;
+			var self;
+			mui.plusReady(function() {
+				self = plus.webview.currentWebview();
+				code = self.code;
+				getListFormServer(code);
+				document.getElementById("confirm").addEventListener("tap", tapEvent);
+			});
+
+			function getListFormServer(code) {
+				sendPost("doctor/patient_group/other_patients", {
+					group: code
+				}, null, handleSucc);
+			}
+
+			function handleSucc(res) {
+				if (res.status == 200) {
+					template.helper("setSex", function(s) {
+						if (s == 1) {
+							return "男"
+						} else if (s == 2) {
+							return "女"
+						}
+					});
+					template.helper("setPhoto", function(s) {
+					if(s == 1) {
+						return "../../../images/p-default.png";
+					} else if(s == 2) {
+						return "../../../images/p-female.png";
+					} else {
+//						return "../../../images/p-default.png";
+					}
+				});
+					template.helper("setDisease", function(d) {
+						switch (d) {
+							case 0:
+								return "健康";
+								break;
+							case 1:
+								return "高血压";
+								break;
+							case 2:
+								return "糖尿病";
+								break;
+						}
+					});
+					var cont = template("other_group_tmpl", res);
+					document.getElementById("other_group_list").innerHTML = cont;
+					clickEvent();
+				}
+				//				console.log(res.msg);
+			}
+			var clickEvent = (function() {
+				/* 展开居民列表  */
+				$(".patient-type").on('click', function() {
+						var $this = $(this);
+						if ($this.parent('.patient-list').hasClass("current")) {
+							$this.find('.arrow').removeClass('open');
+							$this.next(".n-list").hide().parent('.patient-list').removeClass("current");
+							$this.siblings().find('.n-list').hide();
+							$this.siblings().find('.patient-list').removeClass('current');
+							$this.siblings().find('.arrow').removeClass('open');
+						} else {
+							$this.find('.arrow').addClass('open');
+							$this.next(".n-list").show().parent('.patient-list').addClass("current");
+						};
+					})
+					//勾选
+				$(".n-list-link").on("click", function() {
+					if ($(this).find(".pa-icon-dagou").hasClass("icon-dagou on")) {
+						$(this).find(".pa-icon-dagou").removeClass("icon-dagou on");
+					} else {
+						$(this).find(".pa-icon-dagou").addClass("icon-dagou on");
+					}
+				});
+			});
+			var tapEvent = function() {
+					var aDagou = $(".icon-dagou");
+					len = aDagou.length;
+					if (len == 0) {
+						mui.toast("至少选择一名居民");
+						return
+					}
+					var patients = "";
+					for (var i = 0; i < len; i++) {
+						var temp = aDagou[i].getAttribute("data-patient");
+						patients += temp + ",";
+					}
+					patients = patients.substr(0, patients.length - 1);
+					sendPost("doctor/patient_group/add_patients", {
+						group: code,
+						patients: patients
+					}, null, function(res) {
+						if (res.status == 200) {
+							mui.toast("添加成功");
+							self.opener().close("none");
+							mui.later(function() {
+								refreshInfo()
+							}, 1000)
+						}
+						//mui.back();
+					});
+				}
+				/*
+				 * 修改完成后刷新 居民页面
+				 */
+			function refreshInfo() {
+				var hzWv = plus.webview.getWebviewById("huanzhe.html");
+				if (hzWv) {
+					mui.fire(hzWv, 'update');
+				}
+				var mainWv = plus.webview.getWebviewById("main");
+				mui.fire(mainWv, "mainActive");
+				mainWv.show();
+				self.close();
+			}
+		</script>
+	</body>
+
+</html>

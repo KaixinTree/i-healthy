@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../../js/mui.min.js"></script>
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+
+		<link rel="stylesheet" type="text/css" href="../css/forget.css" />
+		<script type="text/javascript" charset="UTF-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">手机验证</h1>
+		</header>
+		<div class="mui-bar mui-bar-footer">
+			<button type="button" class="mui-btn mui-btn-blue mui-btn-block" id="forget_next">确  定</button>
+		</div>
+		<div class="mui-content">
+			<div class="mui-content-padded">
+				系统已经发送验证码到您的手机<span id="number"></span>,请查收
+			</div>
+			<form class="mui-input-group mui-card">
+				<div class="mui-input-row">
+					<label><span class="mui-icon mui-icon-reload"></span>验证码</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入验证码">
+				</div>
+			</form>
+			<div class="mui-content-padded">
+				<button type="button" class="mui-btn" id="time" disabled="">60  秒</button>
+			</div>
+		</div>
+	</body>
+
+	<!--================================================================-->
+	<script src="../../../js/app.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="UTF-8">
+		mui.init();
+		var time = 60;
+		var postUrl = "common/check_captcha";
+		countTime(); //计时方法
+		mui.plusReady(function() {
+			var self = plus.webview.currentWebview();
+			self.opener().close("none");
+			var phone = self.mobile;
+			document.getElementById("number").innerText = phone;
+			/*
+			 * 提交验证码验证，跳转
+			 */
+			document.getElementById("forget_next").addEventListener('tap', function() {
+				var verify = document.querySelector("input").value.trim();
+				if (verify.length == 0) {
+					mui.toast("请输入验证码");
+					return
+				}
+				sendPost(postUrl, {
+					mobile: phone,
+					type: 3,
+					captcha: verify
+				}, null, function(res) {
+					if (res.status == 200) {
+						mui.openWindow('forget-3newpwd.html', 'forget-3newpwd', {
+							extras: {
+								mobile: phone,
+								verifyCode: verify
+							}
+						});
+					}
+				});
+
+			});
+			/*
+			 * 重新获取验证码
+			 */
+			document.getElementById("time").addEventListener("tap", function() {
+				var captchaUrl = "common/captcha";
+				sendPost(captchaUrl, {
+					mobile: phone,
+					type: 3
+				}, null, function(res) {
+					if (res.status == 200) {
+						time = 60;
+						document.querySelector("input").value = "";
+					}
+					mui.toast(res.msg);
+				});
+			});
+		});
+	</script>
+
+</html>

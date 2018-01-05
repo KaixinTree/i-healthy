@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../../js/mui.min.js"></script>
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../../common/cross/css/cross.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../../../common/cross/css/cross.ui.css"/>
+		<link rel="stylesheet" type="text/css" href="../iconfont/iconfont.css">
+		<link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+		<script type="text/javascript" charset="UTF-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: white;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">选择医生</h1>
+		</header>
+		
+		<div class="mui-content">
+			<div id="notice" class="h45">
+				<div class="doc-suggst-tip c-boxs" style="top:45px;">
+					就诊日期：<span id="date"></span>
+					<a class="fr">选择</a>
+				</div>
+			</div>
+			<p class="ml10 mb10 c-f15"><span id="hosp"></span> -- <span id="depa"></span></p>
+			<div>
+				<div class="doc-suggst c-border-tb ">
+					<ul id="doc_list">
+						<!--<li>
+							<div class="doc-avatar"><img src="../../../images/d-default.png" alt=""></div>
+							<div class="doc-info pr10">
+								<h4><span class="c-333 c-f15 mr10">陈立洲</span>主治医师</h4>
+								<div class="c-909090 c-nowrap">擅长：阴道炎、尿道炎、宫颈炎、宫颈糜烂、盆腔炎、附件炎等妇科炎症</div>
+							</div>
+							<div class="state-hold">
+								<div><span>可预约</span></div>
+							</div>
+						</li>
+						<li>
+							<div class="doc-avatar"><img src="../../../images/d-default.png" alt=""></div>
+							<div class="doc-info pr10">
+								<h4><span class="c-333 c-f15 mr10">张晓融</span>主治医师</h4>
+								<div class="c-909090 c-nowrap">擅长：从事临床工作30余年，先后在北京同仁医院、北京协和医院、福医大附属协和医院等大型三甲医院工作，多次受邀参加国际国内学术交流</div>
+							</div>
+							<div class="state-hold no-sched">
+								<div><span>约 满</span></div>
+							</div>
+						</li>
+
+						<li>
+							<div class="doc-avatar"><img src="../../../images/d-default.png" alt=""></div>
+							<div class="doc-info pr10">
+								<h4><span class="c-333 c-f15 mr10">王岐山</span>主治医师</h4>
+								<div class="c-909090 c-nowrap">擅长：从事泌尿外科临床、科研和教学工作20余年</div>
+							</div>
+							<div class="state-hold no-sched">
+								<div><span>停 诊</span></div>
+							</div>
+						</li>
+						<li>
+							<div class="doc-avatar"><img src="../../../images/d-default.png" alt=""></div>
+							<div class="doc-info pr10">
+								<h4><span class="c-333 c-f15 mr10">贺东阳</span>主治医师</h4>
+								<div class="c-909090 c-nowrap">擅长：疝修补术及痔疮PPH术,精通普外科常见病多发病诊治以及创伤外科急诊急救。</div>
+							</div>
+							<div class="state-hold no-sched">
+								<div><span>暂停预约</span></div>
+							</div>
+						</li>-->
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<!--=============================================-->
+	<script type="text/html" id="doc_tmpl">
+		{{each data as val i}}
+		<li data-code="{{val.code}}" data-json='{{val | setJson}}'>
+			<div class="doc-avatar"><img src="{{val.sex | setSex}}" alt=""></div>
+			<div class="doc-info pr10">
+				<h4 class="c-f15"><span class="c-333 c-f16 mr10">{{val.name}}</span>{{val.tech}}</h4>
+				<div class="c-909090 c-nowrap c-f15">{{val.introduce}}</div>
+			</div>
+			<div class="state-hold">
+				<div><span class="c-f14">{{val.fee}}元</span></div>
+			</div>
+		</li>
+		{{/each}}
+	</script>
+	<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+	<script type="text/javascript" src="../../../widget/iscroll/5.1.3/js/iscroll.js"></script>
+	<script src="../../../widget/mobiscroll/2.17.1/js/mobiscroll.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../../widget/mobiscroll/2.17.1/css/mobiscroll.css" />
+	<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var deparCode, hospiCode;
+		var hosName, deparName;
+		var postUrl = "user/guaihao/GetRegDeptDoctorList";
+		mui.plusReady(function() {
+			var self = plus.webview.currentWebview();
+			deparCode = self.deparCode;
+			hospiCode = self.hospitalCode;
+			hosName = self.hospitalName;
+			deparName = self.deparName;
+			$("#hosp").text(hosName);
+			$("#depa").text(deparName);
+
+			var currDate = getCurrDate("date");
+			getData(currDate);
+		});
+
+		function getData(date) {
+			plus.nativeUI.showWaiting("加载中...",{back:"none"});
+			$("#date").text(date);
+			param = {
+				OrgCode: hospiCode,
+				DeptCode: deparCode,
+				strStart: date,
+				strEnd: date
+			};
+			sendPost(postUrl, param, null, function(res) {
+				console.error(JSON.stringify(res));
+				if (res.status == 200) {
+					
+					template.helper("setJson",function (j) {
+						return JSON.stringify(j);
+					});
+					template.helper("setSex",function (s) {
+						if (s==="1") {
+							return "../../../images/d-male.png"
+						}else if(s==="2"){
+							return "../../../images/d-female.png"
+						}else{
+							return "../../../images/d-default.png"
+						}
+					})
+					
+					var cont = template("doc_tmpl", res);
+					$("#doc_list").html(cont);
+				}
+				plus.nativeUI.closeWaiting();
+			});
+		}
+
+		$(function() {
+			var d = new Date();
+//			var y = d.getFullYear();
+//			var m = d.getMonth();
+//			var day = d.getDate() + 7;
+			var opt1 = {
+				preset: 'date',
+				theme: 'ios',
+				lang: 'zh',
+				minDate: new Date(),
+				maxDate: new Date(d.getTime()+7*2400*3600*1000),
+				dateFormat: 'yyyy-mm-dd',
+				onSelect: function(valueText, inst) {
+					$("#date").html(valueText);
+					getData(valueText);
+				}
+			};
+			$('#notice a').mobiscroll(opt1);
+		})
+
+		mui("#doc_list").on("tap", "li", function() {
+			var appoDate=$("#date").innerText;
+			var appoInfo=this.getAttribute("data-json");
+			mui.openWindow('tianxiexinxi.html', 'tianxiexinxi', {extras:{
+				appoDate:appoDate,
+				appoInfo:appoInfo,
+			}});
+		});
+	</script>
+
+</html>

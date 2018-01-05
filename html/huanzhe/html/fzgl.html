@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>居民管理</title>
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" href="../../../common/cross/css/cross.css" type="text/css" />
+		<link rel="stylesheet" href="../../../common/cross/css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../iconfonts/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="../../../common/css/doc-style.css">
+		<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<script src="../../../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		
+	</head>
+
+	<body style="height: auto;">
+		<div class="main pb100">
+			<div class="h45">
+				<div class="demo-comtop">
+					<a class="mui-action-back"></a>
+					<h1>分组管理</h1>
+				</div>
+			</div>
+			<div class="mt10" id="group_list">
+			</div>
+		</div>
+		<div class="bottom-btn">
+			<a class="c-btn c-btn-37a6ec c-btn-full c-btn-radius c-f16" data-type="addgroup" >新建分组</a>
+		</div>
+		<script type="text/html" id="group_tmpl">
+			{{each list as val i}}
+			<div class="c-group" data-code="{{val.code}}">
+				<ul class="n-list c-border-t">
+					<li class="n-list-link list-arrow-u list-arrow-d">
+						<div class="n-list-key ptb10 c-f16">
+							{{val.name}}
+						</div>
+					</li>
+				</ul>
+				<div class="ptb5 bgc-ecf3f5 c-group-list c-hide">
+					{{if val.isSys}} {{else}}
+					<a class="del ">
+						<i class="iconfont icon-laji"></i>
+						<p class="c-f15">删除组</p>
+					</a>
+					<a class="edit" data-name="{{val.name}}">
+						<i class="iconfont icon-bianji"></i>
+						<p class="c-f15">修改组名</p>
+					</a>
+					{{/if}}
+					<a class="add">
+						<i class="iconfont icon-tianjia"></i>
+						<p class="c-f15">新增居民</p>
+					</a>
+				</div>
+			</div>
+			{{/each}}
+		</script>
+		<script type="text/javascript" src="../../../widget/artDialog/6.0.5/js/dialog-plus.min.js"></script>
+		<link rel="stylesheet" href="../../../widget/artDialog/6.0.5/css/ui-dialog.min.css" />
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var self;
+			mui.init({
+				beforeback: function() {
+					var entrance=self.entrance;
+					
+					if (!entrance) {
+						self.opener().close("none");
+					}
+					var destWv = plus.webview.getWebviewById("huanzhe.html");
+					mui.fire(destWv, "update");
+					return true;
+				}
+			});
+			var url = "doctor/patient_group/groups"
+			mui.plusReady(function() {
+				plus.nativeUI.showWaiting();
+				self = plus.webview.currentWebview();
+				sendPost(url, null, null, handleSucc);
+			});
+
+			function handleSucc(res) {
+				//				console.error(JSON.stringify(res));
+				if (res.status == 200) {
+					var cont = template("group_tmpl", res);
+					document.getElementById("group_list").innerHTML = cont;
+					events();
+				}
+				plus.nativeUI.closeWaiting();
+				//				console.log(res.msg);
+			}
+
+			/*
+			 * 点击事件
+			 */
+			var oDia;
+
+			/*
+			 * 删除分组
+			 */
+			$("#group_list").on("click", ".n-list", function() {
+				var $this = $(this);
+				$this.siblings(".c-group-list").toggleClass("c-hide");
+				$this.find("li").toggleClass("list-arrow-d");
+			});
+
+			function events() {
+				$(".del").on("click", function() {
+					var $this = $(this).parent().parent();
+					dialog({
+						content: '确定删除该组？',
+						ok: function() {
+							var gCode = $this.attr("data-code");
+							sendPost("doctor/patient_group/del_group", {
+								group: gCode
+							}, null, function(res) {
+								$this.remove();
+							})
+						},
+						cancel: function() {}
+					}).showModal();
+				});
+				/*
+				 * 新增成员
+				 */
+				$(".add").on("click", function() {
+					var gCode = $(this).parent().parent().attr("data-code");
+					mui.openWindow('fzgl-xuanzehuanzhe.html', 'fzgl-xuanzehuanzhe', {
+						extras: {
+							code: gCode
+						}
+					});
+				});
+				/*
+				 * 编辑组名
+				 */
+				$(".edit").on("click", function() {
+					var $this = $(this).parent().parent();
+					dialog({
+						title: '修改组名',
+						padding: "10px 15px",
+						titlePadding: '10px 0 5px 0',
+						quickClose: true,
+						contentBlock: true,
+						content: '<input id="modify_group" type="text" class="c-input c-100 pl5 bgc-f2f4f6" name="groupName" value="' + $(this).attr("data-name") + '"/>',
+						ok: function() {
+							var oName = $(this).attr("data-name");
+							var gCode = $this.attr("data-code");
+							var nName = document.getElementById("modify_group").value.trim();
+							if (oName == nName) {
+								return true
+							} else {
+								sendPost("doctor/patient_group/modify_group", {
+									group: gCode,
+									name: nName
+								}, null, function(res) {
+									if (res.status == 200) {
+										sendPost(url, null, null, handleSucc);
+									}
+								});
+							}
+						},
+						cancel: function() {}
+					}).showModal();
+				});
+
+				//					dialog({
+				//						title: '创建分组',
+				//						padding: "10px 15px",
+				//						titlePadding: '10px 0 5px 0',
+				//						contentBlock: true,
+				//						content: '<input type="text" class="c-input c-100 pl5 bgc-f2f4f6" name="groupName" placeholder="请输入组名" id="gp_name" maxlength="20">',
+				//						ok: function() {
+				//							var val = $("#gp_name").val().trim();
+				//							if (val == "") {
+				//								mui.toast("请输入组名");
+				//								return false
+				//							}
+				//							close();
+				//							addGroupItem(val);
+				//						},
+				//						cancel: function() {
+				//							close();
+				//						}
+				//					}).showModal();
+
+			};
+
+			/*
+			 * 新建分组
+			 */
+			$(".bottom-btn").on("click", "a", function() {
+					mui.prompt(" ", "请输入组名", "新建分组", ["取消", "确定"], function(e) {
+						var index = e.index;
+						var val = e.value;
+						if (index == 1) {
+							if (val == "") {
+								mui.toast("请输入组名");
+								return false
+							}
+							addGroupItem(val);
+						}
+					});
+				})
+				/*
+				 * 提交组名数据到服务器  重新获取列表数据
+				 */
+			function addGroupItem(grpName) {
+				plus.nativeUI.showWaiting();
+				sendPost("doctor/patient_group/add_group", {
+					name: grpName
+				}, null, function(res1) {
+					if (res1.status == 200) {
+						sendPost(url, null, null, handleSucc);
+					}
+					plus.nativeUI.closeWaiting();
+				});
+			}
+		</script>
+	</body>
+
+</html>

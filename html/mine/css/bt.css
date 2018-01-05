@@ -1,0 +1,40 @@
+/* 认证页面 */
+.ncert-tip{ font-size:12px; color:#909090; padding:0 20px; line-height:22px;}
+.ncert-box{ background:#fff;}
+.ncert-box li{ position:relative; padding-left:90px;}
+.ncert-box li .ncbtit{ position:absolute; left:15px; line-height:22px; top:50%; margin-top:-10px;}
+.ncert-box li .ncbcon{ padding:6px 5px 6px 0;}
+.ncert-box li .ncbcon img{ vertical-align:middle; width:53px; height:53px; margin-right:5px;}
+.ncert-box li .ncertext{ display:block; width:100%; height:35px; border:none;}
+.ncert-box li .nmust{ position:absolute; left:5px; top:50%; margin-top:-9px; font-size:18px;}
+.nimgpop{ position:fixed; width:100%; height:100%; text-align:center; z-index:700; left:0; top:0; background:#fff; animation: nimgpop .3s ease; -webkit-animation: nimgpop .3s ease;}
+@keyframes nimgpop {
+0% { -webkit-transform: scale(0);}
+100% { -webkit-transform: scale(1);}
+}
+@-webkit-keyframes nimgpop {
+0% { -webkit-transform: scale(0);}
+100% { -webkit-transform: scale(1);}
+}
+.nimgpop .npimg{ display:table; width:100%; height:100%; text-align:center;}
+.nimgpop .npimg div{ display:table-cell; vertical-align:middle;}
+.nimgpop .npimg div img{ max-height:100%; max-width:100%;}
+.nimgpop .npbot{ position:absolute; left:0; bottom:0; width:100%; height:56px; background:rgba(0,0,0,.5); z-index:800; padding:8px 20px 0 20px;}
+.nimgpop .npbot a{ display:block; line-height:40px; text-align:center; color:#ea1414; background:#fff; border-radius:4px;}
+.uploadpop{ position:fixed; width:100%; left:0; bottom:0; z-index:600; padding:0 5px; display:none; animation: uploadpop .3s ease; -webkit-animation: uploadpop .3s ease;}
+@keyframes uploadpop {
+0% { bottom: -200px;}
+100% { bottom: 0;}
+}
+@-webkit-keyframes uploadpop {
+0% { bottom: -200px;}
+100% { bottom: 0;}
+}
+.uploadpop ul{ display:block; background:#f9fafa; border-radius:5px; overflow:hidden;}
+.uploadpop ul li{ border-top:1px solid #e1e1e1;}
+.uploadpop ul li:first-child{ border-top:none;}
+.uploadpop ul li a{ display:block; height:38px; line-height:38px; text-align:center; color:#157efb; font-size:17px;}
+.uploadpop a.upcanc{ display:block; background:#f9fafa; border-radius:5px; overflow:hidden; height:38px; line-height:38px; text-align:center; color:#157efb; font-size:17px; margin-top:5px;}
+.uploadmb{ position:fixed; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,.55); z-index:500; display:none;}
+.ncert-help{ text-align:right; margin-top:30px; padding:0 20px 10px 20px;}
+.ncert-help a{ color:#007cd9;}

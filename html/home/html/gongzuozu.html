@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>我的团队</title>
+		<link rel="stylesheet" href="../css/cross.css" type="text/css" />
+		<link rel="stylesheet" href="../css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" href="../css/contacts.css" type="text/css" />
+	</head>
+
+	<body>
+		<div class="h45">
+			<div class="demo-comtop">
+				<a class="mui-action-back"></a>
+				<h1>我的团队</h1>
+			</div>
+		</div>
+
+		<div class="menu-con">
+			<div class="c-list-group group-con">
+				<ul id="work_team_list" class="c-list c-border-b">
+
+					<!--<li class="c-list-link c-list-function" onclick='openWebview("../../message/html/qunzu_duihua.html")'>
+						<div class="c-avatar-m"><img src="../images/face.png" class="c-images-cycle"></div>
+						<div class="c-list-info">
+							<h4 class="c-nowrap">三师共管团队三师共管团队三师共管团队三师共管团队</h4>
+							<p class="c-nowrap">创建人：</p>
+						</div>
+						<div class="c-list-badge" >9999999999						
+						</div>						
+						<span class="list-icon arrow-right"></span>
+					</li>
+					<li class="c-list-link c-list-function" onclick='openWebview("../../message/html/qunzu_duihua1.html")'>
+						<div class="c-avatar-m"><img src="../images/1.jpg" class="c-images-cycle"></div>
+						<div class="c-list-info">
+							<h4 class="c-nowrap">糖尿病工作组</h4>
+							<p class="c-nowrap">李碧玉：好的,谢谢徐医生！</p>
+						</div>
+						<div class="c-list-badge">
+
+						</div>
+						<span class="list-icon arrow-right"></span>
+					</li>-->
+
+				</ul>
+			</div>
+		</div>
+	</body>
+
+	<!--<script type="text/html" id="work_team_tmpl">
+		{{each list as val i}}
+		<li class="c-list-link c-list-function" data-json="{{val | setJson}}">
+			<div class="c-avatar-m"><img src="{{val.icon | setIcon}}" class="c-images-cycle"></div>
+			<div class="c-list-info">
+				<h4 class="c-nowrap">{{val.name}}</h4>
+				<p class="c-nowrap">创建人：{{val.doctor}}</p>
+			</div>
+			<div class="c-list-badge">
+
+			</div>
+			<span class="list-icon arrow-right"></span>
+		</li>
+		{{/each}}
+	</script>-->
+	<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+	<script type="text/javascript" src="../js/base.js"></script>
+	<script type="text/javascript" src="../../../js/mui.min.js"></script>
+	<script type="text/javascript" src="../../../js/common_http.js"></script>
+	<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="../js/work_team.js"></script>
+	<script src="../../../js/app.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/rtcsdk.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		
+		
+//		mui.plusReady(function() {
+//			//获取每个对话的id以及各个id对应的消息数
+//			//拼请求内容
+//			var params = {};
+//			//发送ajax请求
+//			sendPost("doctor/teams", params, null, function(res){
+//				if (res.status == 200) {
+//					var list=res.list;
+//					for(var i=0;i<list.length;i++){
+//						
+//						
+//					}
+//					
+//					
+//					
+//				}
+//				
+//			});
+			
+//			console.log(plus.storage.getItem("leave_num"));
+			
+			
+			
+			
+			
+//		});
+		
+	
+	
+		
+		//		mui("#friend_list").on("tap", "li", function() {
+		//			openWebview("../../message/html/xiangxiziliao.html");
+		//		})
+		//		mui("#group_list").on("tap", "li", function() {
+		//			openWebview("../../message/html/qunzu_xiangqing.html");
+		//		})
+
+//		var msgLink = [{
+//			type: 'D_CT_01',
+//			link: ''
+//		}, {
+//			type: 'D_CT_02',
+//			link: ''
+//		}, {
+//			type: 'D_SW_01',
+//			link: ''
+//		}, {
+//			type: 'D_SW_02',
+//			link: ''
+//		}, {
+//			type: 'D_SW_03',
+//			link: ''
+//		}, {
+//			type: 'D_SW_04',
+//			link: ''
+//		}, {
+//			type: 'D_CV_01',
+//			link: ''
+//		}, {
+//			type: 'D_FU_01',
+//			link: ''
+//		}, {
+//			type: 'D_FU_02',
+//			link: ''
+//		}, {
+//			type: 'D_FU_03',
+//			link: ''
+//		}, {
+//			type: 'D_FU_04',
+//			link: ''
+//		}];
+		
+//		setMsgCallback(onMsg);
+//		
+//		function onMsg() {
+//			getPushMsg();
+//
+//		}		
+
+//		mui.plusReady(function() {
+//			getPushMsg();
+//			$("#menulab li").click(function() {
+//				var dval = $(this).attr("data-val");
+//				$("#menulab li").removeClass("hit");
+//				$(this).addClass("hit");
+//				$(".menu-con").hide().eq($(this).index()).show();
+//				if (dval == "1") {
+//					$(".header-menu").show();
+//				} else {
+//					$(".header-menu").hide();
+//				}
+//			});
+//			$("#grouplab li").click(function() {
+//				var dval = $(this).attr("data-val");
+//				$("#grouplab li").removeClass("hit");
+//				$(this).addClass("hit");
+//				$(".group-con").hide().eq($(this).index()).show();
+//			});
+//
+//			$("#ul_msg_list").on('li', 'click', function() {
+//				var type = $(this).attr('data_type');
+//				var _url = msgLink[type].link;
+////				alert('我要跳转页面啦:type:' + type + ";url:" + _url);
+//				var type = $(this).attr('data_type');
+//
+//				//				mui.openWindow(_url,'id',{})
+//			})
+//		});
+//
+//		function getPushMsg() {
+//			/*alert("进消息模块");*/
+//			var msgType = ['D_CT_01', 'D_CT_02', 'D_SW_01', 'D_SW_02', 'D_SW_03', 'D_SW_04', 'D_CV_01', 'D_FU_01', 'D_FU_02', 'D_FU_03', 'D_FU_04'];
+//			var _html = "";
+//			for (var i = 0; i < msgType.length; i++) {
+//
+//				var type = msgType[i];
+//				var num = plus.storage.getItem(type + "_num");
+//				/*alert(type);*/
+//				if (num == null) {
+//					continue;
+//				}
+//				/*alert(type + num);*/
+//
+//				var msg = plus.storage.getItem(type + "_msg" + num);
+//				var title = plus.storage.getItem(type + "_title");
+//
+//				_html += '<li class="c-list-link c-list-function msg_li" data_type=' + type + '>';
+//				_html += '<div class=" c-avatar-m"><img src="../images/i_3.png"></div>';
+//				_html += '<div class="c-list-info">';
+//				_html += '<h4 class="c-nowrap">' + title + '</h4>';
+//				_html += '<p class="c-nowrap">' + msg + '</p>';
+//				_html += '</div>';
+//				_html += '<div class="c-list-badge">';
+//				//_html+='<span>03-04 10:10</span>';
+//				_html += '<p class="c-t-right"><em class="number">' + num + '</em></p>';
+//				_html += '</div>';
+//				_html += '</li>';
+//			}
+//			$("#ul_msg_list").html(_html);
+//		}
+	</script>
+
+</html>

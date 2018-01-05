@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>指导详情</title>
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" type="text/css" href="../css/cross.css">
+		<link rel="stylesheet" type="text/css" href="../css/cross.ui.css">
+		<link rel="stylesheet" type="text/css" href="../iconfont/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="../../../common/css/doc-style.css">
+	</head>
+
+	<body>
+		<div class="c-main">
+			<div class="h45">
+				<div class="demo-comtop">
+					<a class="mui-action-back"></a>
+					<h1>指导详情</h1>
+				</div>
+			</div>
+			<div class="medic-add-choo mt10">
+				<div class="mch-tit ml10"><i class="iconfont icon-benzi mr5"></i>居民</div>
+				<div class="mch-text c-t-center c-f15" >李碧玉</div>
+			</div>
+			<div class="medic-add-top">指导内容：</div>
+			<div class="medic-add-mess " contenteditable="true">
+				一周前再次出现头晕，头疼等不适症状，无都吐物，无胸痛，放射痛，无咳嗽等不适症状，自行用药，症状可缓解。
+			</div>
+
+			<!-- 放置要缩放的图片的容器 -->
+			<!--<section class="imgzoom-pack">
+        <div class="imgzoom-x">关闭</div>
+        <div class="imgzoom-del c-hide"><i class="iconfont icon-laji"></i></div>
+        <div class="imgzoom-img"><img src="" /></div>
+    </section>
+    
+	<div class="c-hide add-part" id="add-part">
+    	<div class="add-part-top">请选择片段</div>
+        <ul>
+        	<li>高血压</li>
+        	<li>胃病</li>
+        	<li>糖尿病</li>
+        	<li>腰椎病</li>
+        	<li>月经不调</li>
+        </ul>
+        <div class="add-part-input c-hide"><input type="text" placeholder="请输入片段" /></div>
+        <div class="add-part-add"><i class="iconfont icon-jiatupian mr5"></i>新建</div>
+	</div>
+	<div class="c-hide add-part" id="add-part-item">
+		<div class="add-part-top">片段：<span>主诉</span></div>
+        <ul>
+        	<li>片段1</li>
+        	<li>片段2</li>
+        	<li>片段3</li>
+        	<li>片段4</li>
+        	<li>片段5</li>
+        </ul>
+        <div class="add-part-input c-hide"><input type="text" placeholder="请输入片段" /></div>
+        <div class="add-part-add"><i class="iconfont icon-jiatupian mr5"></i>新建</div>
+	</div>-->
+		</div>
+		<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<script src="../../../widget/artDialog/6.0.5/js/dialog-plus.min.js"></script>
+		<link rel="stylesheet" href="../../../widget/artDialog/6.0.5/css/ui-dialog.min.css">
+		<script src="../../../widget/scale/scale.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			//			var addPart;
+			//			var secPart;
+			//			var ifone = false;
+			//
+			//			function fragNext(val, state) {
+			//				if (state) {
+			//					$("#add-part-item").find(".add-part-top span").text(val)
+			//					addPart.close().remove();
+			//					ifone = false;
+			//					secPart = dialog({
+			//						content: $("#add-part-item"),
+			//						button: [{
+			//							value: '上一步',
+			//							callback: function() {
+			//								secPart.close().remove();
+			//								addPart = dialog({
+			//									content: $("#add-part"),
+			//									cancel: function() {}
+			//								}).showModal();
+			//								$(".ui-dialog-content").css("display", "block");
+			//								ifone = true;
+			//							}
+			//						}, {
+			//							value: '取消',
+			//							callback: function() {}
+			//						}]
+			//					}).showModal();
+			//					$(".ui-dialog-content").css("display", "block");
+			//				} else {
+			//					var titval = $("#add-part-item").find(".add-part-top span").text()
+			//					var rhtml = '';
+			//					rhtml += '<li>';
+			//					rhtml += '    <div class="medic-add-top">' + titval + '</div>';
+			//					rhtml += '    <div class="tfrag-name"><label>' + val + '</label><i class="tfrag-del"></i></div>';
+			//					rhtml += '</li>';
+			//					$(".total-frag").append(rhtml);
+			//					secPart.close().remove();
+			//				}
+			//			}
+			//			//图片缩放
+			//			function scaleRefresh(dom) {
+			//				ImagesZoom.init({
+			//					"elem": dom,
+			//					"delBack": function(index) {
+			//						$(".pic-count").text($(".pic-count").text() - 1); //删除图片后的回调
+			//						$(dom).find("li").eq(index).remove();
+			//					}
+			//				});
+			//			}
+			//			//删除初步诊断
+			//			function medicDel(nth) {
+			//				$(nth).parents(".medic-add-text").remove();
+			//			}
+			//			$(function() {
+			//				//图片缩放（ 动态添加了上传的图片后运行一下下面这条这个）
+			//				scaleRefresh(".mr-detail-img");
+			//				$(".addfrag-btn").on("click", function() {
+			//					addPart = dialog({
+			//						content: $("#add-part"),
+			//						quickClose: true,
+			//						cancel: function() {}
+			//					}).showModal();
+			//					$(".ui-dialog-content").css("display", "block");
+			//					ifone = true;
+			//				});
+			//				var dwords;
+			//				$("#add-part").on("click", "li", function() {
+			//					dwords = $(this).text();
+			//					fragNext(dwords, ifone);
+			//				});
+			//				$("#add-part-item").on("click", "li", function() {
+			//					var fwords = $(this).text();
+			//					fragNext(fwords, ifone);
+			//				});
+			//			});
+			//			//删除
+			//			$(".c-main").on("click", ".tfrag-del", function() {
+			//				var _this = $(this);
+			//				dialog({
+			//					title: '',
+			//					content: '确认删除?',
+			//					padding: '25px 15px 25px 15px',
+			//					ok: function() {
+			//						_this.parents("li").remove();
+			//					},
+			//					cancel: function() {}
+			//				}).showModal();
+			//			});
+			//			//点击新建
+			//			$("body").on("click", ".add-part-add", function() {
+			//				var _this = $(this);
+			//				var afocus = _this.siblings(".add-part-input").is(":hidden");
+			//				var atext = _this.siblings(".add-part-input").find("input").val();
+			//				if (afocus) {
+			//					_this.siblings(".add-part-input").show();
+			//					_this.siblings(".add-part-input").find("input").focus();
+			//					_this.html("确定");
+			//					_this.parents(".add-part").scrollTop(10000);
+			//				} else {
+			//					if ($.trim(atext) == "") {
+			//						dialog({
+			//							contentType: 'tipsbox',
+			//							content: '不能为空'
+			//						}).showModal();
+			//					} else {
+			//						fragNext(atext, ifone);
+			//					}
+			//				}
+			//			});
+		</script>
+	</body>
+
+</html>

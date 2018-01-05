@@ -1,0 +1,12 @@
+body { background-color:#f2f4f6;}
+
+.pt25 { padding-top: 25px;}
+
+.weekdaylist  li { float: left; width: 50%;}
+.c-list .c-list-value.c-f90 { color:#f90;}
+
+.zixun-setting-banner { height: 170px; background:url(../images/settings/zixun-setting-bg.jpg) no-repeat center top; background-size:auto 100%;}
+.zixun-setting-avatar { display: block; margin: 0 auto; width: 68px; height: 68px; border:3px solid rgba(254,254,254,.45); -webkit-border-radius: 50%; border-radius: 50%;}
+.icon-v { display: inline-block; width: 16px; height: 16px; background:url(../images/settings/v.png) no-repeat; background-size:100% 100%; vertical-align:middle;}
+
+.juris-close{ position:absolute; width:100%; height:100%; background:rgba(0,0,0,.7); left:0; top:0; z-index:600; color:#fff; text-align:center; display: box; display: -webkit-box; -webkit-box-orient: vertical; -webkit-box-pack: center; font-size:18px;}

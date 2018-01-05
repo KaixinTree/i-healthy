@@ -1,0 +1,278 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>健康咨询</title>
+    <meta name="author" content="yihu.com"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="stylesheet" type="text/css" href="../../../common/iconfont/iconfont.css">
+    <link rel="stylesheet" href="../../../common/cross/css/cross.css" type="text/css"/>
+    <link rel="stylesheet" href="../../../common/cross/css/cross.ui.css" type="text/css"/>    
+    <link rel="stylesheet" type="text/css" href="../../../common/css/jy-style.css">
+    <script src="../../../js/jquery/2.1.3/jquery.js"></script>
+</head>
+
+<body>
+<div class="main">
+    <div class="h45">
+        <div class="demo-comtop">
+            <a class="mui-action-back"></a>
+            <h1>健康咨询</h1>
+        </div>
+    </div>
+    <ul class="c-lab-mor c-f14">
+            <li class="hit"><a href="javascript:;">指定咨询</a></li>
+            <li><a href="javascript:;">公共咨询</a></li>
+    </ul>
+    <div class="c-ser-hold c-boxs c-serdet">
+        <div class="c-ser-main">
+            <i class="ser-icon ser-icon-search"></i>
+            <input type="text" class="c-ser-input c-f14 c-boxs" placeholder="请输入居民名字或关键字" data-form="clear">
+        </div>
+        <div class="c-ser-btn"><a   onclick="javascript:sousuo()">搜索</a></div>
+    </div>
+    <div class="pro-list-group c-hidden c-position-r">
+    	<div class="pull-iscroll-wrap">
+    		<div class="pull-iscroll-box">
+                <div id="pulltorefresh-box">
+                    <ul class="c-list c-border-t" id="item_list">
+                        <!--<li class="c-list-link">
+                            <a  >
+                                <div class=" c-avatar-m c-images-cycle"><img src="http://ued.yihu.cn/framework/images/face.png"></div>
+                                <div class="c-list-info c-position-r">
+                                    <h4 class="c-nowrap">黄小致</h4>
+                                    <p class="c-nowrap mr10">糖尿</p>
+                                    <div class="c-position-a time">10:00:00</div>
+                                </div>
+                                <span class="list-icon arrow-right"></span>
+                            </a>
+                        </li>-->
+                        
+                        <!--<li class="c-list-link">
+                            <a  >
+                                <div class=" c-avatar-m c-images-cycle"><img src="http://ued.yihu.cn/framework/images/face.png"></div>
+                                <div class="c-list-info c-position-r">
+                                    <h4 class="c-nowrap">黄小致</h4>
+                                    <p class="c-nowrap mr10">糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病</p>
+                                    <div class="c-position-a time">昨天  10:00:00</div>
+                                </div>
+                                <span class="list-icon arrow-right"></span>
+                            </a>
+                        </li>
+                        <li class="c-list-link">
+                            <a  >
+                                <div class=" c-avatar-m c-images-cycle"><img src="http://ued.yihu.cn/framework/images/face.png"></div>
+                                <div class="c-list-info c-position-r">
+                                    <h4 class="c-nowrap">黄小致</h4>
+                                    <p class="c-nowrap mr10">糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病</p>
+                                    <div class="c-position-a time">6-10  10:00:00</div>
+                                </div>
+                                <span class="list-icon arrow-right"></span>
+                            </a>
+                        </li>
+                        <li class="c-list-link">
+                            <a  >
+                                <div class=" c-avatar-m c-images-cycle"><img src="http://ued.yihu.cn/framework/images/face.png"></div>
+                                <div class="c-list-info c-position-r">
+                                    <h4 class="c-nowrap">黄小致</h4>
+                                    <p class="c-nowrap mr10">糖尿</p>
+                                    <div class="c-position-a time">10:00:00</div>
+                                </div>
+                                <span class="list-icon arrow-right"></span>
+                            </a>
+                        </li>
+                        <li class="c-list-link">
+                            <a  >
+                                <div class=" c-avatar-m c-images-cycle"><img src="http://ued.yihu.cn/framework/images/face.png"></div>
+                                <div class="c-list-info c-position-r">
+                                    <h4 class="c-nowrap">黄小致</h4>
+                                    <p class="c-nowrap mr10">糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病</p>
+                                    <div class="c-position-a time">昨天  10:00:00</div>
+                                </div>
+                                <span class="list-icon arrow-right"></span>
+                            </a>
+                        </li>
+                        <li class="c-list-link">
+                            <a  >
+                                <div class=" c-avatar-m c-images-cycle"><img src="http://ued.yihu.cn/framework/images/face.png"></div>
+                                <div class="c-list-info c-position-r">
+                                    <h4 class="c-nowrap">黄小致</h4>
+                                    <p class="c-nowrap mr10">糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病</p>
+                                    <div class="c-position-a time">6-10  10:00:00</div>
+                                </div>
+                                <span class="list-icon arrow-right"></span>
+                            </a>
+                        </li>
+                        <li class="c-list-link">
+                            <a  >
+                                <div class=" c-avatar-m c-images-cycle"><img src="http://ued.yihu.cn/framework/images/face.png"></div>
+                                <div class="c-list-info c-position-r">
+                                    <h4 class="c-nowrap">黄小致</h4>
+                                    <p class="c-nowrap mr10">糖尿</p>
+                                    <div class="c-position-a time">10:00:00</div>
+                                </div>
+                                <span class="list-icon arrow-right"></span>
+                            </a>
+                        </li>
+                        <li class="c-list-link">
+                            <a  >
+                                <div class=" c-avatar-m c-images-cycle"><img src="http://ued.yihu.cn/framework/images/face.png"></div>
+                                <div class="c-list-info c-position-r">
+                                    <h4 class="c-nowrap">黄小致</h4>
+                                    <p class="c-nowrap mr10">糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病</p>
+                                    <div class="c-position-a time">昨天  10:00:00</div>
+                                </div>
+                                <span class="list-icon arrow-right"></span>
+                            </a>
+                        </li>
+                        <li class="c-list-link">
+                            <a  >
+                                <div class=" c-avatar-m c-images-cycle"><img src="http://ued.yihu.cn/framework/images/face.png"></div>
+                                <div class="c-list-info c-position-r">
+                                    <h4 class="c-nowrap">黄小致</h4>
+                                    <p class="c-nowrap mr10">糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病</p>
+                                    <div class="c-position-a time">6-10  10:00:00</div>
+                                </div>
+                                <span class="list-icon arrow-right"></span>
+                            </a>
+                        </li>
+                        <li class="c-list-link">
+                            <a  >
+                                <div class=" c-avatar-m c-images-cycle"><img src="http://ued.yihu.cn/framework/images/face.png"></div>
+                                <div class="c-list-info c-position-r">
+                                    <h4 class="c-nowrap">黄小致</h4>
+                                    <p class="c-nowrap mr10">糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病</p>
+                                    <div class="c-position-a time">6-10  10:00:00</div>
+                                </div>
+                                <span class="list-icon arrow-right"></span>
+                            </a>
+                        </li>
+                        <li class="c-list-link">
+                            <a  >
+                                <div class=" c-avatar-m c-images-cycle"><img src="http://ued.yihu.cn/framework/images/face.png"></div>
+                                <div class="c-list-info c-position-r">
+                                    <h4 class="c-nowrap">黄小致</h4>
+                                    <p class="c-nowrap mr10">糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病糖尿病</p>
+                                    <div class="c-position-a time">6-10  10:00:00</div>
+                                </div>
+                                <span class="list-icon arrow-right"></span>
+                            </a>
+                        </li>-->
+                       
+                    </ul>
+                    <script type="text/html" id="item_tmpl">
+						{{each list as val i}}
+						<li data-code="{{val.consult}}" class="c-list-link">
+								<div class=" c-avatar-m c-images-cycle">
+									<img src="{{val.photo | setPhoto}}" class="" alt="头像" />
+								</div>
+								<div class="c-list-info c-position-r" >
+                                    <h4 class="c-nowrap">{{val.name}}</h4>
+                                    <p class="c-nowrap mr10">{{val.title}}</p>
+                                    <div class="c-position-a time">{{val.when}}</div>
+                                </div>
+                                <span class="list-icon arrow-right"></span>
+						</li>
+						{{/each}}
+						</script>
+				</div>
+        	</div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../../js/mui.min.js"></script>
+<link rel="stylesheet" href="../../../widget/iscroll/5.1.3/css/iscroll.css" type="text/css"/>    
+<script type="text/javascript" src="../../../widget/iscroll/5.1.3/js/iscroll.js"></script>
+<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		
+<script type="text/javascript" >
+var names = new Array();
+	function sousuo(){
+		for(var i=0;i<names.length;i++){
+			var obj=$("li").eq(i);
+		}
+	}
+			
+$(function(){
+	var h = $(window).height()-90;
+	
+	$('.pro-list-group').height(h);
+	
+	var pulldownAction = function(){
+		var temp = '';
+		var t=this;
+		for(var i=1;i<16;i++){
+			temp += '<li>Pretty row '+i+'</li>';
+		}
+		function thtml(){
+			$('#pulltorefresh-box>ul').html(temp);
+			t.refresh();
+		}
+		setTimeout(thtml,10000)
+	};
+	var pullupAction = function(){
+		
+		var temp = '';
+		var t=this;
+		for(var i=1;i<16;i++){
+			temp += '<li>Pretty row '+i+'</li>';
+		}
+		function thtml(){
+			$('#pulltorefresh-box>ul').append(temp);
+			t.refresh();
+		}
+		setTimeout(thtml,10000)
+	};
+	
+	if($('#pulltorefresh-box').outerHeight(true)>=h){
+		 var iscrollObj = iscrollAssist.newVerScrollForPull($('.pull-iscroll-wrap'),pulldownAction,pullupAction);
+		iscrollObj.refresh();
+	}   
+	
+	var postUrl = "doctor/consult/public/list";
+			sendPost(postUrl, {
+				type: 0,
+				id: 0,
+				pagesize: 5
+			}, null, handleSucc);
+
+			function handleSucc(res) {
+				if (res.status == 200) {
+					if (res.list.length == 0) {
+						mui.toast("暂无数据");
+						return;
+					}
+					template.helper("setPhoto", function(p) {
+						if (!p || p.length == 0) {
+							return "http://ued.yihu.cn/framework/images/face.png";
+						} else {
+							return p
+						}
+					});
+					var cont = template("item_tmpl", res);
+					document.getElementById("item_list").innerHTML = cont;
+					for(var i=0;i<res.list.length;i++){
+						names[i] = res.list[i].name;
+					}
+				}
+			}
+			
+			
+			mui("#item_list").on("tap", ".c-list-link", function() {
+				var code = this.getAttribute("data-code")
+				mui.openWindow('jiankangzixungoutong.html', 'jiankangzixungoutong', {
+					extras: {
+						conCode: code
+					}
+				});
+			});
+});
+</script>
+
+</body>
+</html>

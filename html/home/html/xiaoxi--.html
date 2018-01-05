@@ -1,0 +1,274 @@
+﻿<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>消息首页</title>
+		<meta name="author" content="yihu.com" />
+		<!--<meta name="format-detection" content="telephone=no" />-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" type="text/css" href="../../../common/iconfont/iconfont.css">
+		<link rel="stylesheet" href="../../../common/cross/css/cross.min.css" type="text/css" />
+		<link rel="stylesheet" href="../../../common/cross/css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../../../common/css/jy-style.css">
+
+	</head>
+
+	<body>
+		<div class="main">
+			<div class="h45">
+				<div class="demo-comtop">
+					<a class="mui-action-back"></a>
+					<!--<div id="div_xiaoxi">
+						<a class="mui-msg" id="icon_xiaoxi">
+							<i class="iconfont icon-xinxi c-f15"></i>
+							<span id="red_sign" style="display:none;" class="c-position-a c-corner c-corner-min"></span>
+						</a>
+					</div>-->
+					<h1>消息</h1>
+				</div>
+			</div>
+
+			<div class="c-list-group">
+				<ul class="c-list c-border-tb mt10">
+					<li class="c-list-link list-arrow-r">
+						<div class="c-list-key pr15">
+							<i class="iconfont icon-fenzhen"></i>
+						</div>
+						<div class="c-list-info ptb12 c-border-t">
+							<h4 class="c-nowrap">健康咨询</h4>
+						</div>
+						<div class="c-list-key">
+							<span class="c-position-a c-corner" id="qyxx">11</span>
+						</div>
+					</li>
+					<li class="list-arrow-r">
+						<a href="" class="c-list-a ptb12">
+							<h4 class="c-list-key">签约消息</h4>
+						</a>
+					</li>
+					<li class="list-arrow-r">
+						<a href="" class="c-list-a ptb12">
+							<h4 class="c-list-key">健康指标</h4>
+						</a>
+					</li>
+					<li class="list-arrow-r">
+						<a href="" class="c-list-a ptb12">
+							<h4 class="c-list-key">重要通知</h4>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<!--<div class="bgc-fff">
+				<div class="c-row c-split">
+					<div class="c-50">
+						<div class="c-t-center c-border-r ptb30">
+							<a class="c-333" onclick="toJkzx()">
+								<img src="../../../common/images/msg_01.png" class="w55" />
+								<div class="c-f18 mt5">健康咨询</div>
+							</a>
+						</div>
+					</div>
+					<div class="c-50">
+						<div class="c-t-center ptb30">
+							<a class="c-333" onclick="openWebview('../../qygl/html/qianyuexiaoxi.html')">
+								<img src="../../../common/images/msg_02.png" class="w55" />
+								<span class="c-position-a c-corner c-hide" id="qyxx"></span>
+								<div class="c-f18 mt5">签约消息</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="c-row c-split c-border-t">
+					<div class="c-50">
+						<div class="c-t-center c-border-r ptb65">
+							<a class="c-333" onclick="openWebview('../../xiaoxi/html/tizhengzhibiao.html')">
+								<div class="c-position-r">
+									<img src="../../../common/images/msg_03.png" class="w55" />
+									<span class="c-position-a c-corner c-hide" id="tzzb"></span>
+								</div>
+								<div class="c-f18 mt5">体征指标</div>
+							</a>
+						</div>
+					</div>
+					<div class="c-50">
+						<div class="c-t-center c-border-r ptb65">
+							<a class="c-333">
+								<div class="c-position-r">
+									<img src="../../../common/images/msg_05.png" class="w55" onclick="mui.toast('该功能暂未上线')" />
+								</div>
+								<div class="c-f18 mt5">重要通知</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>-->
+		</div>
+		<script src="../../../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<!--<script type="text/javascript" src="../../../js/rtcsdk.js"></script>-->
+		<script type="text/javascript" src="../../../js/im_new.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				//				preloadPages: [{
+				//					url: '../../xiaoxi/html/jiankangzixun.html',
+				//					id: 'jiankangzixun'
+				//				}, {
+				//					url: '../../qygl/html/qianyuexiaoxi.html',
+				//					id: 'qianyuexiaoxi'
+				//				}, {
+				//					url: '../../xiaoxi/html/tizhengzhibiao.html',
+				//					id: 'tizhengzhibiao'
+				//				}]
+			})
+			var timer = null;
+			mui.plusReady(function() {
+				/************************消息推送模块引入 20160717 cms Start*******************************/
+				//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+				// 监听点击消息事件
+				//				plus.nativeUI.alert(plus.os.name);
+				//				plus.nativeUI.alert( "push: "+ JSON.stringify(plus.push) );
+
+				var userAgent = JSON.parse(plus.storage.getItem("userAgent"));
+				var userId = userAgent.uid;
+				var info = plus.push.getClientInfo();
+				var token = info.token;
+				var client_id = info.clientid;
+				//platform:平台类型：0为ios，1为android
+				var platform = 0;
+				if(plus.os.name == "Android") { //ios暂无im功能 只在安卓下才执行该方法
+					platform = 1;
+				}
+				if(token == null) {
+					timer = setInterval(function() {
+						var info = plus.push.getClientInfo();
+						var token = info.token;
+						var client_id = info.clientid;
+						if(token != null) {
+							clearInterval(timer);
+							im.login(userId, token, client_id, platform);
+						}
+					}, 5000);
+				} else {
+					im.login(userId, token, client_id, platform);
+				}
+
+				plus.push.addEventListener("click", function(msg) {
+					var qunzuduihuaView = plus.webview.getWebviewById("qunzudui");
+					if(qunzuduihuaView) {
+						$("#red_sign").css("display", "none");
+						mui.fire(qunzuduihuaView, "update");
+					} else {
+						$("#red_sign").css("display", "");
+					}
+				}, false);
+				// 监听在线消息事件
+				plus.push.addEventListener("receive", function(msg) {
+					var qunzuduihuaView = plus.webview.getWebviewById("qunzudui");
+					if(qunzuduihuaView) {
+						$("#red_sign").css("display", "none");
+						mui.fire(qunzuduihuaView, "update");
+					} else {
+						$("#red_sign").css("display", "");
+					}
+				}, false);
+				/************************消息推送模块引入 20160717 cms End*******************************/
+
+				//				if(plus.os.name == "Android") {
+				//					$("#div_xiaoxi").removeClass("c-hide");
+				//				}
+
+				getDate();
+				/*zyt
+				 * 右上角工作组消息图标
+				 */
+				//点击消息小红点事件
+				document.getElementById("icon_xiaoxi").addEventListener("tap", function() {
+					openWebview('gongzuozu.html');
+					$("#red_sign").css("display", "none");
+				});
+
+			});
+			//监听新消息事件
+			window.addEventListener("red_xinxi", function() {
+				//	alert(event.detail.id);
+				$("#red_sign").css("display", "");
+			});
+			//监听读取新消息后 事件
+			window.addEventListener("red_xinxi_none", function() {
+				//	alert(event.detail.id);
+				$("#red_sign").css("display", "none");
+			});
+
+			/*
+			 * 获取数据
+			 */
+			function getDate() {
+				sendPost("doctor/message/amount", {}, null, function(res) {
+					if(res.status == 200) {
+						var healthIndex = res.data.healthIndex; //体征指标
+						var sign = res.data.sign; //签约
+						var consultTeam = res.data.consultTeam; //咨询
+						var total = healthIndex * 1 + sign * 1;
+						if(sign > 0) {
+							$("#qyxx").removeClass("c-hide");
+							$("#qyxx").text(sign);
+						}
+
+						if(healthIndex > 0) {
+							$("#tzzb").removeClass("c-hide");
+							$("#tzzb").text(healthIndex);
+						}
+					}
+				});
+			}
+			/*
+			 * 跳转到健康咨询
+			 */
+			function toJkzx() {
+				//				plus.nativeUI.showWaiting("加载中...", {
+				//					back: "none"
+				//				});
+				mui.openWindow("../../xiaoxi/html/jiankangzixun.html", "jiankangzixun");
+			}
+			/*
+			 * 更新体征消息条数
+			 */
+			window.addEventListener("update", function() {
+				//				getDate();
+				//				var self=plus.webview.currentWebview();
+				//				self.reload(true);
+				var count = $("#tzzb").text();
+				if(count > 0) {
+					count--;
+				}
+				if(count == 0) {
+					$("#tzzb").addClass("c-hide");
+				} else {
+					$("#tzzb").text(count);
+				}
+			});
+			/*
+			 * 更新签约消息条数
+			 */
+			window.addEventListener("updateQy", function() {
+				var count = $("#qyxx").text();
+				if(count > 0) {
+					count--;
+				}
+				if(count == 0) {
+					$("#qyxx").addClass("c-hide");
+				} else {
+					$("#qyxx").text(count);
+				}
+			});
+		</script>
+	</body>
+
+</html>

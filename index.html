@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<script src="js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.plusReady(function() {
+				if(plus.os.name == "iOS") {
+					judgePage();
+				} else if(plus.os.name == "Android") {
+					checkVersion();
+				}
+			});
+			/*
+			 * 在安卓条件下检查版本
+			 */
+			function checkVersion() {
+				var code = "app_doc";
+				plus.nativeUI.showWaiting();
+				mui.ajax(server + 'version/app', {
+					data: {
+						version: curr_app_version,
+						code: "app_doc"
+					},
+					dataType: 'json', //服务器返回json格式数据
+					type: 'post', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					success: function(res) {
+						console.log(JSON.stringify(res));
+						if(res.status == 200) {
+							plus.nativeUI.closeWaiting();
+							if(res.url) {
+								mui.confirm("发现新版本，下载更新？", "更新", ["立即更新", "取　　消"], function(event) {
+									if(0 == event.index) {
+										plus.runtime.openURL(res.url);
+									}
+								});
+							}
+							judgePage();
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						if(type == "timeout" || type == "abort") {
+							mui.confirm("网络异常，请稍后重试！", "", ["退出"], function() {
+								plus.runtime.quit();
+							});
+							plus.nativeUI.closeWaiting();
+						}
+					}
+				});
+			}
+
+			function judgePage() {
+				var userAgent = plus.storage.getItem("userAgent");
+				if(userAgent) {
+					plus.navigator.setUserAgent(userAgent);
+				} else {
+					//					var IMEI=plus.device.imei;
+					var UUID = plus.device.uuid;
+					var userAgentObj = {
+						"id": "",
+						"uid": "",
+						"imei": UUID,
+						"token": "",
+						"platform": 2 //2代表医生端
+					};
+					userAgent = JSON.stringify(userAgentObj);
+					plus.navigator.setUserAgent(userAgent);
+					plus.storage.setItem("userAgent", userAgent);
+				}
+				/*
+				 * 判断是否第一次登陆
+				 */
+				var flag = plus.storage.getItem("flag");
+				if(flag) {
+					//					mui.openWindow({
+					//						url: "html/home/html/main.html",
+					//						id: "main",
+					//						sho
+					//					});
+					mui.openWindow('html/home/html/main.html', 'main', {
+
+					});
+
+				} else {
+					//					mui.openWindow('html/login/html/login.html', 'login');
+					var loginWv = plus.webview.create("html/login/html/login.html", "login", {
+						softinputMode: "adjustResize"
+					});
+					plus.webview.show(loginWv);
+
+				}
+			}
+		</script>
+	</body>
+
+</html>

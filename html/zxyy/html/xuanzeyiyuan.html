@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>转诊预约</title>
+		<link rel="stylesheet" href="../css/cross.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../../../common/cross/css/cross.ui.css" />
+		<link rel="stylesheet" href="../iconfont/iconfont.css" type="text/css" />
+		<link rel="stylesheet" href="../css/style.css" type="text/css" />
+	</head>
+
+	<body>
+		<div class="c-main" id="index-defult">
+			<div class="h45">
+				<div class="demo-comtop">
+					<a class="mui-action-back"></a>
+					<h1>转诊预约</h1>
+				</div>
+			</div>
+			<div class="hospital-hold c-position-r ">
+				<div class="pull-iscroll-wrap">
+					<div class="pull-iscroll-box">
+						<!--<div class="search-result">-->
+						<!--<div class="doc-suggst c-border-b">-->
+						<ul id="hospital-box">
+							<!--<li>
+										<div class="hosp-avatar"><img src="../images/hospital.jpg" alt=""></div>
+										<div class="doc-info pr10">
+											<h4 class="c-333 c-f15">厦门大学附属第一医院</h4>
+											<div class="hosp-address c-boxs c-nowrap">厦门市镇海路55号<i class="hosp-pack">100m</i></div>
+										</div>
+									</li>
+									<li>
+										<div class="hosp-avatar"><img src="../images/xiamendaxuefushudiyiyiyuan.png" alt=""><i class="hosp-lv">三甲</i></div>
+										<div class="doc-info pr10">
+											<h4 class="c-333 c-f15">厦门大学附属第一医院</h4>
+											<div class="hosp-address c-boxs c-nowrap">厦门市镇海路55号<i class="hosp-pack">100m</i></div>
+										</div>
+									</li>
+									<li>
+										<div class="hosp-avatar"><img src="../images/xiamenshifushuzhongshanyiyuan.jpg" alt=""><i class="hosp-lv">三甲</i></div>
+										<div class="doc-info pr10">
+											<h4 class="c-333 c-f15">厦门大学附属中山医院</h4>
+											<div class="hosp-address c-boxs c-nowrap">厦门市湖滨南路201-209号<i class="hosp-pack">100m</i></div>
+										</div>
+									</li>
+									<li>
+										<div class="hosp-avatar"><img src="../images/xiamenshizhongyiyuan.jpg" alt=""><i class="hosp-lv">三甲</i></div>
+										<div class="doc-info pr10">
+											<h4 class="c-333 c-f15">厦门中医院</h4>
+											<div class="hosp-address c-boxs c-nowrap">厦门市仙岳路1739号<i class="hosp-pack">100m</i></div>
+										</div>
+									</li>
+									<li>
+										<div class="hosp-avatar"><img src="../images/xiamenshifuyoubaojianyuan.jpg" alt=""><i class="hosp-lv">三甲</i></div>
+										<div class="doc-info pr10">
+											<h4 class="c-333 c-f15">厦门妇幼保健院</h4>
+											<div class="hosp-address c-boxs c-nowrap">厦门市思明区镇海路10号<i class="hosp-pack">100m</i></div>
+										</div>
+									</li>
+
+									<li>
+										<div class="hosp-avatar"><img src="../images/xiamenshidieryiyuan.jpg" alt=""><i class="hosp-lv">三乙</i></div>
+										<div class="doc-info pr10">
+											<h4 class="c-333 c-f15">厦门市第二医院</h4>
+											<div class="hosp-address c-boxs c-nowrap">厦门市集美区盛光路566号<i class="hosp-pack">100m</i></div>
+										</div>
+									</li>
+									<li>
+										<div class="hosp-avatar"><img src="../images/xiamenshihaicangyiyuan.jpg" alt=""><i class="hosp-lv">二甲</i></div>
+										<div class="doc-info pr10">
+											<h4 class="c-333 c-f15">厦门市海沧医院</h4>
+											<div class="hosp-address c-boxs c-nowrap">海沧区海裕路89号<i class="hosp-pack">100m</i></div>
+										</div>
+									</li>
+									<li>
+										<div class="hosp-avatar"><img src="../images/xiamenhulihuaxingyiyuan.JPG" alt=""><i class="hosp-lv">二甲</i></div>
+										<div class="doc-info pr10">
+											<h4 class="c-333 c-f15">厦门湖里华兴医院</h4>
+											<div class="hosp-address c-boxs c-nowrap">厦门市湖里区湖里大道80号明园大厦<i class="hosp-pack">100m</i></div>
+										</div>
+									</li>
+
+									<li>
+										<div class="hosp-avatar"><img src="../images/xiamenshidisanyiyuan.jpg" alt=""><i class="hosp-lv">三乙</i></div>
+										<div class="doc-info pr10">
+											<h4 class="c-333 c-f15">厦门市第三医院</h4>
+											<div class="hosp-address c-boxs c-nowrap">厦门市思明区湖滨中路9号<i class="hosp-pack">100m</i></div>
+										</div>
+									</li>-->
+						</ul>
+						<!--</div>-->
+						<!--</div>-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/html" id="hosp_tmpl">
+			{{each data as val i}}
+			<li data-id="{{val.id}}" data-code="{{val.code}}">
+				<div class="doc-info pr10 ">
+					<h4 class="c-333 c-f16 pl10">{{val.name}}</h4>
+				</div>
+			</li>
+			{{/each}}
+		</script>
+		<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<link rel="stylesheet" href="../../../widget/artDialog/6.0.5/css/ui-dialog.min.css" type="text/css" />
+		<script type="text/javascript" src="../../../widget/artDialog/6.0.5/js/dialog-plus.min.js"></script>
+		<script type="text/javascript" src="../../../widget/iscroll/5.1.3/js/iscroll.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../../widget/iscroll/5.1.3/css/iscroll.css" />
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.plusReady(function() {
+				plus.nativeUI.showWaiting("", {
+					back: "none"
+				});
+				var self = plus.webview.currentWebview();
+				var patiCode = self.pCode;
+				//				alert(patiCode);
+				var patiInfo;
+				//查询居民信息
+				sendPost("doctor/patient_group/patient", {
+					code: patiCode
+				}, null, function(res) {
+					console.error(JSON.stringify(res));
+					if(res.status == 200) {
+						patiInfo = JSON.stringify(res.data);
+						plus.storage.setItem("patiInfo", patiInfo);
+						getHospInfo();
+					} else {
+						plus.nativeUI.closeWaiting();
+						mui.toast(res.msg);
+					}
+				});
+
+			});
+
+			function getHospInfo() {
+				plus.nativeUI.showWaiting("", {
+					back: "none"
+				});
+				var postUrl = "user/guaihao/GetWebOrgList";
+				sendPost(postUrl, {}, null, function(res) {
+					console.log(JSON.stringify(res));
+					if(res.status == 200) {
+						var cont = template("hosp_tmpl", res);
+						$("#hospital-box").html(cont);
+						active();
+					}
+					plus.nativeUI.closeWaiting();
+				});
+			}
+
+			var active = function() {
+				var totH = $(window).height();
+				$(".hospital-hold").height(totH);
+			};
+			mui("#hospital-box").on("tap", "li", function() {
+				var hosCode = this.getAttribute("data-code");
+				var hosName = this.querySelector("h4").innerText;
+				mui.openWindow('xuanzebumen.html', 'xuanzebumen', {
+					extras: {
+						hospitalCode: hosCode,
+						hospitalName: hosName
+					}
+				});
+			})
+		</script>
+	</body>
+
+</html>

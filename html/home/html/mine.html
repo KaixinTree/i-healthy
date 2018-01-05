@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>我</title>
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" type="text/css" href="../../../common/iconfont/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="../../../common/cross/css/cross.css">
+		<link rel="stylesheet" href="../../../common/cross/css/cross.ui.css" type="text/css" />
+		<!--<link rel="stylesheet" type="text/css" href="../../../common/css/doc-style.css">-->
+		<link rel="stylesheet" type="text/css" href="../../../common/css/jy-style.css">
+	</head>
+
+	<body>
+		<div class="main">
+			<div class="h45">
+				<div class="demo-comtop">
+					<!--<a class="mui-action-back"></a>-->
+					<h1>我</h1>
+				</div>
+			</div>
+			<div class="bgc-fff">
+				<div class="c-100 c-position-r" id="doc_info">
+					<!--<div class="header-contain c-position-r pt20">
+					<div class="pic" onclick="openWebview('../../mine/html/gerenziliao.html')"><img src="../../../common/images/tx.png"></div>
+					<div class="p-clcardna c-fff c-t-center">
+						啊等方式阿斯蒂芬阿道夫阿道夫阿地方地方啊
+					</div>
+				</div>
+				<p class="c-t-center c-f14 c-666 pt5">徐宝宝</p>
+				<span class="cl-poewm"><a id="erweima"><i class="iconfont icon-erweima"></i></a></span>-->
+				</div>
+				<ul class="c-blocks-2 c-t-center c-border-tb ptb15 c-loper mt20 c-f16">
+					<li class="c-border-r" onclick="tohuanzhe()">
+						<p id="pati_count">0</p>
+						<span class="c-666">签约居民</span>
+					</li>
+					<li onclick="totuandui()">
+						<p id="group_count">0</p>
+						<span class="c-666">我的团队</span>
+					</li>
+				</ul>
+			</div>
+			<ul class="c-list c-border-tb c-loper mt10" id="list">
+				<li class="c-list-text c-list-cover" data-href="../../mine/html/dailiqianyue.html">
+					<div class="c-list-value">
+						<h4><span class="color-iconfont mr15"><img src="../../../common/images/demo-por01.png"></span>手工代理签约</h4>
+					</div>
+				</li>
+				<li class=" c-list-text c-list-cover" data-href="../../mine/html/set.html">
+					<div class="c-list-value">
+						<h4><span class="color-iconfont mr15"><img src="../../../common/images/demo-por02.png"></span>设置</h4>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+
+	<script type="text/html" id="doc_info_tmpl">
+		<div class="header-contain c-position-r pt20" onclick="openWebview('../../mine/html/gerenziliao.html')">
+			<div class="pic"><img src="{{photo | setPhoto}}" id="photo"></div>
+			<div class="p-clcardna c-fff c-t-center">
+				{{jobName}}
+			</div>
+		</div>
+		<p class="c-t-center c-f16 c-666 pt5">{{name}}</p>
+		<span class="cl-poewm"><a onclick="toErweima()"><i class="iconfont icon-erweima"></i></a></span
+	</script>
+	<script src="../../../js/app.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/jquery/2.1.3/jquery.js"></script>
+	<script type="text/javascript" src="../../../js/mui.min.js"></script>
+	<script src="../../../widget/mobiscroll/2.17.1/js/mobiscroll.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../widget/mobiscroll/2.17.1/css/mobiscroll.css" />
+	<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script type="text/javascript">
+		var docCode,docName,docJob;
+		mui.plusReady(function() {
+			var self=plus.webview.currentWebview();
+			var docType=plus.storage.getItem("docType");
+			if (docType!="2") {
+				$("#list").children("li").eq(0).remove();
+			}
+			
+			sendPost("doctor/baseinfo", null, queryFailed, success);
+			
+			getPatiAmount();
+			getGroupInfo();
+		});
+		function success(req) {
+			console.log(JSON.stringify(req));
+			if (req.status == 200) {
+				docCode=req.data.code;//医生标识
+				docName=req.data.name;
+				docJob=req.data.jobName;
+				template.helper("setPhoto", function(p) {
+					if (!p || p.length == 0) {
+						return "../../../images/d-default.png";
+					} else {
+						return p
+					}
+				});
+				var cont = template("doc_info_tmpl", req.data);
+				document.getElementById("doc_info").innerHTML = cont;
+			}
+		}
+
+		function queryFailed(res) {
+			if (res && res.msg) {
+				plus.nativeUI.toast(res.msg);
+			} else {
+				plus.nativeUI.toast("数据加载失败");
+			}
+			plus.nativeUI.closeWaiting();
+		}
+			
+		
+		//获取居民数：
+		function getPatiAmount() {
+			sendPost("doctor/patient_group/amount",{},null,function (res) {
+				if (res.status==200) {
+					$("#pati_count").text(res.data);
+				}
+			});
+		}
+		//获取工作组
+		function getGroupInfo(){
+			sendPost("doctor/teams",{},null,function (res) {
+				if (res.status==200) {
+					var count=res.list.length;
+					$("#group_count").text(count);
+				}
+			});
+		}
+		
+		/*
+		 * 跳转到居民
+		 */
+		
+		function tohuanzhe () {
+//			mui.openWindow('huanzhe.html','huanzhe',{extras:{entrance:"mine"}});
+			var mainWv=plus.webview.getWebviewById("main");
+			mui.fire(mainWv,"activeHuanzhe");
+		}
+		/*
+		 * 我的居民
+		 */
+		function totuandui(){
+			mui.openWindow('../../home/html/gongzuozu.html','gongzuozu',{});
+//			mui.openWindow('../../mine/html/wodetuandui.html','wodetuandui',{});
+		}
+
+		mui("#list").on("tap", "li", function() {
+			var href = this.getAttribute("data-href");
+			openWebview(href);
+		});
+		
+		
+		function toErweima(){
+			mui.openWindow('../../mine/html/erweima.html','erweima',{
+				extras:{code:docCode,name:docName,job:docJob}
+				}
+			)
+		};
+	/*
+	 * 更新头像
+	 */
+		window.addEventListener("updataPhoto", function(e) {
+			var photo=e.detail.photo;
+			$("#photo").attr("src",photo);
+		});
+	/*
+	 * 更新居民数
+	 */
+		window.addEventListener("updatePatiAmount", function(e) {
+			getPatiAmount();
+		});
+		
+	</script>
+	
+</html>

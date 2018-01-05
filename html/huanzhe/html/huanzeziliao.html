@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>我的名片</title>
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" href="../../../common/cross/css/cross.css" type="text/css" />
+		<link rel="stylesheet" href="../../../common/cross/css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../../../common/iconfont/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="../../../common/css/doc-style.css">
+		<link rel="stylesheet" type="text/css" href="../../../common/css/jy-style.css" />
+		<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+	</head>
+
+	<body>
+		<div class="main">
+			<div class="h45">
+				<div class="demo-comtop">
+					<a class="mui-action-back"></a>
+					<h1>居民资料</h1>
+				</div>
+			</div>
+			<div class="doc-mycarder" id="pati_info">
+				<!--<ul class="c-list c-border-tb mt15">
+					<li class="">
+						<div class="c-list-info">
+							<h4 class="c-nowrap">头像</h4>
+						</div>
+						<div class="c-list-value">
+							<div class="c-avatar-m"><img src="{{photo | setPhoto}}"></div>
+						</div>
+					</li>
+					<li class="c-list-text">
+						<div class="c-list-value">
+							<h4>我的签约</h4>
+						</div>
+						<div class="c-list-info c-t-right" id="icon">
+							<span class="icon-weiqianyue-jia"></span>
+							<span class="icon-weiqianyue-san"></span>
+						</div>
+					</li>
+				</ul>-->
+			</div>
+		</div>
+
+		<script type="text/html" id="info_tmpl">
+			<ul class="c-list c-border-tb mt15">
+				<li class="c-list-text">
+					<div class="c-list-info">
+						<h4 class="c-nowrap">头像</h4>
+					</div>
+					<div class="doc-avatar"><img src="{{photo | setPhoto}}"></div>
+				</li>
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>签约协议</h4>
+					</div>
+					<div class="c-list-info c-t-right" id="icon">
+
+					</div>
+				</li>
+			</ul>
+
+			<ul class="c-list c-border-tb mt15">
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>姓名</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">{{name}}</div>
+					</div>
+				</li>
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>性别</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">{{sex | setSex}}</div>
+					</div>
+				</li>
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>出生年月</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">{{birthday}}</div>
+					</div>
+				</li>
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>手机号码</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">{{mobile}}</div>
+					</div>
+				</li>
+			</ul>
+			<ul class="c-list c-border-tb mt15">
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>省份</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">{{provinceName}} </div>
+					</div>
+				</li>
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>城市</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">{{cityName}}</div>
+					</div>
+				</li>
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>区县</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">{{townName}}</div>
+					</div>
+				</li>
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>街道</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">{{street}}</div>
+					</div>
+				</li>
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>地址</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">{{address}}</div>
+					</div>
+				</li>
+			</ul>
+		</script>
+		<script src="../../../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var postUrl = "doctor/patient_group/patient";
+			var self;
+			mui.plusReady(function() {
+				self = plus.webview.currentWebview();
+				var code = self.patiCode;
+				var signType = self.signType;
+				sendPost(postUrl, {
+					code: code
+				}, null, function(res) {
+					if(res.status == 200) {
+						var sex = res.data.sex;
+						template.helper("setSex", function(s) {
+							sex = s;
+							if(s == "1") {
+								return "男"
+							} else if(s == "2") {
+								return "女"
+							}
+						});
+
+						template.helper("setPhoto", function(p) {
+							if(!p || p.length == 0) {
+								if(sex == "1") {
+									return "../../../images/p-default.png";
+								} else if(sex == "2") {
+									return "../../../images/p-female.png";
+								}
+							} else {
+								return p;
+							}
+						});
+
+						var cont = template("info_tmpl", res.data);
+						$("#pati_info").html(cont);
+
+						if(signType == 1) {
+							$("#icon").html('<div class="ring-blue mr5" onclick="toXieYiShu(1)"> 三师 </div>');
+						} else if(signType == 2) {
+							$("#icon").html('<div class="ring-blue mr5" onclick="toXieYiShu(2)"> 家庭 </div>');
+						} else if(signType == 3) {
+							$("#icon").html('<div class="ring-blue mr5" onclick="toXieYiShu(1)"> 三师 </div><div class="ring-blue mr5" onclick="toXieYiShu(2)"> 家庭 </div>');
+						}
+					}
+				});
+			});
+
+			/*
+			 * 查看协议书
+			 */
+			function toXieYiShu(index) {
+				mui.openWindow("../../qygl/html/xieyishu.html", "xieyishu");
+			}
+		</script>
+	</body>
+
+</html>

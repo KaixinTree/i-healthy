@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* CSS Document */
+body,html{background:#f2f4f6;}
+.sign-comonhd{display:-webkit-box;display:box;box-sizing:border-box;}
+.sign-comonhd .sanp-flex{-webkit-box-flex: 1;box-flex: 1;text-align:center;padding-bottom:10px;}
+.sign-comonhd .sanp-flex p{color:#333;}
+.sanp-flex .pic{width:26px;height:26px;background:url(../images/hd-grey-bg.png) no-repeat left top;overflow:hidden;margin:0 auto;    background-size: cover;margin-bottom:2px;}
+.sanp-flex.curr .pic{width:26px;height:26px;background:url(../images/hd-blue-bg.png) no-repeat left top;overflow:hidden;margin:0 auto;    background-size: cover;margin-bottom:2px;}
+.sanp-flex .pic.p-01{background-position:0 0;}
+.sanp-flex .pic.p-02{background-position:0 -27px;}
+.sanp-flex .pic.p-03{background-position:0 -53px;}
+.sanp-flex .pic.p-04{background-position:0 -79px;}
+.sign-comonhd .sanp-flex.curr{border-bottom:2px solid #1ca3e7;}
+.posater-oper li{padding:10px 0;}
+.c-btn-1ca3e7{background:#1ca3e7;}
+.posater-oper.c-list .c-list-info > h4 span.c-909090{color:#909090 !important;font-size:12px;margin-left:10px;}
+.posater-oper.c-list .c-list-info > p{font-size:13px;}
+.posater-oper.c-list .c-list-action{right:10px;}
+.qy-jjboxer .input-group .form-textarea{border-radius:0;}
+.c-btn.c-btn-fff.unbjy{color:#f65252;}
+.posater-oper.long.c-list .c-list-info{padding-right:88px !important;}

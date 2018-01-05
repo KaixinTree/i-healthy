@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>咨询详情</title>
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" type="text/css" href="../../../common/cross/css/cross.ui.css" />
+		<link rel="stylesheet" href="../iconfont/iconfont.css" />
+		<link rel="stylesheet" href="../../../common/css/doc-style.css">
+		<link rel="stylesheet" type="text/css" href="../../../common/cross/css/cross.ui.css" />
+		<link rel="stylesheet" href="../css/cross.css" />
+	</head>
+
+	<body class="bgc-fff">
+		<div class="h45">
+			<div class="header-comtop">
+				<a class="mui-action-back"></a>
+				<h1>咨询详情</h1>
+			</div>
+		</div>
+		<div class="mod-article c-border-b mlr10" id="consult_info">
+			<!--<h2 class="article-title mt5 c-bold" id="title">a</h2>
+			<p class="c-333 c-f13" id="when">a</p>
+			<p class="c-333 c-f13" id="content">a</p>-->
+
+			<!--<div class="person-info">-->
+			<!--<div class="avatar avatar-40">
+					<img src="{{val.photo | setPhoto}}" class="" alt="头像" />
+				</div>
+				<span>{{val.name}}</span>-->
+			<!--<span class="num">{{val.amount}}</span>-->
+			<!--</div>-->
+			<!--<div class="content" data-code="{{val.consult}}">
+				<span class="fr mt10">aa</span>
+				<h2 class="article-title  c-bold">{{val.title}}</h2>
+				<p class="c-333 c-f13">发病时间：{{val.when}}</p>
+				<p class="c-333 c-f13 c-nowrap-multi">主要症状：{{val.content}}</p>
+				<p class="mr-detail-img mt10"><img src="../../../images/d-default.png" alt="" /><img src="../../../images/d-default.png" alt="" /></p>
+			</div>-->
+			<!--<div class="medic-add-mess">-->
+			<!--</div>-->
+
+		</div>
+		<div class="mod-comment mlr10">
+			<div class="hd">
+				<span>最新评论</span>
+			</div>
+			<div class="bd">
+				<div class="c-failstate c-t-center c-hide" id="wushuju">
+					<i class="icon-noset"></i>
+					<p class="c-5b5b5b">暂无评论</p>
+				</div>
+			</div>
+			<ul class="list-comment" id="comment_list">
+				<!--<li>
+						<div class="person-info">
+							<div class="avatar avatar-40">
+								<img src="../../../images/p-default.png" class="" alt="头像" />
+							</div>
+							<span>笑的像白痴</span>
+							<span class="fl">2016-1111</span>
+							<span style="position: absolute;right: 10px;">1F</span>
+						</div>
+						<p class="comment">楼主说的好赞~</p>
+						<p class="mr-detail-img ml30"><img src="../../../images/d-default.png" alt="" /><img src="../../../images/d-default.png" alt="" /></p>
+					</li>-->
+			</ul>
+			<div class="view-more">
+				<a id="load_more" class="c-hide">点击加载更多</a>
+			</div>
+		</div>
+		<div class="add-comment"></div>
+
+		<section class="imgzoom-pack">
+			<div class="imgzoom-x">关闭</div>
+			<div class="imgzoom-del"><span><i></i></span></div>
+			<div class="imgzoom-img"><img src="" /></div>
+		</section>
+
+		<script type="text/html" id="consult_info_tmpl">
+			<div class="content" data-code="{{consult}}">
+				<h2 class="article-title  c-bold c-break">{{question}}</h2>
+				<div class="fr c-f14">{{czrq}}</div><br />
+				<p class="c-333 c-f15">疾病类型：{{diseaseName}}</p>
+				<p class="c-333 c-f15">发病时间：{{when}}</p>
+				<p class="c-333 c-f15 c-break">主要症状：{{content}}</p>
+				<!--<p class="mr-detail-img"><img src="../../../images/d-default.png" alt="" /><img src="../../../images/d-default.png" alt="" /></p>-->
+			</div>
+		</script>
+		<script type="text/html" id="comment_tmpl">
+			{{each list as val i}}
+			<li data-id="{{val.id}}">
+				<div class="person-info">
+					<div class="avatar avatar-40">
+						{{if val.doctor}}
+						<img src="{{val.photo | setPhotoDoc}}" class="" /> {{/if}} {{if val.patient}}
+						<img src="{{val.photo | setPhotoPat}}" class="" /> {{/if}}
+					</div>
+					<span class="c-f15">{{val.name}}</span>
+					<span class="fl c-f14">{{val.czrq}}</span>
+					<span class="tip-flood c-f14" style="position: absolute;right: 10px;"></span>
+				</div>
+				<p class="comment c-break">{{val.content}}</p>
+				<p class="mr-detail-img ml30 mt10">
+					{{each val.images as value j}}
+					<img src="{{value}}" /> {{/each}}
+				</p>
+			</li>
+			{{/each}}
+
+		</script>
+		<script src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../widget/scale/scale.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript">
+			var consultCode;
+			var temp = 0;
+			var total = 0;
+			mui.plusReady(function() {
+				var self = plus.webview.currentWebview();
+				consultCode = self.conCode;
+				sendPost("doctor/consult/public/info", {
+					consult: consultCode
+				}, null, function(res) {
+					console.log(JSON.stringify(res));
+					if(res.status == 200) {
+						var cont = template("consult_info_tmpl", res.data);
+						document.getElementById("consult_info").innerHTML = cont;
+
+						var img = res.data.images;
+						//插入图片
+						if(img && img.length > 0) {
+							var imgs = img.split(",");
+							var domP = document.createElement("p");
+							domP.className = "mr-detail-img";
+							for(var i = 0; i < imgs.length; i++) {
+								var domImg = document.createElement("img");
+								domImg.src = imgs[i];
+								domP.appendChild(domImg);
+							}
+							document.querySelector("#consult_info  .content").appendChild(domP);
+							scaleRefresh("#consult_info  .content p");
+						}
+					}
+				});
+				getData();
+				//				var data = self.data;
+				//				if (data) {
+				//					var obj = JSON.parse(data);
+				//					document.getElementById("title").innerText = obj.title;
+				//					document.getElementById("when").innerText = "发病时间：" + obj.when;
+				//					document.getElementById("content").innerText = "主要症状：" + obj.content;
+				//					consultCode = obj.consult;
+				//					getData();
+				//				}
+				document.querySelector(".add-comment").addEventListener("tap", function() {
+					mui.openWindow('ggzx-zhuanxiehuida.html', 'ggzx-zhuanxiehuida', {
+						extras: {
+							consultId: consultCode
+						}
+					});
+				});
+			});
+
+			//			function clickNowrap() {
+			//				$("#consult_info").find("p").eq(1).click(function() {
+			//					$(this).toggleClass("c-nowrap-multi");
+			//				});
+			//			}
+			/*
+			 * 回复列表 请求数据
+			 */
+			var comPostUrl = "doctor/consult/public/reply_list";
+
+			function getData() {
+				sendPost(comPostUrl, {
+					consult: consultCode,
+					id: 0,
+					pagesize: 10
+				}, null, handleSucc);
+			}
+
+			function handleSucc(res) {
+
+				console.log(JSON.stringify(res));
+				if(res.status == 200) {
+					if(res.list.length == 0) {
+						//						mui.toast("暂无人评论");
+						$("#wushuju").removeClass("c-hide");
+						return
+					}
+					total = res.total; //14
+					temp = total;
+					template.helper("setPhotoDoc", function(p) {
+						if(!p || p == "") {
+							return "../../../images/d-default.png";
+						} else {
+							return p
+						}
+					});
+					template.helper("setPhotoPat", function(p) {
+						if(!p || p == "") {
+							return "../../../images/p-default.png";
+						} else {
+							return p
+						}
+					});
+
+					if(!$("#wushuju").hasClass("c-hide")) {
+						$("#wushuju").addClass("c-hide");
+					}
+					var con = template("comment_tmpl", res);
+					document.getElementById("comment_list").innerHTML = con;
+					scaleRefresh(".mr-detail-img");
+
+					setFloor();
+
+					$("#load_more").removeClass("c-hide");
+				}
+			}
+
+			function setFloor() {
+				var fls = document.querySelectorAll(".tip-flood");
+				for(var i = 0; i < fls.length; i++, total--) {
+					fls[i].innerText = total + "F";
+				}
+
+			}
+			/*
+			 * 加载跟多
+			 */
+			$("#load_more").click(function() {
+				total = temp;
+				var $this = $(this);
+				var id = $("#comment_list").children().last().attr("data-id");
+				sendPost(comPostUrl, {
+					consult: consultCode,
+					id: id,
+					pagesize: 5
+				}, null, function(res) {
+					if(res.status == 200) {
+						if(res.list.length == 0) {
+							mui.toast("无更多的评论");
+							$this.text("无更多评论");
+							return;
+						}
+						template.helper("setPhoto", function(p) {
+							if(!p || p == "") {
+								return "../../../images/d-default.png";
+							} else {
+								return p
+							}
+						});
+						var con = template("comment_tmpl", res);
+						$("#comment_list").append(con);
+						setFloor();
+					}
+				});
+			});
+
+			//图片缩放
+			function scaleRefresh(dom) {
+				ImagesZoom.init({
+					"elem": dom,
+					"delBack": function(index) {
+						//						$(".pic-count").text($(".pic-count").text() - 1); //删除图片后的回调
+						//						$(dom).find("li").eq(index).remove();
+					}
+				});
+			}
+
+			/*
+			 * 自定义事件 更新
+			 */
+			window.addEventListener("update", function() {
+				getData();
+			});
+		</script>
+	</body>
+
+</html>

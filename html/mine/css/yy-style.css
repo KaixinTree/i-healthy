@@ -1,0 +1,9 @@
+@charset "utf-8";
+/* CSS Document */
+html,body{background:#ebebeb;}
+.bgc-f7f7f7{background:#f7f7f7;}
+.bgc-ebebeb{background:#ebebeb;}
+
+#serv-liang th{background:#f4f7fa;vertical-align:middle;text-align:center;border-right:1px solid #e1e1e1;border-bottom:1px solid #e1e1e1;padding:10px 5px;}
+#serv-liang td{background:#fff;vertical-align:middle;text-align:center;border-right:1px solid #e1e1e1;border-bottom:1px solid #e1e1e1;padding:10px 5px;color:#5b5b5b;}
+#serv-liang td.first{color:#909090;}

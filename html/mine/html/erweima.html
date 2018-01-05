@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>我的二维码</title>
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" type="text/css" href="../../../common/iconfont/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="../../../common/cross/css/cross.css">
+		<link rel="stylesheet" href="../../../common/cross/css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../../../common/css/jy-style.css">
+		<link rel="stylesheet" type="text/css" href="../css/yy-style.css">
+
+	</head>
+
+	<body>
+		<div class="h45">
+			<div class="demo-comtop">
+				<a class="mui-action-back"></a>
+				<h1>我的二维码</h1>
+			</div>
+		</div>
+		<div class="plr15 ptb15">
+
+			<div class="bgc-fff pt10 pb20 plr15 cl-ewmer">
+				<div class="scan-code-img" id="">
+					<div id="qrcode">
+
+					</div>
+					<!--<img src="../../../common/images/cl-ewm.png" alt="二维码">-->
+				</div>
+				<p class="c-333 c-f16 c-t-center" id="info"></p>
+				<p class="c-909090 c-f14 c-t-center">扫一扫上面的二维码图案，加我！</p>
+			</div>
+			<!--<div class="plr10 mt20 pb20">
+				<a id="share" class="c-btn c-btn-full c-btn-37a6ec border-radius-rounded">分享我的二维码名片</a>
+			</div>-->
+		</div>
+		<script src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script src="../js/jquery.qrcode.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var shares = {};
+			mui.plusReady(function() {
+				plus.nativeUI.showWaiting();
+				var self = plus.webview.currentWebview();
+				var code = self.code;
+				var name = self.name;
+				var job = self.job;
+				$("#info").text(name + "    " + job);
+				var docUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxad04e9c4c5255acf&redirect_uri=http%3a%2f%2fwww.xmtyw.cn%2fwlyy%2fwx%2fhtml%2fssgg%2fhtml%2fdoctor-homepage.html&response_type=code&scope=snsapi_base&state=" + code + "#wechat_redirect";
+				$("#qrcode").qrcode({
+					render: "canvas", //也可以替换为table
+					width: 160,
+					height: 160,
+					text: docUrl
+				});
+				plus.nativeUI.closeWaiting();
+				//分享
+//				plus.share.getServices(function(s) {
+//					if (s && s.length > 0) {
+//						for (var i = 0; i < s.length; i++) {
+//							var t = s[i];
+//							shares[t.id] = t;
+//						}
+//					}
+//				}, function() {
+//				});
+//			});
+
+			//分享链接点击事件
+//			document.getElementById("share").addEventListener('tap', function() {
+//				var ids = [{
+//						id: "weixin",
+//						ex: "WXSceneSession"
+//					}, {
+//						id: "weixin",
+//						ex: "WXSceneTimeline"
+//					}, {
+//						id: "sinaweibo"
+//					}, {
+//						id: "tencentweibo"
+//					}, {
+//						id: "qq"
+//					}],
+//					bts = [{
+//						title: "发送给微信好友"
+//					}, {
+//						title: "分享到微信朋友圈"
+//					}, {
+//						title: "分享到新浪微博"
+//					}, {
+//						title: "分享到腾讯微博"
+//					}, {
+//						title: "分享到QQ"
+//					}];
+//				plus.nativeUI.actionSheet({
+//						cancel: "取消",
+//						buttons: bts
+//					},
+//					function(e) {
+//						var i = e.index;
+//						if (i > 0) {
+//							var s_id = ids[i - 1].id;
+//							var share = shares[s_id];
+//							if (share) {
+//								if (share.authenticated) {
+//									shareMessage(share, ids[i - 1].ex);
+//								} else {
+//									share.authorize(function() {
+//										shareMessage(share, ids[i - 1].ex);
+//									}, function(e) {
+//									});
+//								}
+//							} else {
+//								mui.toast("无法获取分享服务")
+//							}
+//						}
+//					});
+			});
+		</script>
+	</body>
+
+</html>

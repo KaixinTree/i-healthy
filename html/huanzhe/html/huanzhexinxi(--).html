@@ -1,0 +1,1345 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>居民信息</title>
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" type="text/css" href="../../../common/iconfont/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="../../../common/cross/css/cross.css">
+		<link rel="stylesheet" href="../../../common/cross/css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../../../common/css/jy-style.css">
+	</head>
+
+	<body>
+		<div class="h45">
+			<div class="demo-comtop">
+				<a class="mui-action-back"></a>
+				<h1>居民信息</h1>
+			</div>
+		</div>
+		<div class="n-list">
+			<div class="n-list-li ptb12" id="pati_info">
+				<!--<div class="n-list-key pr10">
+					<div class="doc-avatar"><img src="http://ued.yihu.cn/framework/images/face.png" alt=""></div>
+				</div>
+				<div class="n-list-info">
+					<h4 class="c-333 c-f16">李大国<em class="c-909090 c-f12 ml10">男 45岁</em> </h4>
+					<p><span class="c-909090 c-f12">糖尿病</span></p>
+				</div>
+				<div class="n-list-key">
+					<div class="ring-blue mr5"> 三师 </div>
+					<div class="ring-c"> 重度 </div>
+				</div>-->
+			</div>
+		</div>
+		<div class="mod-patient-info swiper-container c-border-tb">
+			<div class="swiper-wrapper" id="health_record_list">
+				<!--<div class="swiper-slide">
+					<p class="value">-</p>
+					<p class="key">体重(Kg)</p>
+				</div>-->
+				<div class="swiper-slide" onclick="ywjl(this)">
+					<p class="value">-</p>
+					<p class="key">治疗药物</p>
+				</div>
+				<div class="swiper-slide" onclick="ysjl(this)">
+					<p class="value">-</p>
+					<p class="key">饮食</p>
+				</div>
+				<div class="swiper-slide" onclick="ydjl(this)">
+					<p class="value">-</p>
+					<p class="key">运动</p>
+				</div>
+			</div>
+			<div class="swiper-button-next"></div>
+		</div>
+		<ul class="c-lab-mor mt10 c-border-t c-patient-hd">
+			<li class="hit"><a>体征指标</a></li>
+			<!--<li><a>随访干预</a></li>-->
+			<li><a>咨询记录</a></li>
+			<li><a>指导记录</a></li>
+		</ul>
+		<ul class="c-border-b c-patient-bd">
+			<li>
+				<div class="bgc-fff width-100 c-hidden c-position-r">
+					<div class="ui-grid mtb10 mlr10" id="select_div">
+						<div class="ui-col-1 mr5">
+							<div class="input-group width-100">
+								<label>
+                            <input type="text" class="form-control width-100" id="quota" placeholder="指标类型">
+                            <span class="form-select-arrow"></span> </label>
+							</div>
+						</div>
+						<div class="ui-col-1 ml5">
+							<div class="input-group width-100">
+								<label>
+                            <input type="text" class="form-control width-100" id="times" placeholder="时间段">
+                            <span class="form-select-arrow"></span> </label>
+							</div>
+						</div>
+					</div>
+					<div class="mtb10 mlr10 c-hide" id="select_date">
+						<div class="ui-col-1 mr5">
+							<div class="input-group width-100">
+								<label>
+                            <input type="text" class="form-control width-100" id="time_start" placeholder="开始时间">
+                            <span class="form-select-arrow"></span> </label>
+							</div>
+						</div>
+						<div class="ui-col-1 ml5">
+							<div class="input-group width-100">
+								<label>
+                            <input type="text" class="form-control width-100" id="time_end" placeholder="结束时间">
+                            <span class="form-select-arrow"></span> </label>
+							</div>
+						</div>
+					</div>
+					<div class="">
+						<div class="info-tabs-bd c-position-r">
+							<div class="c-failstate c-t-center c-hide" id="echarts_wushuju">
+								<i class="icon-noset"></i>
+								<p class="c-5b5b5b">暂无相关记录</p>
+							</div>
+
+							<div class="tbs-box swiper-echarts">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide">
+										<div class="height-echarts" id="echarts1"> </div>
+									</div>
+									<div class="swiper-slide">
+										<div class="height-echarts" id="echarts2"> </div>
+									</div>
+									<div class="swiper-slide">
+										<div class="height-echarts" id="echarts3"> </div>
+									</div>
+									<div class="swiper-slide">
+										<div class="height-echarts" id="echarts4"> </div>
+									</div>
+									<div class="swiper-slide">
+										<div class="height-echarts" id="echarts5"> </div>
+									</div>
+									<div class="swiper-slide">
+										<div class="height-echarts" id="echarts6"> </div>
+									</div>
+									<div class="swiper-slide">
+										<div class="height-echarts" id="echarts7"> </div>
+									</div>
+								</div>
+								<div class="swiper-pagination"></div>
+							</div>
+							<div class="tbs-box c-hide">
+								<div class="height-echarts" id="echarts8"></div>
+							</div>
+							<div class="tbs-box c-hide">
+								<div class="height-echarts" id="echarts9"></div>
+							</div>
+							<div class="tbs-box c-hide">
+								<div class="height-echarts" id="echarts10"></div>
+							</div>
+						</div>
+
+						<div class="info-tabs-bd c-hide">
+							<div class="tbt-box">
+								<table class="c-table c-border-tb GLU-tab">
+									<thead class="bg-7ecef4 c-fff">
+										<tr>
+											<th rowspan="2">日期</th>
+											<th colspan="2">早餐</th>
+											<th colspan="2">午餐</th>
+											<th colspan="2">晚餐</th>
+											<th rowspan="2">睡前</th>
+										</tr>
+										<tr>
+											<th>前</th>
+											<th>后</th>
+											<th>前</th>
+											<th>后</th>
+											<th>前</th>
+											<th>后</th>
+										</tr>
+									</thead>
+									<tbody class="bg-fff c-f14" id="sugar_list">
+										<!--<tr>
+											<td>12-25</td>
+											<td>11.2</td>
+											<td>31.4</td>
+											<td>51.6</td>
+											<td><span class="c-f00">41.4</span></td>
+											<td>11.8</td>
+											<td>22.3</td>
+											<td>51.2</td>
+										</tr>-->
+									</tbody>
+								</table>
+								<div class="view-more"><a id="load_more_sugar" class="c-hide">点击加载更多</a></div>
+							</div>
+							<div class="tbt-box c-hide">
+								<table class="c-table c-border-tb GLU-tab">
+									<thead class="bg-7ecef4 c-fff">
+										<tr>
+											<th>日期</th>
+											<th>收缩压</th>
+											<th>舒张压</th>
+										</tr>
+									</thead>
+									<tbody class="bg-fff c-f14" id="pressure_list">
+										<!--<tr>
+											<td>12-25</td>
+											<td>11.2</td>
+											<td>31.4</td>
+										</tr>-->
+									</tbody>
+								</table>
+								<div class="view-more"><a id="load_more_pressure" class="c-hide">点击加载更多</a></div>
+							</div>
+							<div class="tbt-box c-hide">
+								<table class="c-table c-border-tb GLU-tab">
+									<thead class="bg-7ecef4 c-fff">
+										<tr>
+											<th>日期</th>
+											<th>体重</th>
+										</tr>
+									</thead>
+									<tbody class="bg-fff c-f14" id="weight_list">
+										<!--<tr>
+											<td>12-25</td>
+											<td>11.2</td>
+										</tr>-->
+									</tbody>
+								</table>
+								<div class="view-more"><a id="load_more_weight" class="c-hide">点击加载更多</a></div>
+							</div>
+							<div class="tbt-box c-hide">
+								<table class="c-table c-border-tb GLU-tab">
+									<thead class="bg-7ecef4 c-fff">
+										<tr>
+											<th>日期</th>
+											<th>腰围</th>
+										</tr>
+									</thead>
+									<tbody class="bg-fff c-f14" id="waistline_list">
+										<!--<tr>
+											<td>12-25</td>
+											<td>11.2</td>
+										</tr>-->
+									</tbody>
+								</table>
+								<div class="view-more"><a id="load_more_waistline" class="c-hide">点击加载更多</a></div>
+							</div>
+						</div>
+						<div class="info-tabs-hd ui-grid mlr10 c-t-center mtb10 c-border c-images-rounded">
+							<div class="curr ui-col-1">趋势</div>
+							<div class="ui-col-1">列表</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="c-hide">
+				<div class="c-failstate c-t-center c-hide" id="zx_wushuju">
+					<i class="icon-noset"></i>
+					<p class="c-5b5b5b">暂无相关记录</p>
+				</div>
+				<!--<div class="week-select">-->
+				<ul class="c-list " id="zixun_list">
+
+				</ul>
+				<!--</div>-->
+				<div class="view-more"><a id="load_more_zx" class="c-hide">点击加载更多</a></div>
+			</li>
+			<li class="c-hide">
+
+				<div class="c-failstate c-t-center c-hide" id="zd_wushuju">
+					<i class="icon-noset"></i>
+					<p class="c-5b5b5b">暂无相关记录</p>
+				</div>
+
+				<ul class="c-list" id="zhidao_list">
+					<!--<li class="c-list-text">
+						<div class="zxjl-list">
+							<p class="c-5b5b5b c-f12">2016-06-03 10：10：10</p>
+							<p class="c-333 c-f12 mt5  c-nowrap-multi">吃了药反而反胃怎么办？</p>
+						</div>
+					</li>-->
+				</ul>
+				<div class="view-more "><a id="load_more_zd" class="c-hide">点击加载更多</a></div>
+			</li>
+		</ul>
+
+		<div class="binglijia">
+			<div class="plr10 lih45 c-f15 bgc-fff plr10">随手记</div>
+			<div class="c-failstate c-t-center c-hide" id="blj_wushuju">
+				<i class="icon-noset"></i>
+				<p class="c-5b5b5b">暂无相关记录</p>
+			</div>
+			<ul class="case-list c-border-t bgc-fff" id="suishouji_list">
+				<!--<li>
+					<div class="case-bar"></div>
+					<div class="clearfix mb2"> <span class="fl c-f15">2016-06-03  10：10：10</span> </div>
+					<h4 class="c-f15 mtb10">高血压</h4>
+					<div>若居民无颅内压增高变化或失语发展缓慢，进行全面神经系统检查，首先应了解病史、居民家族史，有无头痛、血压增离、癫痫及服用药物。了解居民交流能力及失语前日常行为。</div>
+					<p class="c-t-right c-17b3ec mt10">
+						<a class="c-17b3ec"> <i class="iconfont icon-bianji"></i> <span>修改</span> </a>
+						<a class="c-17b3ec ml10"> <i class="iconfont icon-laji"></i> <span>开始</span> </a>
+					</p>
+				</li>
+				<li>
+					<div class="case-bar"></div>
+					<div class="clearfix mb2"> <span class="fl c-f15">2016-06-03  10：10：10</span> </div>
+					<h4 class="c-f15 mtb10">高血压</h4>
+					<div>若居民无颅内压增高变化或失语发展缓慢，进行全面神经系统检查，首先应了解病史、居民家族史，有无头痛、血压增离、癫痫及服用药物。了解居民交流能力及失语前日常行为。</div>
+					<p class="c-t-right c-17b3ec mt10">
+						<a class="c-17b3ec"> <i class="iconfont icon-bianji"></i> <span>修改</span> </a>
+						<a class="c-17b3ec ml10"> <i class="iconfont icon-laji"></i> <span>开始</span> </a>
+					</p>
+				</li>
+				<li>
+					<div class="case-bar"></div>
+					<div class="clearfix mb2"> <span class="fl c-f15">2016-06-03  10：10：10</span> </div>
+					<h4 class="c-f15 mtb10">高血压</h4>
+					<div>若居民无颅内压增高变化或失语发展缓慢，进行全面神经系统检查，首先应了解病史、居民家族史，有无头痛、血压增离、癫痫及服用药物。了解居民交流能力及失语前日常行为。</div>
+					<p class="c-t-right c-17b3ec mt10">
+						<a class="c-17b3ec"> <i class="iconfont icon-bianji"></i> <span>修改</span> </a>
+						<a class="c-17b3ec ml10"> <i class="iconfont icon-laji"></i> <span>开始</span> </a>
+					</p>
+				</li>-->
+			</ul>
+			<div class="view-more mb10"><a id="load_more_ssj" class="c-hide">点击加载更多</a></div>
+
+			<!--<div class="nomess pt30" style="display:none;">
+				<p><i class="icon-nomess"></i></p>
+				<p class="c-909090">当前暂无病程</p>
+			</div>-->
+		</div>
+		<div class="fix-add"></div>
+		<div class="fix-add-dialog c-hide">
+			<ul class="c-blocks-2 c-t-center">
+				<!--<li>
+					<a> <i class="iconfont icon-suifang"></i> <span>随访干预</span> </a>
+				</li>-->
+				<li onclick="jkzd()">
+					<a> <i class="iconfont icon-jiankangzhidao"></i> <span>健康指导</span> </a>
+				</li>
+				<li onclick="xzssj()">
+					<a> <i class="iconfont icon-bingshi"></i> <span>新增随手记</span> </a>
+				</li>
+				<li onclick="tzyj()">
+					<a> <i class="iconfont icon-tizhengcanshu"></i> <span>体征预警</span> </a>
+				</li>
+				<li onclick="fz()">
+					<a> <i class="iconfont icon-jieyue"></i> <span>分组</span> </a>
+				</li>
+			</ul>
+		</div>
+		<script type="text/htmo" id="pati_info_tmpl">
+			<div class="doc-avatar"><img src="{{photo | setPhoto}}" alt=""></div>
+			</div>
+			<div class="n-list-info">
+				<h4 class="c-333 c-f16">{{name}}<em class="c-909090 c-f12 ml10">{{sex | setSex}} {{age}}岁</em> </h4>
+				<p><span class="c-909090 c-f12">{{disease | setDisease}}</span></p>
+			</div>
+			<div class="n-list-key">
+				{{if signType==1}}
+				<div class="ring-blue mr5"> 三师 </div>
+				{{else if signType==2}}
+				<div class="ring-blue mr5"> 家庭 </div>
+				{{/if}}
+			</div>
+		</script>
+
+		<script type="text/html" id="sugar_list_tmpl">
+			{{each list as val i}}
+			<tr data-sort="{{val.sortDate}}">
+				<td>{{val.date | setDate}}</td>
+				{{if val.value1
+				<3.9}} <td><span class="c-f00">{{val.value1}}</span></td>
+					{{else if val.value1>6.1}}
+					<td><span class="c-f00">{{val.value1}}</span></td>
+					{{else}}
+					<td>{{val.value1}}</td>
+					{{/if}} {{if val.value2
+					<4.4}} <td><span class="c-f00">{{val.value2}}</span></td>
+						{{else if val.value2>7.8}}
+						<td><span class="c-f00">{{val.value2}}</span></td>
+						{{else}}
+						<td>{{val.value2}}</td>
+						{{/if}} {{if val.value3
+						<4.4}} <td><span class="c-f00">{{val.value3}}</span></td>
+							{{else if val.value3>7.8}}
+							<td><span class="c-f00">{{val.value3}}</span></td>
+							{{else}}
+							<td>{{val.value3}}</td>
+							{{/if}} {{if val.value4
+							<4.4}} <td><span class="c-f00">{{val.value4}}</span></td>
+								{{else if val.value4>7.8}}
+								<td><span class="c-f00">{{val.value4}}</span></td>
+								{{else}}
+								<td>{{val.value4}}</td>
+								{{/if}} {{if val.value5
+								<4.4}} <td><span class="c-f00">{{val.value5}}</span></td>
+									{{else if val.value5>7.8}}
+									<td><span class="c-f00">{{val.value5}}</span></td>
+									{{else}}
+									<td>{{val.value5}}</td>
+									{{/if}} {{if val.value6
+									<4.4}} <td><span class="c-f00">{{val.value6}}</span></td>
+										{{else if val.value6>7.8}}
+										<td><span class="c-f00">{{val.value6}}</span></td>
+										{{else}}
+										<td>{{val.value6}}</td>
+										{{/if}} {{if val.value7
+										<4.4}} <td><span class="c-f00">{{val.value7}}</span></td>
+											{{else if val.value7>7.8}}
+											<td><span class="c-f00">{{val.value7}}</span></td>
+											{{else}}
+											<td>{{val.value7}}</td>
+											{{/if}}
+			</tr>
+			{{/each}}
+		</script>
+
+		<script type="text/html" id="pressure_list_tmpl">
+			{{each list as val i}}
+			<tr data-sort="{{val.sortDate}}">
+				<td>{{val.date | setDate}}</td>
+				{{if val.value1
+				<90}} <td>
+					<span class="c-f00">{{val.value1}}</span>
+					</td>
+					{{else if val.value1>139}}
+					<td>
+						<span class="c-f00">{{val.value1}}</span>
+					</td>
+					{{else}}
+					<td>{{val.value1}}</td>
+					{{/if}} {{if val.value2
+					<60}} <td>
+						<span class="c-f00">{{val.value2}}</span>
+						</td>
+						{{else if val.value2>89}}
+						<td>
+							<span class="c-f00">{{val.value2}}</span>
+						</td>
+						{{else}}
+						<td>{{val.value2}}</td>
+						{{/if}}
+			</tr>
+			{{/each}}
+		</script>
+
+		<script type="text/html" id="other_list_tmpl">
+			{{each list as val i}}
+			<tr data-sort="{{val.sortDate}}">
+				<td>{{val.date | setDate}}</td>
+				<td>{{val.value1}}</td>
+			</tr>
+			{{/each}}
+		</script>
+
+		<script type="text/html" id="consult_tmpl">
+			{{each list as val i}}
+			<li class="c-list-cover" data-consult="{{val.consult}}" data-id="{{val.id}}" data-patient="{{val.patient}}">
+				<div class="c-avatar-m"><img src="{{val.photo | setPhoto}}"></div>
+				<div class="c-list-info ptb10">
+					<h4 class="c-nowrap">{{val.name}}<span class="c-909090 c-f12 ml10">{{val.sex | setSex}} {{val.age}}岁</span><span class="fr c-ccc c-f12">{{val.time}}</span></h4>
+					<p class="c-nowrap mt5">{{val.title}}</p>
+				</div>
+			</li>
+			{{/each}}
+		</script>
+		<script type="text/html" id="zhidao_tmpl">
+			{{each list as val i}}
+			<li class="c-list-text c-list-link" data-id="{{val.id}}">
+				<div class="ar-mess c-list-info">
+					<span class="c-f15 mr10 c-333">{{val.czrq}}</span><span class="mr10"></span>
+					<p class="ar-mess-con c-break">{{val.content}}</p>
+				</div>
+			</li>
+			{{/each}}
+		</script>
+
+		<script type="text/html" id="suishouji_tmpl">
+			{{each list as val i}}
+			<li data-code="{{val.code}}" data-id="{{val.id}}">
+				<div class="case-bar"></div>
+				<div class="clearfix mb2"> <span class="fl c-f15">{{val.czrq}}</span> </div>
+				<h4 class="c-f15 mtb10 c-break">{{val.part_name}}</h4>
+				<div>{{val.content}}</div>
+				<p class="c-t-right c-17b3ec mt10">
+					<a class="c-17b3ec btn-modify"> <i class="iconfont icon-bianji"></i> <span>修改</span> </a>
+					<a class="c-17b3ec ml10 btn-del"> <i class="iconfont icon-laji"></i> <span>删除</span> </a>
+				</p>
+			</li>
+			{{/each}}
+		</script>
+		<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../widget/artDialog/6.0.5/js/dialog-plus.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../../widget/artDialog/6.0.5/css/ui-dialog.min.css">
+		<link rel="stylesheet" type="text/css" href="../../../widget/swiper/3.1/swiper.min.css">
+		<script type="text/javascript" src="../../../widget/swiper/3.1/swiper.jquery.min.js"></script>
+
+		<!--<script type="text/javascript" src="../../../widget/echarts/3.0/js/echarts.min.js"></script>-->
+		<script src="../../../widget/echarts/2.2.7/js/echarts-all.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript" src="../../../widget/mobiscroll/2.17.1/js/mobiscroll.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../../widget/mobiscroll/2.17.1/css/mobiscroll.css" />
+		<script src="../js/health-index.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/index-charts.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var self; //当前页面对象
+			var patiCode; //居民标识
+			var currDays = 7; //默认日期类型
+			var indexType = "1"; //指标类型
+			var currIndexCode = "" //当前要显示的指标类型
+			mui.plusReady(function() {
+				$("#times").val("最近一周")
+				$("#quota").val("血糖")
+				self = plus.webview.currentWebview();
+				var patiInfo = self.patiInfo;
+				var oPatiInfo = JSON.parse(patiInfo);
+				patiCode = oPatiInfo.code;
+
+				dealPatiInfoTmpl(oPatiInfo);
+				recordDate();
+				queryChat(patiCode, getDateBefore(6), getNowDate());
+				getZiXunData();
+				getZhiDaoData();
+				getSuiShouJiData();
+			});
+			/*
+			 * 拼接居民信息模板
+			 */
+			function dealPatiInfoTmpl(patiInfoObj) {
+				template.helper("setSex", function(s) {
+					if (s == 1) {
+						return "男"
+					} else if (s == 2) {
+						return "女"
+					}
+				});
+				template.helper("setPhoto", function(p) {
+					if (!p || p.length == 0) {
+						return "../../../images/p-default.png";
+					} else {
+						return p
+					}
+				});
+				template.helper("setDisease", function(d) {
+					switch (d) {
+						case 0:
+							return "健康";
+							break;
+						case 1:
+							return "高血压";
+							break;
+						case 2:
+							return "糖尿病";
+							break;
+					}
+				});
+
+				var cont = template("pati_info_tmpl", patiInfoObj);
+				$("#pati_info").html(cont);
+			}
+
+			/*
+			 * 请求最近的健康指标和健康记录
+			 */
+			function recordDate() {
+				var recordUrl = "doctor/health_record/recent"; //记录
+				var tempData = {
+					"sports": "-",
+					"medication": "-",
+					"diet": "-"
+				};
+				//请求记录数据
+				sendPost(recordUrl, {
+					patient: patiCode
+				}, null, function(res) {
+					if (res.status == 200) {
+						if (res.data) {
+							tempData.sports = res.data.sports;
+							tempData.medication = res.data.medication;
+							tempData.diet = res.data.diet;
+						}
+						$("#health_record_list").find(".value").eq(0).text(tempData.medication);
+						$("#health_record_list").find(".value").eq(1).text(tempData.diet);
+						$("#health_record_list").find(".value").eq(2).text(tempData.sports);
+					}
+				});
+			}
+
+			var diaAdd;
+			$(function() {
+				//				$("#temp").click(function() {
+				//					dd.close();
+				//				})
+
+				var swiper = new Swiper('.swiper-container', {
+					slidesPerView: 3,
+					spaceBetween: 0,
+					grabCursor: true,
+					nextButton: '.swiper-button-next'
+				});
+
+				var swiperEcharts = new Swiper('.swiper-echarts', {
+					pagination: '.swiper-pagination',
+					slidesPerView: 1,
+					spaceBetween: 0,
+					grabCursor: true
+				});
+
+				// 切换选项卡
+				$(".c-patient-hd li").on("click", function() {
+					$(this).addClass("hit").siblings().removeClass('hit');
+					var i = $(this).index();
+					$(".c-patient-bd>li").eq(i).show().siblings().hide();
+				})
+
+				//
+				$(".zxjl-list").on("click", "p:first-child", function() {
+					$arrow = $(this).find(".arrow");
+					if ($arrow.hasClass("arrow-up")) {
+						$arrow.removeClass("arrow-up").addClass("arrow-down");
+						$(this).siblings("p").hide();
+					} else {
+						$arrow.removeClass("arrow-down").addClass("arrow-up");
+						$(this).siblings("p").show();
+					}
+
+				});
+
+				$('.fix-add').on('click', function() {
+					var contents = $('.fix-add-dialog').get(0);
+					diaAdd = dialog({
+						quickClose: true,
+						content: contents
+					}).showModal();
+				});
+
+				$('.info-tabs-hd').on('click', 'div', function() {
+					var i = $(this).index();
+					$('.info-tabs-hd div').removeClass('curr');
+					$(this).addClass('curr');
+					$('.info-tabs-bd').addClass('c-hide');
+					$('.info-tabs-bd').eq(i).removeClass('c-hide');
+				});
+
+				/*
+				 * 筛选指标类型（1血糖，2血压，3体重，4腰围）
+				 */
+
+				var opt4 = {
+					theme: 'ios',
+					lang: 'zh',
+					formatValue: function(d) {
+						return d.join(',');
+					},
+					customWheels: true,
+					wheels: [ //如果值非常多请事先按需求生成好
+						[{
+							keys: ['1', '2', '3', '4'],
+							values: ['血糖', '血压', '体重', '腰围']
+						}]
+					],
+					onSelect: function(valueText, inst) {
+						var dd = eval("[" + valueText + "]");
+						$('#quota').val(dd[0].values);
+						currIndexCode = dd[0].keys - 1;
+						$(".tbs-box").eq(dd[0].keys - 1).show().siblings().hide();
+						$(".tbt-box").eq(dd[0].keys - 1).show().siblings().hide();
+
+						indexType = dd[0].keys;
+						queryChat(patiCode, getDateBefore(6), getNowDate());
+					}
+				};
+				var quota = $('#quota').mobiscroll(opt4);
+				/*
+				 * 筛选日期类型
+				 */
+				var opt1 = {
+					theme: 'ios',
+					lang: 'zh',
+					formatValue: function(d) {
+						return d.join(',');
+					},
+					customWheels: true,
+					wheels: [ //如果值非常多请事先按需求生成好
+						[{
+							keys: ['1', '2', '3'],
+							values: ['最近一周', '最近一个月', '自定义日期']
+						}]
+					],
+					onSelect: function(valueText, inst) {
+						var dd = eval("[" + valueText + "]");
+						$('#times').val(dd[0].values);
+						if (dd[0].keys == 3) {
+							$("#select_date").removeClass("c-hide");
+						} else {
+							$("#select_date").addClass("c-hide");
+						}
+						if (dd[0].keys == 1) {
+							//7天内
+							//							if (currDays == 7) {
+							//								return;
+							//							}
+							currDays = 7;
+							queryChat(patiCode, getDateBefore(6), getNowDate());
+						} else if (dd[0].keys == 2) {
+							//30天内
+							//							if (currDays == 30) {
+							//								return;
+							//							}
+							currDays = 30;
+							queryChat(patiCode, getDateBefore(29), getNowDate());
+						} else {
+							currDays = 99;
+						}
+					}
+				};
+				$('#times').mobiscroll(opt1);
+				/*
+				 * 筛选开始和结束日期
+				 */
+				var opt2 = {
+					preset: 'date',
+					theme: 'ios',
+					lang: 'zh',
+					dateFormat: 'yy-mm-dd',
+					maxDate: new Date(),
+					onSelect: function(valueText, inst) {
+						var date_begin = $("#time_start").val();
+						var date_end = $("#time_end").val();
+						if (date_begin == null || date_begin.length == 0) {
+							return;
+						}
+						if (date_end == null || date_end.length == 0) {
+							return;
+						}
+						queryChat(patiCode, date_begin, date_end);
+					}
+				};
+				$('#time_start').mobiscroll(opt2);
+				$('#time_end').mobiscroll(opt2);
+
+			});
+
+			/*
+			 * 判断开始、结束时间
+			 */
+			function queryChat(patiCode, date_begin, date_end) {
+				if (parseFloat(date_begin.replace(/-/g, "")) > parseFloat(date_end.replace(/-/g, ""))) {
+					plus.nativeUI.toast("开始时间不能晚于结束时间");
+					return;
+				}
+				//显示进度条
+				plus.nativeUI.showWaiting();
+				//发送请求
+				queryChatByType(patiCode, indexType, date_begin, date_end, queryChartSuccesss);
+
+			}
+
+			/**
+			 * 健康指标图表查询成功处理方法
+			 */
+			function queryChartSuccesss(res) {
+				console.log(JSON.stringify(res));
+				if (res.status == 200) {
+					if (res.list.length == 0) {
+						$("#echarts_wushuju").show();
+						$(".tbs-box").eq(currIndexCode).hide();
+						plus.nativeUI.closeWaiting();
+						return;
+					} else {
+						$("#echarts_wushuju").hide();
+						$(".tbs-box").eq(currIndexCode).show();
+					}
+
+					var cont;
+					switch (indexType) {
+						case "1":
+							showChartSugar(res.list);
+							/*
+							 * 列表数据
+							 */
+							queryListByType(patiCode, indexType, "", 10, function(resList) {
+								if (resList.status == 200) {
+									if (resList.list.length > 0) {
+										template.helper("setDate", function(d) {
+											return d.substr(5, 5);
+										});
+										cont = template("sugar_list_tmpl", resList);
+										$("#sugar_list").html(cont);
+										$("#load_more_sugar").removeClass("c-hide");
+									}
+								}
+
+							});
+							break;
+						case "2":
+							showChartPressure(res.list);
+							queryListByType(patiCode, indexType, "", 10, function(resList) {
+								if (resList.status == 200) {
+									if (resList.list.length > 0) {
+										template.helper("setDate", function(d) {
+											return d.substr(5, 5);
+										});
+										cont = template("pressure_list_tmpl", resList);
+										$("#pressure_list").html(cont);
+										$("#load_more_pressure").removeClass("c-hide");
+									}
+								}
+							});
+							break;
+						case "3":
+							showChartWeight(res.list);
+							queryListByType(patiCode, indexType, "", 10, function(resList) {
+								if (resList.status == 200) {
+									if (resList.list.length > 0) {
+										template.helper("setDate", function(d) {
+											return d.substr(5, 5);
+										});
+										cont = template("other_list_tmpl", resList);
+										$("#weight_list").html(cont);
+										$("#load_more_weight").removeClass("c-hide");
+									}
+								}
+							});
+							break;
+						case "4":
+							showChartWaistline(res.list);
+							queryListByType(patiCode, indexType, "", 10, function(resList) {
+								if (resList.status == 200) {
+									if (resList.list.length > 0) {
+										template.helper("setDate", function(d) {
+											return d.substr(5, 5);
+										});
+										cont = template("other_list_tmpl", resList);
+										$("#waistline_list").html(cont);
+										$("#load_more_waistline").removeClass("c-hide");
+									}
+								}
+							});
+							break;
+					}
+				} else {
+					//非200则为失败
+					queryChartFailed(res);
+				}
+				plus.nativeUI.closeWaiting();
+			}
+
+			/*
+			 * 加载更多血糖列表
+			 */
+			var listUrl = "doctor/health_index/list";
+			$("#load_more_sugar").click(function() {
+				var $this = $(this);
+				var sort = $("#sugar_list").children().last().attr("data-sort");
+				sendPost(listUrl, {
+					patient: patiCode,
+					sortDate: sort,
+					pagesize: 10,
+					type: 1
+				}, null, function(res) {
+					if (res.status == 200) {
+						if (res.list.length == 0) {
+							mui.toast("无更多数据");
+							$this.text("无更多数据");
+							return
+						}
+
+						template.helper("setDate", function(d) {
+							return d.substr(5, 5);
+						});
+						var cont = template("sugar_list_tmpl", res);
+						$("#sugar_list").append(cont);
+					}
+				});
+			});
+			/*
+			 * 加载更多血压列表
+			 */
+			$("#load_more_pressure").click(function() {
+				var $this = $(this);
+				var sort = $("#pressure_list").children().last().attr("data-sort");
+				sendPost(listUrl, {
+					patient: patiCode,
+					sortDate: sort,
+					pagesize: 10,
+					type: 2
+				}, null, function(res) {
+					if (res.status == 200) {
+						if (res.list.length == 0) {
+							mui.toast("无更多数据");
+							$this.text("无更多数据");
+							return
+						}
+
+						template.helper("setDate", function(d) {
+							return d.substr(5, 5);
+						});
+						var cont = template("pressure_list_tmpl", res);
+						$("#pressure_list").append(cont);
+					}
+				});
+			});
+			/*
+			 * 加载更多体重列表
+			 */
+			$("#load_more_weight").click(function() {
+				var $this = $(this);
+				var sort = $("#weight_list").children().last().attr("data-sort");
+				sendPost(listUrl, {
+					patient: patiCode,
+					sortDate: sort,
+					pagesize: 10,
+					type: 3
+				}, null, function(res) {
+					if (res.status == 200) {
+						if (res.list.length == 0) {
+							mui.toast("无更多数据");
+							$this.text("无更多数据");
+							return
+						}
+
+						template.helper("setDate", function(d) {
+							return d.substr(5, 5);
+						});
+						var cont = template("other_list_tmpl", res);
+						$("#weight_list").append(cont);
+					}
+				});
+			});
+			/*
+			 * 加载更多腰围列表
+			 */
+			$("#load_more_waistline").click(function() {
+				var $this = $(this);
+				var sort = $("#waistline_list").children().last().attr("data-sort");
+				sendPost(listUrl, {
+					patient: patiCode,
+					sortDate: sort,
+					pagesize: 10,
+					type: 4
+				}, null, function(res) {
+					if (res.status == 200) {
+						if (res.list.length == 0) {
+							mui.toast("无更多数据");
+							$this.text("无更多数据");
+							return
+						}
+
+						template.helper("setDate", function(d) {
+							return d.substr(5, 5);
+						});
+						var cont = template("other_list_tmpl", res);
+						$("#waistline_list").append(cont);
+					}
+				});
+			});
+
+			/*
+			 * 咨询记录获取数据
+			 */
+
+			function getZiXunData() {
+				plus.nativeUI.showWaiting();
+				sendPost("doctor/consult/list", {
+					type: 0,
+					id: 0,
+					pagesize: 10,
+					patient: patiCode
+				}, null, function(res) {
+					console.error(JSON.stringify(res));
+					if (res.status == 200) {
+						if (res.list.length == 0) {
+							//							$("#load_more_ask_me").addClass("c-hide");
+							$("#zx_wushuju").removeClass("c-hide");
+							return
+						}
+
+						template.helper("setSex", function(s) {
+							if (s == 1) {
+								return "男"
+							} else if (s == 2) {
+								return "女"
+							}
+						});
+						template.helper("setPhoto", function(p) {
+							if (!p || p.length == 0) {
+								return "../../../images/p-default.png";
+							} else {
+								return p
+							}
+						});
+						var cont = template("consult_tmpl", res);
+						$("#zixun_list").html(cont);
+						$("#load_more_zx").removeClass("c-hide");
+						plus.nativeUI.closeWaiting();
+					} else {
+						//						mui.toast("咨询记录" + res.msg);
+					}
+
+				});
+			}
+			//咨询条目点击事件
+			mui("#zixun_list").on("tap", "li", function() {
+				var consId = this.getAttribute("data-consult");
+				var patiId = this.getAttribute("data-patient");
+				//			plus.storage.setItem("flagZx", "1"); //已结束标签
+				mui.openWindow('../../zdzx/html/jiankangzixunxiangqing.html', 'jiankangzixunxiangqing', {
+					extras: {
+						consult: consId,
+						patient: patiId
+					}
+				})
+			});
+
+			/*
+			 * 指导记录
+			 */
+			function getZhiDaoData() {
+				plus.nativeUI.showWaiting();
+				var params = {
+					patient: patiCode,
+					id: 0,
+					pagesize: 10
+				};
+				sendPost("doctor/health/guidance/list", params, null, function(res) {
+					if (res.status == 200) {
+						if (res.list.length == 0) {
+							//document.getElementById("zdjl").innerHTML = "暂无记录";
+							$("#zd_wushuju").removeClass("c-hide");
+							//mui.toast("该时间段无指导记录");
+							return;
+						}
+						template.helper("setPhoto", function(p) {
+							if (!p || p.length == 0) {
+								return "../../../images/p-default.png";
+							} else {
+								return p
+							}
+						});
+
+						if (!$("#zd_wushuju").hasClass("c-hide")) {
+							$("#zd_wushuju").addClass("c-hide");
+						}
+
+						var cont = template("zhidao_tmpl", res);
+						document.getElementById("zhidao_list").innerHTML = cont;
+						$("#load_more_zd").removeClass("c-hide");
+						plus.nativeUI.closeWaiting();
+						//						clickZhiDaoItem();
+					}
+				});
+			}
+			/*
+			 * 指导条目点击条目事件
+			 */
+			//			function clickZhiDaoItem() {
+			//				$("#zhidao_list").on("click", "li", function() {
+			//					$(this).find("p").toggleClass("c-nowrap-multi");
+			//				})
+			//			}
+
+			/*
+			 * 获取随手记
+			 */
+			function getSuiShouJiData() {
+				plus.nativeUI.showWaiting();
+				var param = {
+					patient: patiCode,
+					id: 0,
+					pagesize: 5
+				};
+				sendPost("doctor/medical/record/part_list", param, null, function(res) {
+					if (res.status == 200) {
+						if (res.list.length == 0) {
+							$("#blj_wushuju").removeClass("c-hide");
+							$("#suishouji_list").hide();
+							return;
+						}
+
+						if (!$("#blj_wushuju").hasClass("c-hide")) {
+							$("#blj_wushuju").addClass("c-hide");
+						}
+						var cont = template("suishouji_tmpl", res);
+						document.getElementById("suishouji_list").innerHTML = cont;
+						$("#load_more_ssj").removeClass("c-hide");
+						//						morePart();
+						plus.nativeUI.closeWaiting();
+					} else {
+						plus.nativeUI.closeWaiting()
+					}
+				});
+			}
+			/*
+			 * 获取更多的随手记内容
+			 */
+			$("#load_more_ssj").click(function() {
+				var $this = $(this);
+				var id = $("#suishouji_list").children().last().attr("data-id");
+				sendPost("doctor/medical/record/part_list", {
+					patient: patiCode,
+					id: id,
+					pagesize: 5
+				}, null, function(res) {
+					if (res.status == 200) {
+						if (res.list.length == 0) {
+							mui.toast("无更多记录");
+							$this.text("无更多记录");
+							return;
+						}
+
+						template.helper("setPhoto", function(p) {
+							if (!p || p.length == 0) {
+								return "../../../images/p-default.png";
+							} else {
+								return p
+							}
+						});
+
+						var cont = template("zhidao_tmpl", res);
+						$("#zhidao_list").append(cont);
+					}
+				});
+			});
+			/*
+			 * 获取更多的指导记内容
+			 */
+			$("#load_more_zd").click(function() {
+				var $this = $(this);
+				var id = $("#zhidao_list").children().last().attr("data-id");
+				sendPost("doctor/health/guidance/list", {
+					patient: patiCode,
+					id: id,
+					pagesize: 10
+				}, null, function(res) {
+					if (res.status == 200) {
+						if (res.list.length == 0) {
+							mui.toast("无更多记录");
+							$this.text("无更多记录");
+							return;
+						}
+						var cont = template("suishouji_tmpl", res);
+						$("#suishouji_list").append(cont);
+					}
+				});
+			});
+			/*
+			 * 获取更多的咨询内容
+			 */
+			$("#load_more_zx").click(function() {
+				var $this = $(this);
+				var id = $("#zixun_list").children().last().attr("data-id");
+				sendPost("doctor/consult/list", {
+					type: 0,
+					id: id,
+					pagesize: 10,
+					patient: patiCode
+				}, null, function(res) {
+					if (res.status == 200) {
+						if (res.list.length == 0) {
+							mui.toast("无更多记录");
+							$this.text("无更多记录");
+							return;
+						}
+
+						template.helper("setSex", function(s) {
+							if (s == 1) {
+								return "男"
+							} else if (s == 2) {
+								return "女"
+							}
+						});
+						template.helper("setPhoto", function(p) {
+							if (!p || p.length == 0) {
+								return "../../../images/p-default.png";
+							} else {
+								return p
+							}
+						});
+						var cont = template("consult_tmpl", res);
+						$("#zixun_list").append(cont);
+					}
+				});
+			});
+			/*
+			 * 片段点击删除
+			 */
+			var diaDel;
+			mui("#suishouji_list").on("tap", ".btn-del", function() {
+				var $this = $(this);
+				diaDel = dialog({
+					title: "确定删除该随手记吗？",
+					okValue: "删除",
+					ok: function() {
+						plus.nativeUI.showWaiting();
+						var code = $this.closest("li").attr("data-code");
+						sendPost("doctor/medical/record/del_part_record", {
+							record: code
+						}, null, function(res) {
+							if (res.status == 200) {
+								$this.closest("li").remove();
+								plus.nativeUI.closeWaiting()
+							}
+						});
+					},
+					cancel: {
+
+					}
+
+				}).showModal();
+			});
+			/*
+			 * 片段点击修改
+			 */
+			var diaModify
+			mui("#suishouji_list").on("tap", ".btn-modify", function() {
+				var $this = $(this);
+				var code = $this.closest("li").attr("data-code");
+				var cont = $this.closest("li").find("div").last().text();
+				diaModify = dialog({
+					title: "修改随手记",
+					content: '<div class="c-t-center"><textarea name="" rows="5" cols="" class="width-100 c-border-tb" autofocus="">' + cont + '</textarea></div>',
+					okValue: "保存",
+					contentBlock: true,
+					ok: function() {
+						var contNew = $(".ui-dialog-content textarea").val().trim();
+						if (cont == contNew) {
+							return true;
+						}
+						sendPost("doctor/medical/record/modify_part_record", {
+							record: code,
+							content: contNew
+						}, null, function(res) {
+							if (res.status == 200) {
+								getSuiShouJiData();
+								plus.nativeUI.closeWaiting();
+							}
+						})
+
+					},
+					cancel: function() {
+						//						diaModify.close().remove();
+					}
+				}).showModal();
+			});
+
+			/*
+			 * 分组
+			 */
+			function fz() {
+				diaAdd.close();
+				mui.openWindow('../../huanzhe/html/fzgl.html', 'fzgl', {
+					extras: {
+						code: patiCode
+					}
+				});
+			}
+			/*
+			 * 新增随手记
+			 */
+			function xzssj() {
+				diaAdd.close();
+				mui.openWindow('xinzengsuishouji.html', 'xinzengsuishouji', {
+					extras: {
+						pCode: patiCode
+					}
+				});
+			}
+			/*
+			 * 健康指导
+			 */
+			function jkzd() {
+				diaAdd.close();
+				mui.openWindow('../../hzzd/html/xinzengzhidao.html', 'jkzd', {
+					extras: {
+						code: patiCode
+					}
+				});
+			}
+			/*
+			 * 体征预警
+			 */
+			function tzyj() {
+				diaAdd.close();
+				mui.openWindow('tzyj.html', 'tzyj', {
+					extras: {
+						code: patiCode
+					}
+				});
+			}
+			/*
+			 * 健康记录点击事件
+			 */
+			/*
+			 * 药物记录
+			 */
+			function ywjl(dom) {
+				var text = $(dom).find("p").eq(0).text();
+				if (text == "-") {
+					mui.toast("暂无健康记录");
+					return;
+				}
+				mui.openWindow('../../hzgl/html/health-record-drug.html', 'health-record-drug', {
+					extras: {
+						pCode: patiCode
+					}
+				});
+			}
+			/*
+			 * 饮食记录
+			 */
+			function ysjl(dom) {
+				var text = $(dom).find("p").eq(0).text();
+				if (text == "-") {
+					mui.toast("暂无健康记录");
+					return;
+				}
+				mui.openWindow('../../hzgl/html/health-record-diet.html', 'health-record-diet', {
+					extras: {
+						pCode: patiCode
+					}
+				});
+			}
+			/*
+			 * 运动记录
+			 */
+			function ydjl(dom) {
+				var text = $(dom).find("p").eq(0).text();
+				if (text == "-") {
+					mui.toast("暂无健康记录");
+					return;
+				}
+				mui.openWindow('../../hzgl/html/health-record-sport.html', 'health-record-sport', {
+					extras: {
+						pCode: patiCode
+					}
+				});
+			}
+
+			/*
+			 * 指导记录刷新
+			 */
+			window.addEventListener("addZhiDao", function() {
+				getZhiDaoData();
+			});
+			/*
+			 * 随手记刷新
+			 */
+			window.addEventListener("addSuiShouJi", function() {
+				getSuiShouJiData();
+			});
+		</script>
+	</body>
+
+</html>

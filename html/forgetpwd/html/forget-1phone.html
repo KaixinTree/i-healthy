@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>忘记密码手机验证</title>
+		<script src="../../../js/mui.min.js"></script>
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+
+		<link rel="stylesheet" type="text/css" href="../css/forget.css" />
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">忘记密码</h1>
+		</header>
+		<div class="mui-bar mui-bar-footer">
+			<button type="button" class="mui-btn mui-btn-blue mui-btn-block" id="forget_next">下一步</button>
+		</div>
+		<div class="mui-content">
+
+			<form class="mui-input-group mui-card">
+				<div class="mui-input-row">
+					<label><span class="mui-icon mui-icon-phone"></span>手机号</label>
+					<input type="tel" class="mui-input-clear" maxlength="11" placeholder="请输入手机号码" autofocus="">
+				</div>
+			</form>
+		</div>
+	</body>
+	<!--===================================================================-->
+	<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="UTF-8">
+		mui.init();
+		var postUrl = "common/captcha";
+		document.getElementById("forget_next").addEventListener('tap', function() {
+			var phone = document.querySelector("input").value.trim();
+			if (phone && phone.length == 11) {
+				sendPost(postUrl, {
+					mobile: phone,
+					type: 3
+				}, null, function(res) {
+					if (res.status == 200) {
+						mui.openWindow({
+							url: "forget-2vertify.html",
+							id: "forget-2vertify",
+							extras: {
+								mobile: phone
+							}
+						});
+					}
+//					mui.toast(res.msg);
+				});
+			} else {
+				mui.toast("请输入有效的手机号码");
+			}
+		});
+	</script>
+
+</html>

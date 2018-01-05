@@ -1,0 +1,44 @@
+/*.mui-content-padded{
+	margin-top: 30px;
+	text-align: center;
+}*/
+
+#forget_verify{
+	position: absolute;
+	top: 44px;
+	right: 5px;
+	width: auto;
+	height: 30px;
+	line-height: 30px;
+	font-size: 12px;
+	color: #fff;
+	background: #dd524d;
+	border: none;
+	padding: 0 10px;
+}
+
+.mui-content-padded {
+	font-size:14px; 
+	color: #17b3ec;
+}
+
+
+.mui-content-padded #time{
+	/*font-size: 16px;
+	margin-right:10px ;
+	border: 1px double ;
+	padding: 2px 4px;
+	border-radius: 5px;*/
+	float: right;
+	display: block;
+	padding: 5px 10px;
+	margin-top:-5px ;
+}
+
+.mui-btn-block{
+	height: 44px;
+}
+
+.mui-bar-footer{
+	height: 54px;
+}

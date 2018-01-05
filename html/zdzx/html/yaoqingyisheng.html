@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>邀请医生</title>
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" type="text/css" href="../../../common/iconfont/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="../../../common/cross/css/cross.css">
+		<link rel="stylesheet" href="../../../common/cross/css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../../../common/css/jy-style.css">
+
+	</head>
+
+	<body>
+		<div class="h45">
+			<div class="demo-comtop">
+				<a class="mui-action-back"></a>
+				<h1>邀请医生</h1>
+			</div>
+		</div>
+		<div class="c-main">
+			<!--  <p class="plr10 ptb5 c-666 c-f14">健康管理师</p>-->
+			<ul class="c-list c-border-tb cl-poer-sinm" id="sanshi">
+				<!--<li>
+                <div class="c-avatar-s"></div>
+                <div class="c-list-info">
+                    <h4 class="c-nowrap">李晓霞</h4>
+                   
+                </div>
+                <div class="c-list-action">
+                    <div class="input-group-checkbox">
+                        <label>
+                        <div class="input-group-pack">
+                            <input type="checkbox">
+                            <span class="tick"></span> </div>
+                        </label>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="c-avatar-s"><img src="http://ued.yihu.cn/framework/images/face.png"></div>
+                <div class="c-list-info">
+                    <h4 class="c-nowrap">李晓霞</h4>
+                    <p class="c-666 c-f12">福州东街社区</p>
+                </div>
+                <div class="c-list-action">
+                    <div class="input-group-checkbox">
+                        <label>
+                        <div class="input-group-pack">
+                            <input type="checkbox">
+                            <span class="tick"></span> </div>
+                        </label>
+                    </div>
+                </div>
+            </li>-->
+			</ul>
+			<!--<p class="plr10 ptb5 c-666 c-f14">健康管理师</p>
+    <ul class="c-list c-border-tb cl-poer-sinm">
+            <li>
+                <div class="c-avatar-s"><img src="http://ued.yihu.cn/framework/images/face.png"></div>
+                <div class="c-list-info">
+                    <h4 class="c-nowrap">李晓霞</h4>
+                    <p class="c-666 c-f12 c-hi">福州东街社区</p>
+                </div>
+                <div class="c-list-action">
+                    <div class="input-group-checkbox">
+                        <label>
+                        <div class="input-group-pack">
+                            <input type="checkbox">
+                            <span class="tick"></span> </div>
+                        </label>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="c-avatar-s"><img src="http://ued.yihu.cn/framework/images/face.png"></div>
+                <div class="c-list-info">
+                    <h4 class="c-nowrap">李晓霞</h4>
+                    <p class="c-666 c-f12">福州东街社区</p>
+                </div>
+                <div class="c-list-action">
+                    <div class="input-group-checkbox">
+                        <label>
+                        <div class="input-group-pack">
+                            <input type="checkbox">
+                            <span class="tick"></span> </div>
+                        </label>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        -->
+			<div class="plr10 mt20 pb20">
+				<a href="javascript:yaoqing();" class="c-btn c-btn-full c-btn-37a6ec border-radius-rounded">确定</a>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../../common/cross/js/cross.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<script src="../../../js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+
+		<script>
+			var otherLen = 0; //其他医生的数量
+			var consultCode;
+			var patientCode;
+			var doctors = new Array();
+			$(function() {
+				consultCode = localStorage.getItem("consult");
+				patientCode = localStorage.getItem("patient");
+				health = localStorage.getItem("health");
+
+				/*var doctors = new Array();*/
+
+				/*
+				 * 查询医生工作组信息
+				 */
+				sendPost("doctor/consult/team_doc", {
+					consult: consultCode,
+					patient: patientCode
+				}, null, function(res) {
+					if(res.status == 200) {
+						otherLen = res.list.length;
+						if(res.list.length == 0) {
+							$(".c-btn").css("display", "none");
+							mui.toast("暂无其他医生");
+						} else {
+							for(var i = 0; i < res.list.length; i++) {
+								if(res.list[i].name != health) {
+									doctors[i] = res.list[i].doctor;
+									doctor(res.list[i].doctor);
+								}
+							}
+						}
+					}
+				});
+
+				function doctor(doctorCode, i) {
+					sendPost("doctor/team/info", {
+						doctor: doctorCode,
+					}, null, function(res) {
+						if(res.status == 200) {
+							var img = "";
+							var photo = res.data.photo;
+							if(!photo || photo == "") {
+								img = "http://ued.yihu.cn/framework/images/face.png";
+							} else {
+								img = photo;
+							}
+							var html = "";
+							html += "<li>";
+							html += "<div class='c-avatar-s'><img src=";
+							html += img;
+							html += "></div>";
+							html += "<div class='c-list-info'>";
+							html += "<h4 class='c-nowrap'>";
+							html += res.data.name;
+							html += "</h4>";
+							html += "<p class='c-666 c-f12'>";
+							html += res.data.hospitalName;
+							html += "</p>";
+							html += "</div>";
+							html += "<div class='c-list-action'>";
+							html += "<div class='input-group-checkbox'>";
+							html += "<label>";
+							html += "<div class='input-group-pack'>";
+							html += "<input type='checkbox'>";
+							html += "<span class='tick'></span> </div>";
+							html += "</label>";
+							html += "</div>";
+							html += " </div>";
+							html += "</li>";
+							$("#sanshi").append(html);
+						}
+					});
+				};
+
+				/* 复选框兼容  */
+				$(document).on("click", ".input-group-pack > input[type=checkbox]", function() {
+					var $cpChk = $(this).parent();
+					if($(this).attr("checked") == "checked") {
+						$cpChk.removeClass("checked");
+						$(this).removeAttr("checked");
+					} else {
+						$cpChk.addClass("checked");
+						$(this).attr("checked", true);
+					}
+				});
+
+			})
+
+			function yaoqing() {
+				var flag = 0;
+				/*var isChecked =$(".input-group-pack").find("input").attr("checked");
+				alert(isChecked);*/
+				for(var i = 0; i < otherLen; i++) {
+					var isChecked = $(".input-group-pack").find("input").eq(i).attr("checked");
+
+					if(isChecked == "checked") {
+						var docs = doctors[i];
+						flag++;
+						sendPost("doctor/consult/transfer", {
+							consult: consultCode,
+							doctor: docs,
+							type: 1
+						}, null, function(res) {
+							if(res.status == 200) {
+								mui.toast("邀请成功");
+								setTimeout("mui.back();", 1000);
+							}
+						});
+					}
+				}
+				if(flag == 0) {
+					mui.toast("请至少选择一名三师医生");
+
+					/*mui.back();*/
+				}
+
+			}
+		</script>
+	</body>
+
+</html>

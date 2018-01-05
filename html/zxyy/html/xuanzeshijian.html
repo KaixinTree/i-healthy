@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../../js/mui.min.js"></script>
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/cross.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../iconfont/iconfont.css">
+		<link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+		<script type="text/javascript" charset="UTF-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">选择排班</h1>
+		</header>
+		<div class="mui-content">
+			<!--<div class="mui-input-row">
+				<label>预约日期</label>
+				<input type="text" placeholder="请选择预约日期" readonly="">
+			</div>-->
+
+			<div id="item2">
+				<div class="doc-suggst doc-suggst-order mt10">
+					<ul>
+						<li class="s-nolink">
+							<div class="do-mess s-link">
+								<div class="doc-avatar"><img src="../../../images/d-default.png" alt=""></div>
+								<div class="doc-info pr10">
+									<h4><span class="c-333 c-f15 mr10">李晓霞</span>主治医师</h4>
+									<div class="c-909090 c-nowrap-multi">擅长：前颅底及侧颅底多种进路手术，耳鼻喉肿瘤及鼻窦内窥镜检查以及真菌病的诊疗耳鼻喉肿瘤及鼻窦内窥镜检查</div>
+								</div>
+							</div>
+							<div class="do-sched c-333">
+								<dl>
+									<dd>上午</dd>
+									<dd>专家门诊</dd>
+									<dd class="c-909090">挂号费<i class="c-ff8100 ml5">5元</i></dd>
+									<dd class="c-t-right">
+										<a class="sched-btn" data-state="1">预约</a>
+									</dd>
+								</dl>
+								<dl>
+									<dd>下午</dd>
+									<dd>专家门诊</dd>
+									<dd class="c-909090">挂号费<i class="c-ff8100 ml5">5元</i></dd>
+									<dd class="c-t-right"><a href="javascript:;" class="sched-btn disab">约满</a></dd>
+								</dl>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<!--=============================================-->
+	<script type="text/html" id="doc_tmpl">
+		{{each data as val i}}
+		<li class="s-nolink">
+			<div class="do-mess s-link">
+				<div class="doc-avatar"><img src="../../../images/d-default.png" alt=""></div>
+				<div class="doc-info pr10">
+					<h4><span class="c-333 c-f15 mr10">{{val.name}}</span>{{val.tech}}</h4>
+					<div class="c-909090 c-nowrap-multi">简介：{{val.introduce}}</div>
+				</div>
+			</div>
+			<div class="do-sched c-333">
+				<dl>
+					<dd>{{val.orgname}}</dd>
+					<dd>{{val.deptname}}</dd>
+					<dd class="c-909090">挂号费<i class="c-ff8100 ml5">{{val.fee}}元</i></dd>
+					<dd class="c-t-right">
+						<a class="sched-btn" data-state="1">预约</a>
+					</dd>
+				</dl>
+			</div>
+		</li>
+		{{/each}}
+	</script>
+	<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+	<script type="text/javascript" src="../../../widget/iscroll/5.1.3/js/iscroll.js"></script>
+	<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var deparCode, hospiCode;
+		var postUrl = "user/guaihao/GetRegDeptDoctorList";
+		var param;
+		mui.plusReady(function() {
+			var self = plus.webview.currentWebview();
+			deparCode = self.deparCode;
+			hospiCode = self.hospitalCode;
+			var currDate = getCurrDate("date");
+			$(".mui-input-row input").val(currDate);
+
+			param = {
+				OrgCode: hospiCode,
+				DeptCode: deparCode,
+				strStart: currDate,
+				strEnd: currDate
+			};
+			sendPost(postUrl, param, null, function(res) {
+				if (res.status == 200) {
+					var cont = template("doc_tmpl", res);
+					$("#doc_list").html(cont);
+				}
+			});
+		});
+		
+		
+	</script>
+
+</html>

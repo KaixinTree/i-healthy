@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>居民管理</title>
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" type="text/css" href="../iconfont/iconfont.css">
+		<link rel="stylesheet" href="../css/cross.css" type="text/css" />
+		<link rel="stylesheet" href="../css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../../../common/css/doc-style.css">
+		<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+	</head>
+
+	<body>
+		<div class="main">
+			<div class="h45">
+				<div class="demo-comtop">
+					<a class="mui-action-back"></a>
+					<h1>我的工作组</h1>
+				</div>
+			</div>
+			<!--<div class="c-ser-hold my-work c-boxs mt10 c-serdet">
+				<div class="c-ser-main">
+					<i class="iconfont icon-sousuo"></i>
+					<input type="text" class="c-ser-input c-boxs c-f12" placeholder="请输入医生姓名" data-form="clear">
+				</div>
+				<div class="c-ser-btn"><a  >搜索</a></div>
+			</div>-->
+
+			<div class="patient c-border-t">
+				<div class="patient-list">
+					<div id="my_work_team" class="my-work-secflo">
+						<div class="patient-list">
+							<div class="patient-type">
+								<div class="arrow"> <i class="ui-arrow ui-arrow-b"></i></div>
+								<h3 class="t c-f14">三师一组<em class="c-ccc ml10 c-f10">(3人)</em></h3>
+							</div>
+							<ul id="doc_ul" class="n-list">
+								<li class="n-list-link list-arrow-r n-list-cover">
+									<div class="patient-face"><img src="../images/doctor.png" /></div>
+									<div class="n-list-info">
+										<h4 class="c-nowrap c-f14">黄小智<em class="ml5 c-f12 c-909090">男45岁</em></h4>
+										<p class="c-f12 c-909090 pt5">内科</p>
+									</div>
+									<div class="n-list-info c-t-right c-909090">16-02-15</div>
+								</li>
+								<li class="n-list-link list-arrow-r n-list-cover">
+									<div class="patient-face"><img src="../images/doctor.png" /></div>
+									<div class="n-list-info">
+										<h4 class="c-nowrap c-f14">黄小智<em class="ml5 c-f12 c-909090">男45岁</em></h4>
+										<p class="c-f12 c-909090 pt5">内科</p>
+									</div>
+									<div class="n-list-info c-t-right c-909090">16-02-15</div>
+								</li>
+								<li class="n-list-link list-arrow-r n-list-cover">
+									<div class="patient-face"><img src="../images/doctor.png" /></div>
+									<div class="n-list-info">
+										<h4 class="c-nowrap c-f14">黄小智<em class="ml5 c-f12 c-909090">男45岁</em></h4>
+										<p class="c-f12 c-909090 pt5">内科</p>
+									</div>
+									<div class="n-list-info c-t-right c-909090">16-02-15</div>
+								</li>
+								<li class="n-list-link n-list-cover">
+									<div class="n-list-info ptb10">
+										<a class="c-btn c-btn-full c-btn-1ca3e7 c-btn-radius">发起讨论</a>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="patient-list">
+							<div class="patient-type">
+								<div class="arrow"> <i class="ui-arrow ui-arrow-b"></i></div>
+								<h3>三师二组<em class="c-ccc ml10 c-f10">(3人)</em></h3>
+							</div>
+							<ul class="n-list">
+								<li class="n-list-link list-arrow-r n-list-cover">
+									<div class="patient-face"><img src="../images/doctor.png" /></div>
+									<div class="n-list-info">
+										<h4 class="c-nowrap c-f14">黄小智<em class="ml5 c-f12 c-909090">男45岁</em></h4>
+										<p class="c-f12 c-909090 pt5">内科</p>
+									</div>
+									<div class="n-list-info c-t-right c-909090">16-02-15</div>
+								</li>
+								<li class="n-list-link list-arrow-r n-list-cover">
+									<div class="patient-face"><img src="../images/doctor.png" /></div>
+									<div class="n-list-info">
+										<h4 class="c-nowrap c-f14">黄小智<em class="ml5 c-f12 c-909090">男45岁</em></h4>
+										<p class="c-f12 c-909090 pt5">内科</p>
+									</div>
+									<div class="n-list-info c-t-right c-909090">16-02-15</div>
+								</li>
+								<li class="n-list-link list-arrow-r n-list-cover">
+									<div class="patient-face"><img src="../images/doctor.png" /></div>
+									<div class="n-list-info">
+										<h4 class="c-nowrap c-f14">黄小智<em class="ml5 c-f12 c-909090">男45岁</em></h4>
+										<p class="c-f12 c-909090 pt5">内科</p>
+									</div>
+									<div class="n-list-info c-t-right c-909090">16-02-15</div>
+								</li>
+							</ul>
+						</div>
+						<div class="patient-list">
+							<div class="patient-type">
+								<div class="arrow"> <i class="ui-arrow ui-arrow-b"></i></div>
+								<h3>三师三组<em class="c-ccc ml10 c-f10">(3人)</em></h3>
+							</div>
+							<ul class="n-list">
+								<li class="n-list-link list-arrow-r n-list-cover">
+									<div class="patient-face"><img src="../images/doctor.png" /></div>
+									<div class="n-list-info">
+										<h4 class="c-nowrap c-f14">黄小智<em class="ml5 c-f12 c-909090">男45岁</em></h4>
+										<p class="c-f12 c-909090 pt5">内科</p>
+										<em class="red-point"></em> </div>
+									<div class="n-list-info c-t-right c-909090">16-02-15</div>
+								</li>
+								<li class="n-list-link list-arrow-r n-list-cover">
+									<div class="patient-face"><img src="../images/doctor.png" /></div>
+									<div class="n-list-info">
+										<h4 class="c-nowrap c-f14">黄小智<em class="ml5 c-f12 c-909090">男45岁</em></h4>
+										<p class="c-f12 c-909090 pt5">内科</p>
+									</div>
+									<div class="n-list-info c-t-right c-909090">16-02-15</div>
+								</li>
+								<li class="n-list-link list-arrow-r n-list-cover">
+									<div class="patient-face"><img src="../images/doctor.png" /></div>
+									<div class="n-list-info">
+										<h4 class="c-nowrap c-f14">黄小智<em class="ml5 c-f12 c-909090">男45岁</em></h4>
+										<p class="c-f12 c-909090 pt5">内科</p>
+									</div>
+									<div class="n-list-info c-t-right c-909090">16-02-15</div>
+								</li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<script type="text/html" id="group_tmpl">
+			{{each list as val i}}
+			<div class="patient-list">
+				<div class="patient-type">
+					<div class="arrow"> <i class="ui-arrow ui-arrow-b"></i></div>
+					<h3>{{val.name}}</h3>
+				</div>
+				<ul class="n-list">
+					{{each val.doctors as value j}}
+					<li class="n-list-link list-arrow-r n-list-cover" data-code="{{value.code}}">
+						<div class="patient-face">
+							<img src="{{value.photo | setPhoto}}" />
+						</div>
+						<div class="n-list-info">
+							<h4 class="c-nowrap c-f14">{{value.name}}</h4>
+							<p class="c-f12 c-909090 pt5">{{value.type | setType}}</p>
+						</div>
+					</li>
+					{{/each}}
+					<li class="n-list-link n-list-cover">
+						<div class="n-list-info ptb10">
+							<a class="c-btn c-btn-full c-btn-1ca3e7 c-btn-radius">发起讨论</a>
+						</div>
+					</li>
+				</ul>
+				{{/each}}
+		</script>
+		<script type="text/javascript" src="../../../js/mui.js"></script>
+		<script type="text/javascript" src="../../../js/common_http.js"></script>
+		<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script type="text/javascript" src="../js/my_work_team.js"></script>-->
+		<script type="text/javascript">
+			mui.plusReady(function() {
+				var postUrl = "doctor/team/list";
+				sendPost(postUrl, {}, null, function(res) {
+					console.error(JSON.stringify(res));
+					if(res.status == 200) {
+						template.helper("setPhoto", function(p) {
+							if(!p || p.length == 0) {
+								return "../../../images/d-default.png";
+							} else {
+								return p
+							}
+						});
+						template.helper("setType", function(s) {
+							if(s == 1) {
+								return "专科医生"
+							} else if(s == 2) {
+								return "全科医生"
+							} else if(s == 3) {
+								return "健康管理师"
+							}
+						})
+						var cont = template("group_tmpl", res);
+						$("#my_work_team").html(cont);
+						clickEvent();
+					}
+				})
+			});
+
+			function clickEvent() {
+				$(".patient-type").on('click', function() {
+					var $this = $(this);
+					if($this.parent('.patient-list').hasClass("current")) {
+						$this.find('.arrow').removeClass('open');
+						$this.next(".n-list").hide().parent('.patient-list').removeClass("current");
+						$this.siblings().find('.n-list').hide();
+						$this.siblings().find('.patient-list').removeClass('current');
+						$this.siblings().find('.arrow').removeClass('open');
+					} else {
+						$this.find('.arrow').addClass('open');
+						$this.next(".n-list").show().parent('.patient-list').addClass("current");
+					};
+				})
+			}
+
+			/*
+			 * 条目点击事件
+			 */
+			mui("#my_work_team").on("tap", ".list-arrow-r", function() {
+				var code = this.getAttribute("data-code");
+				mui.openWindow('zuyuanziliao.html', 'zuyuanziliao', {
+					extras: {
+						docCode: code
+					}
+				});
+			});
+			
+			mui("#my_work_team").on("tap", "li a", function() {
+				var code = this.getAttribute("data-code");
+				mui.openWindow('zuyuanziliao.html', 'zuyuanziliao', {
+					extras: {
+						docCode: code
+					}
+				});
+			});
+		</script>
+
+	</body>
+
+</html>

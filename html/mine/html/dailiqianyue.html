@@ -1,0 +1,435 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>手工代签约</title>
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" type="text/css" href="../../../common/iconfont/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="../../../common/cross/css/cross.css">
+		<link rel="stylesheet" href="../../../common/cross/css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../../../common/css/jy-style.css">
+		<link rel="stylesheet" type="text/css" href="../../../common/css/doc-style.css" />
+	</head>
+
+	<body>
+		<div class="h45">
+			<div class="demo-comtop">
+				<a class="mui-action-back"></a>
+				<h1 class="c-f17">手工代理签约</h1>
+			</div>
+		</div>
+		<div class="c-main">
+			<ul class="n-list edit-list c-border-tb mt10" id="info_list">
+				<li class="n-list-cover" id="name">
+					<div class="n-list-key w3em"><i class="required"></i>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</div>
+					<div class="n-list-info pl10">
+						<input type="text" class="c-input width-100" placeholder="请输入居民姓名" />
+					</div>
+				</li>
+				<li class="n-list-cover" id="idcard">
+					<div class="n-list-key w3em"><i class="required"></i>身份证号</div>
+					<div class="n-list-info pl10">
+						<input type="text" class="c-input width-100" placeholder="请输入身份证号" maxlength="18" />
+					</div>
+				</li>
+				<li class="n-list-cover" id="mobile">
+					<div class="n-list-key w3em"><i class="required"></i>手机号码</div>
+					<div class="n-list-info pl10">
+						<input type="tel" class="c-input width-100" placeholder="请输入手机号码" maxlength="11" />
+					</div>
+				</li>
+				<li class="n-list-cover" id="ssc">
+					<div class="n-list-key w3em">医保卡号</div>
+					<div class="n-list-info pl10">
+						<input type="text" class="c-input width-100" placeholder="请输入医保卡号" />
+					</div>
+				</li>
+
+				<li class="n-list-cover" id="emerMoblie">
+					<div class="n-list-key w3em">应急人联系</div>
+					<div class="n-list-info pl10">
+						<input type="tel" class="c-input width-100" placeholder="请输入应急人的手机号码" maxlength="11" />
+					</div>
+				</li>
+				<li class="n-list-cover" id="group">
+					<div class="n-list-key w3em">所在分组</div>
+					<div class="n-list-info pl10">
+						<input type="text" value="健康居民" class="c-input width-100" readonly data-val="group" />
+					</div>
+				</li>
+			</ul>
+
+			<!--<div class="n-list bgc-fff c-border-tb  " id="div_qianyue">
+				<div class="n-list-li">
+					<div class="n-list-key width-30 required c-f14 c-5b5b5b">所在分组</div>
+					<div class="n-list-info c-t-right">
+						<input type="text" placeholder="请选择居民分组" class="width-100 c-boxs c-t-right ptb15" readonly data-val="group" />
+					</div>
+				</div>
+			</div>-->
+			<ul class="n-list edit-list-file c-border-tb mt10">
+				<li class="ptb12 n-list-cover c-border-b">
+					<div class="n-list-key">
+						<!--<i class="required"></i>添加附件<span class="c-f12 c-909090">（请上传签约居民的身份证和医保卡照片）</span>-->
+						添加附件<span class="c-f14 c-909090">（请上传签约居民的身份证和医保卡照片）</span>
+					</div>
+				</li>
+
+				<li class="pt10 mb10">
+					<div class="upload-img">
+						<ul class="add-img pt10">
+							<!--<li>
+					<img src="../images/doctor.png" alt="图片" />
+					<i class="icon-del"></i>
+				</li>
+				<li>
+					<img src="../images/doctor.png" alt="图片" />
+					<i class="icon-del"></i>
+				</li>-->
+							<li class="add">
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+
+			<div class="plr10 mt10">
+				<div class="input-group-checkbox">
+					<!--<label>-->
+					<div class="input-group-pack checked">
+						<span class="tick"></span>
+					</div>
+					<!--</label>-->
+					<a style="color: #37a6ec;font-size: 16px;" onclick="toXieYiShu()">全科医生（乡村医生）签约服务协议书</a>
+				</div>
+			</div>
+			<!--<div class="plr10 mt15 pb20" style="text-align: center;">
+				<a class="c-btn c-btn-full c-btn-37a6ec border-radius-rounded c-fff"  id="upload" style="display: block;padding: 10px;">提 交</a>
+			</div>-->
+			<div class="plr10 mt15 pb20">
+				<a class="c-btn c-btn-full c-btn-37a6ec border-radius-rounded" id="upload">提 交</a>
+			</div>
+		</div>
+
+		<!-- 放置要缩放的图片的容器 -->
+		<section class="imgzoom-pack">
+			<div class="imgzoom-x">关闭</div>
+			<div class="imgzoom-del"><i class="iconfont icon-laji"></i></div>
+			<div class="imgzoom-img"><img src="" /></div>
+		</section>
+		<script src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../../widget/artDialog/6.0.5/css/ui-dialog.min.css" />
+		<script src="../../../widget/artDialog/6.0.5/js/dialog-plus.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../widget/mobiscroll/2.17.1/js/mobiscroll.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../../../widget/mobiscroll/2.17.1/css/mobiscroll.css" />
+		<script src="../../../widget/scale/scale.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/upload_preview.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/security.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var name, idCard, ssc, mobile, emerMobile, key, encyIdCard;
+			var groupCode = [],
+				groupName = [];
+			var currGroupCode;
+			var self;
+			var encryURL = "login/public_key";
+			mui.plusReady(function() {
+				self = plus.webview.currentWebview();
+				RSAUtils.getKeyFromServer(encryURL, function(res) {
+					if(res.status == 200) {
+						var mod = res.data.modulus;
+						var exp = res.data.exponent;
+						key = RSAUtils.getKeyPair(exp, "", mod);
+					}
+				});
+
+				//分组查询
+				var groupUrl = "doctor/patient_group/groups";
+				sendPost(groupUrl, {}, null, function(res) {
+					console.log(JSON.stringify(res));
+					if(res.status == 200) {
+						var groupList = res.list;
+						for(var i = 0; i < groupList.length; i++) {
+							groupCode[i] = groupList[i].code;
+							groupName[i] = groupList[i].name;
+							if(groupList[i].name == "我的患者") {
+								currGroupCode = groupList[i].code;
+							}
+						}
+						activMob();
+					};
+				});
+
+				var imgArea = document.querySelector(".add-img");
+				//添加附件
+				document.querySelector(".add").addEventListener("tap", function() {
+					showActionSheet(imgArea, this);
+				});
+				//提交
+				document.getElementById("upload").addEventListener("tap", function() {
+					name = $("#name").find("input").val().trim();
+					if(name.length == 0) {
+						mui.toast("请填写居民姓名");
+						return;
+					}
+
+					var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+					idCard = $("#idcard").find("input").val().trim();
+					if(!reg.test(idCard)) {
+						mui.toast("请填写有效身份证号");
+						return;
+					}
+
+					encyIdCard = RSAUtils.encryStr(key, idCard);
+
+					mobile = $("#mobile").find("input").val().trim();
+					if(mobile.length != 11) {
+						mui.toast("请填写有效的手机号码");
+						return;
+					}
+
+					var patrn = /^[a-zA-Z0-9]+$/;
+					ssc = $("#ssc").find("input").val().trim();
+					if(ssc) {
+						if(!patrn.test(ssc)) {
+							mui.toast("请填写有效的医保卡卡号");
+							return;
+						}
+					} else {
+						ssc = "";
+					}
+
+					emerMobile = $("#emerMoblie").find("input").val().trim();
+					if(emerMobile) {
+						if(emerMobile.length != 11) {
+							mui.toast("请填写有效的应急人联系方式");
+							return;
+						}
+					} else {
+						emerMobile = "";
+					}
+
+					if(!currGroupCode) {
+						currGroupCode = "other"
+					}
+					//var oArea = document.getElementById("cont");
+					//content = oArea.value;
+					//if (!content) {
+					//	 mui.toast("请填写回复");
+					//	 return;
+					//}
+
+					if(!$(".input-group-pack").hasClass("checked")) {
+						mui.toast("您还未接受签约协议");
+						return;
+					}
+
+					var uploadImgUrl = getCompressImg();
+					if(uploadImgUrl) {
+						plus.nativeUI.showWaiting();
+						setTimeout(function() {
+							uploadImg(uploadImgUrl, handleUploadSucc);
+						}, 1000)
+					} else {
+						sendData("");
+					}
+				});
+			});
+
+			//分组选择
+
+			function activMob() {
+				$('#group  input[data-val=group]').mobiscroll({
+					theme: 'ios',
+					lang: 'zh',
+					customWheels: true,
+					wheels: [
+						[{
+							keys: groupCode,
+							values: groupName
+						}]
+					],
+					onSelect: function(valueText, inst) {
+						var dd = eval("[" + valueText + "]");
+						$(this).val(dd[0].values);
+						currGroupCode = dd[0].keys;
+					}
+				});
+			};
+			/*
+			 * 上传成功后 处理方法
+			 */
+			function handleUploadSucc(uploadObj) {
+				var resText = uploadObj.responseText;
+				var oRes = JSON.parse(resText);
+				var imgNames = oRes.images;
+				var imgUrls = oRes.urls;
+				sendData(imgUrls);
+			}
+			/*
+			 * 提交
+			 */
+			var submitUrl = "doctor/family_contract/agent";
+
+			function sendData(imgUrls) {
+				var params = {
+					name: name,
+					idcard: encyIdCard,
+					ssc: ssc,
+					mobile: mobile,
+					emerMobile: emerMobile,
+					images: imgUrls,
+					group: currGroupCode
+				};
+				sendPost(submitUrl, params, null, function(res) {
+					if(res.status == 200) {
+						plus.nativeUI.closeWaiting();
+						mui.toast("签约成功！")
+						mui.fire(self.opener(), 'updatePatiAmount');
+						mui.later(function() {
+							var hzWv = plus.webview.getWebviewById("huanzhe.html");
+							if(hzWv) {
+								mui.fire(hzWv, "update");
+							}
+							var syWv = plus.webview.getWebviewById("home2.html");
+							if(syWv) {
+								mui.fire(syWv, "refreshPatCount");
+							}
+							mui.back();
+						}, 500);
+					} else {
+						mui.toast(res.msg);
+					}
+				});
+			}
+
+			/*
+			 * 删除图片
+			 */
+			mui(".add-img").on("tap", ".icon-del", function() {
+				var oli = this.parentElement;
+				var oul = this.parentElement.parentElement;
+				oul.removeChild(oli);
+			});
+
+			$(function() {
+				//图片缩放（ 动态添加了上传的图片后运行一下下面这条这个）
+				scaleRefresh(".upload-img-list");
+
+				$('body').on('click', '.input-group-pack', function() {
+					//					$(this).find(".input-group-pack").toggleClass("checked");
+					$(this).toggleClass("checked");
+					//$("#upload").parent().toggle();
+				});
+			});
+
+			function toXieYiShu() {
+				mui.openWindow('../../qygl/html/xieyishu.html', 'xieyishu', {})
+			}
+
+			//图片缩放，
+			function scaleRefresh(dom) {
+				ImagesZoom.init({
+					"elem": dom,
+					"delBack": function(index) {
+						$(".pic-count").text($(".pic-count").text() - 1); //删除图片后的回调
+						$(dom).find("li").eq(index).remove();
+					}
+				});
+			}
+
+			$("#idcard input").on("blur", function() {
+				var card = $("#idcard input").val().trim();
+				var reg = /(^\d{15}$)||(^\d{18}$)||(^\d{17}(\d|X|x)$)/;
+
+				if(!reg.test(card) || !card) {
+					return;
+				}
+
+				plus.nativeUI.showWaiting();
+				var $this = $(this);
+				idCard = $("#idcard").find("input").val().trim();
+				var checkUrl = "doctor/family_contract/check";
+				sendPost(checkUrl, {
+					idcard: RSAUtils.encryStr(key, idCard)
+				}, null, function(res) {
+					if(res.status == 200) {
+						if(res.data.sign == 1) {
+							var text = "该居民已签约  " + res.data.hospitalName.trim() + " 的  " + res.data.doctorName.trim() + " 医生。"
+							dialog({
+								//								title:"注意",
+								content: text,
+								ok: function() {
+									$this.val("");
+								}
+							}).showModal();
+						}
+						plus.nativeUI.closeWaiting();
+					} else {
+						plus.nativeUI.closeWaiting();
+						mui.toast(res.msg);
+						$this.val("");
+					}
+				})
+			});
+
+			/*判断输入是否为正确的身份证*/
+			// 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X  
+			//			function isIdcard(card) {
+			//				var reg = /(^\d{15}$)||(^\d{18}$)||(^\d{17}(\d|X|x)$)/;
+			//				if (reg.test(card) == false) {
+			//					return false;
+			//				}
+			//			}
+			//			function isIdcard(v) {
+			//				if (!(/^\d{17}(\d|x)$/i.test(v) || /^\d{15}$/i.test(v))) return false;
+			//				var provinceCode = parseInt(v.substr(0, 2));
+			//				if ((provinceCode < 11) || (provinceCode > 91)) return false;
+			//				var forTestDate = v.length == 18 ? v : v.substr(0, 6) + "19" + v.substr(6, 15);
+			//				var birthday = forTestDate.substr(6, 8);
+			//				if (!isDate(birthday, 'yyyyMMdd')) return false;
+			//				if (v.length == 18) {
+			//					v = v.replace(/x$/i, "a");
+			//					var verifyCode = 0;
+			//					for (var i = 17; i >= 0; i--)
+			//						verifyCode += (Math.pow(2, i) % 11) * parseInt(v.charAt(17 - i), 11);
+			//					if (verifyCode % 11 != 1) return false;
+			//				}
+			//				return true;
+			//			}
+			//
+			//			function isDate(v, dateFormat) {
+			//				var MONTH = "MM";
+			//				var DAY = "dd";
+			//				var YEAR = "yyyy";
+			//				var regex = '^' + dateFormat.replace(YEAR, '\\d{4}').replace(MONTH, '\\d{2}').replace(DAY, '\\d{2}') + '$';
+			//				if (!new RegExp(regex).test(v)) return false;
+			//
+			//				var year = v.substr(dateFormat.indexOf(YEAR), 4);
+			//				var month = v.substr(dateFormat.indexOf(MONTH), 2);
+			//				var day = v.substr(dateFormat.indexOf(DAY), 2);
+			//
+			//				var d = new Date(format('%s/%s/%s', [year, month, day]));
+			//				return (parseInt(month, 10) == (1 + d.getMonth())) &&
+			//					(parseInt(day, 10) == d.getDate()) &&
+			//					(parseInt(year, 10) == d.getFullYear());
+			//			}
+			//
+			//			function format(str, args) {
+			//				args = args || [];
+			//				var result = str;
+			//				for (var i = 0; i < args.length; i++) {
+			//					result = result.replace(/%s/, args[i]);
+			//				}
+			//				return result;
+			//			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>体征指标</title>
+		<link rel="stylesheet" href="../../../common/cross/css/cross.css" type="text/css" />
+		<link rel="stylesheet" href="../../../common/cross/css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" href="../../../common/css/jy-style.css" type="text/css" />
+	</head>
+
+	<body>
+		<div class="h45">
+			<div class="demo-comtop">
+				<a class="mui-action-back"></a>
+				<h1>体征指标</h1>
+			</div>
+		</div>
+		<div class="c-failstate c-t-center c-hide" id="wushuju">
+			<i class="icon-noset"></i>
+			<p class="c-5b5b5b">暂无相关消息</p>
+			<!--<p class="c-5b5b5b">请稍后再试~</p>-->
+			<a href="" class="c-btn c-btn-full c-btn-37a6ec c-boxs border-radius-rounded mt15" onclick="mui.back()">返回</a>
+		</div>
+		<div class="c-main">
+			<ul class="sympt-list">
+				<!--<li>
+					<div class="c-list-info ">
+						<div class="c-avatar-m" style="float: left; margin-right: 10px;"><img src="../../../images/p-default.png"></div>
+						<p style="float: right;padding-right: 10px;">{{val.czrq}}</p>
+						<h4 class="pt10">黄小致</h4>
+					</div>
+					<br />
+					<div class="sympt-state r-high"><span>高</span>
+						<a class="ui-arrow ui-arrow-r"></a>
+					</div>
+					<p>血糖值：<span class="c-666">13.9mmol/L</span></p>
+					<p>前一次血糖值：<span class="c-666">5.9mmol/L</span></p>
+					<p>血糖水平：<span class="c-ff8100">正常</span></p>
+					<div class="sympt-diag">诊断信息：原始高血糖</div>
+					<a class="c-btn c-btn-full c-btn-37a6ec border-radius-rounded mt5">处理</a>
+				</li>
+				<li class="sympt-time"><label>2016-06-02   11:54:00</label></li>-->
+				<!--<li>
+					<div class="sympt-state r-middle"><span>中</span>
+						<a class="ui-arrow ui-arrow-r"></a>
+					</div>
+					<p>血糖值：<span class="c-666">13.9mmol/L</span></p>
+					<p>前一次血糖值：<span class="c-666">5.9mmol/L</span></p>
+					<p>血糖水平：<span class="c-ff8100">太高</span></p>
+					<div class="sympt-diag">诊断信息：原始高血糖</div>
+					<a   class="c-btn c-btn-full c-btn-37a6ec border-radius-rounded mt5">处理</a>
+				</li>
+				<li>
+					<div class="sympt-state r-low"><span>低</span>
+						<a class="ui-arrow ui-arrow-r"></a>
+					</div>
+					<p>血糖值：<span class="c-666">13.9mmol/L</span></p>
+					<p>前一次血糖值：<span class="c-666">5.9mmol/L</span></p>
+					<p>血糖水平：<span class="c-ff8100">太低</span></p>
+					<div class="sympt-diag">诊断信息：原始高血糖</div>
+					<a   class="c-btn c-btn-full c-btn-37a6ec border-radius-rounded mt5">处理</a>
+				</li>-->
+			</ul>
+			<!--<div class="mb20" style="text-align: center;"><a id="load_more" class="c-hide" style="color: #17B3EC;">点击加载更多</a></div>-->
+			<div class="view-more"><a id="load_more" class="c-hide">点击加载更多</a></div>
+		</div>
+		<script type="text/html" id="zhibiao_tmpl">
+			{{each list as val i}}
+			<li data-sender="{{val.sender}}" data-id="{{val.id}}">
+				<div class="c-list-info ">
+					<div class="c-avatar-m" style="float: left; margin-right: 10px;"><img src="{{val.senderPhoto | setPhoto}}"></div>
+					<h4 class="pt10 c-f16">{{val.senderName}}
+					<p style="float: right;padding-right: 20px;font-size: 15px;">{{val.czrq}}</p>
+					</h4>
+				</div>
+				<br /> {{if val.type==1}}
+				<div class="sympt-state r-high"><span>高</span>
+					<a class="ui-arrow ui-arrow-r"></a>
+				</div>
+				<p class="c-f16">血糖值(mmol/L)：<span class="c-666 c-bold">{{val.value1 | setValue}}</span></p>
+				<p class="c-f16">前一次血糖值(mmol/L)：<span class="c-666">{{val.value2 | setValue}}</span></p>
+				{{else if val.type==2}}
+				<div class="sympt-state r-high"><span>高</span>
+					<a class="ui-arrow ui-arrow-r"></a>
+				</div>
+				<p class="c-f16">收缩压(mmHg)：<span class="c-666 c-bold">{{val.value1 | setValue}}</span></p>
+				<p class="c-f16">舒张压(mmHg)：<span class="c-666 c-bold">{{val.value2 | setValue}}</span></p>
+				{{/if}}
+				<a class="c-btn c-btn-full c-btn-37a6ec border-radius-rounded mt5">处 理</a>
+			</li>
+			{{/each}}
+		</script>
+		<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var postUrl = "doctor/message/health";
+			mui.plusReady(function() {
+				plus.nativeUI.showWaiting();
+				sendPost(postUrl, {
+					id: 0,
+					pagesize: 5,
+					isRead: 1
+				}, null, function(res) {
+					console.log(JSON.stringify(res));
+					if (res.status == 200) {
+						if (res.list.length == 0) {
+							$("#wushuju").removeClass("c-hide");
+							//							mui.toast("暂无体征信息");
+							plus.nativeUI.closeWaiting();
+							return;
+						}
+						template.helper("setPhoto", function(p) {
+							if (!p || p.length == 0) {
+								return "../../../images/p-default.png";
+							} else {
+								return p
+							}
+						});
+						template.helper("setValue", function(v) {
+							return Math.abs(v);
+						});
+						if (!$("#wushuju").hasClass("c-hide")) {
+							$("#wushuju").addClass("c-hide");
+						}
+
+						var cont = template("zhibiao_tmpl", res);
+						$(".sympt-list").html(cont);
+						$("#load_more").removeClass("c-hide");
+						plus.nativeUI.closeWaiting();
+					}
+				})
+			});
+
+			var updateUrl = "doctor/message/read_health";
+			mui(".sympt-list").on("tap", ".c-btn", function() {
+				var $this = $(this);
+				plus.nativeUI.showWaiting();
+				var code = this.parentElement.getAttribute("data-sender");
+				var id = this.parentElement.getAttribute("data-id");
+				sendPost(updateUrl, {
+					msgid: id
+				}, null, function(res) {
+					console.log(JSON.stringify(res));
+					if (res.status == 200) {
+
+						sendPost("doctor/patient_group/patient", {
+							code: code
+						}, null, function(res) {
+							console.log(JSON.stringify(res));
+							if (res.status == 200) {
+								var xiaoxiWv = plus.webview.getWebviewById("xiaoxi.html");
+								mui.fire(xiaoxiWv, "update");
+								var mainWv = plus.webview.getWebviewById("main");
+								mui.fire(mainWv, "mainupdate");
+
+								var patiInfos = res.data;
+								$this.closest("li").remove();
+								if ($(".sympt-list").children().length == 0) {
+									$("#load_more").addClass("c-hide");
+									$("#wushuju").removeClass("c-hide");
+								}
+								plus.nativeUI.closeWaiting();
+								mui.openWindow('../../huanzhe/html/huanzhexinxi.html', 'huanzhexinxi', {
+									extras: {
+										patiInfo: JSON.stringify(patiInfos)
+									}
+								});
+							} else {
+								plus.nativeUI.closeWaiting();
+								mui.toast(res.msg);
+							}
+						});
+
+					}
+				})
+			});
+
+			$("#load_more").click(function() {
+				var $this = $(this);
+				var id = $(".sympt-list").children().last().attr("data-id");
+				sendPost(postUrl, {
+					id: id,
+					pagesize: 10,
+					isRead: 1
+				}, null, function(res) {
+					if (res.status == 200) {
+						if (res.list.length == 0) {
+							mui.toast("无更多消息");
+							$this.text("无更多消息");
+							return;
+						}
+						var cont = template("zhibiao_tmpl", res);
+						$(".sympt-list").append(cont);
+					}
+				});
+
+			});
+		</script>
+	</body>
+
+</html>

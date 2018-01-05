@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>居民详情</title>
+		<link rel="stylesheet" href="../css/cross.css" type="text/css" />
+		<link rel="stylesheet" href="../css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../css/yy-qygl.css">
+	</head>
+
+	<body>
+		<div class="h45">
+			<div class="demo-comtop">
+				<a class="mui-action-back"></a>
+				<h1>居民详情</h1>
+			</div>
+		</div>
+		<div class=" pb50" id="info_list">
+			<!--<ul class="c-list c-border-b">
+				<li class="c-list-function">
+					<div class="c-avatar-m"><img src="../../../images/p-default.png"></div>
+					<div class="c-list-info">
+						<h4 class="c-nowrap" id="nameinfo">李碧玉<span class="c-f12 c-909090 ml10">女 25岁</span></h4>
+						<p class="c-nowrap" id="number">13500003521</p>
+					</div>
+				</li>
+			</ul>
+			<div class="plr10 ptb10 c-f14 c-5b5b5b">基本信息</div>
+			<ul class="c-list c-border-tb">
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>所在地</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">厦门 </div>
+					</div>
+				</li>
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>手机号</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap" id="phone">182383882821 </div>
+					</div>
+				</li>-->
+			<!--<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>婚姻</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">已婚 </div>
+					</div>
+				</li>-->
+
+			<!--</ul>
+			<div class="plr10 ptb10 c-f14 c-5b5b5b">更多信息</div>
+			<ul class="c-list c-border-tb">
+
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>身份证</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">350101197711771627 </div>
+					</div>
+				</li>
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>职业</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">老师 </div>
+					</div>
+				</li>
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>住址</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">思明区前埔路113号 </div>
+					</div>
+				</li>
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>医保卡号</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">1197711771627 </div>
+					</div>
+				</li>
+
+			</ul>
+			<div class="plr10 ptb10 c-f14 c-5b5b5b">更多信息</div>
+			<div class="bgc-fff plr10 ptb10 c-909090 c-f14">
+				徐医生您好，我的最近这次的血压检查报告，收缩 压是 150mmHg，舒张压 95mmHg。我是您的 门诊居民，在您的治疗下我病情好转得非常快，我 想请您帮助我进行下康复指导，谢谢徐大夫了！
+			</div>-->
+
+		</div>
+
+		<script type="text/html" id="info_tmpl">
+			<ul class="c-list c-border-b">
+				<li class="c-list-function">
+					<div class="c-avatar-m"><img src="{{data.photo | setPhoto}}"></div>
+					<div class="c-list-info">
+						<h4 class="c-nowrap" id="nameinfo">{{data.name}}</h4>
+						<p class="c-nowrap" id="number">{{data.sex | setSex}} {{data.age}}岁</p>
+					</div>
+				</li>
+			</ul>
+			<div class="plr10 ptb10 c-f14 c-5b5b5b">基本信息</div>
+			<ul class="c-list c-border-tb">
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>所在地</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">{{data.province}}{{data.city}}</div>
+					</div>
+				</li>
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>手机号</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap" id="phone">{{data.mobile}}</div>
+					</div>
+				</li>
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>身份证</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">{{data.idcard}}</div>
+					</div>
+				</li>
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>住址</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">{{data.area}}{{data.street}}{{data.address}}</div>
+					</div>
+				</li>
+				<li class="c-list-text">
+					<div class="c-list-value">
+						<h4>医保卡号</h4>
+					</div>
+					<div class="c-list-info c-t-right">
+						<div class="c-nowrap">{{data.ssc}}</div>
+					</div>
+				</li>
+			</ul>
+		</script>
+		<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<script type="text/javascript" src="../js/base.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+	<script type="text/javascript">
+		mui.plusReady(function() {
+			var self = plus.webview.currentWebview();
+			var pCode = self.patientCode;
+			//			document.getElementById("nameinfo").innerHTML = inf[0] + '<span class="c-f12 c-909090 ml10">' + inf[1] + '</span>';
+			//			document.getElementById("number").innerText = inf[2];
+			//			document.getElementById("phone").innerText = inf[2];
+			sendPost("doctor/sign/patient", {
+				patient: pCode
+			}, null, function(res) {
+				if (res.status == 200) {
+					template.helper("setSex", function(s) {
+						if (s == 1) {
+							return "男";
+						} else if (s == 2) {
+							return "女"
+						}
+					});
+					template.helper("setPhoto", function(p) {
+						if (!p || p.length == 0) {
+							return "../../../images/p-default.png";
+						} else {
+							return p
+						}
+					});
+					var cont = template("info_tmpl", res);
+					document.getElementById("info_list").innerHTML = cont;
+				}
+			})
+		})
+	</script>
+
+</html>

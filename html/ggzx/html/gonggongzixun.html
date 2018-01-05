@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>公共咨询</title>
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" type="text/css" href="../../../common/cross/css/cross.ui.css" />
+		<link rel="stylesheet" href="../iconfont/iconfont.css" />
+		<link rel="stylesheet" href="../../../common/cross/css/cross.css" />
+		<link rel="stylesheet" href="../../../common/css/doc-style.css">
+	</head>
+
+	<body>
+		<!--<div class="h45">
+			<div class="header-comtop">
+				<a class="mui-action-back"></a>
+				<h1>公共咨询</h1>
+			</div>
+		</div>-->
+		<div class="mt10">
+			<div class="c-ser-hold c-boxs c-serdet blj-search">
+				<!--<div>疾病类型：</div>-->
+				<div class="c-ser-main">
+					<input type="text" class="c-ser-input c-f14 c-boxs" placeholder="全部咨询" readonly="" id="disease_type">
+				</div>
+			</div>
+		</div>
+		<div class="c-failstate c-t-center c-hide" id="wushuju">
+			<i class="icon-noset"></i>
+			<p class="c-5b5b5b">暂无相关消息</p>
+			<a class="c-btn c-btn-full c-btn-37a6ec c-boxs border-radius-rounded mt15" onclick="mui.back()">返回</a>
+		</div>
+		<ul class="mod-article c-border-tb" id="item_list">
+			<!--<li>
+				<div class="person-info">
+					<div class="avatar avatar-40">
+						<img src="../../../images/p-default.png" class="" alt="头像" />
+					</div>
+					<span>来自</span>
+					<span class="num">310</span>
+				</div>
+				<div class="content">
+					<h2 class="article-title  c-bold">一个人去大城市找工作需要考虑那些？</h2>
+					<p class="c-333 c-f13">发病时间：最近3个月</p>
+					<p class="c-333 c-f13 c-nowrap-multi">主要症状：一毕业就来上海工作了，现在已经在上海工作九个月，目前过的还算不错，最需要注意的，我个人总结四项管理，三项规划，两个基本需求和一个目标，接下来，你就要认真的去做，去看，你才能在大城市里面如鱼得</p>
+				</div>
+			</li>-->
+
+		</ul>
+		<div class="view-more"><a id="load_more" class="c-hide">点击加载更多</a></div>
+		<script type="text/html" id="item_tmpl">
+			{{each list as val i}}
+			<li data-id="{{val.id}}">
+				<div class="person-info">
+					<div class="avatar avatar-45">
+						<img src="{{val.photo | setPhoto}}" class="" alt="头像" />
+					</div>
+					<span>{{val.name}} <br />{{val.diseaseName}}</span>
+					<span class="num">{{val.amount}}</span>
+
+				</div>
+				<div class="content c-border plr10" style="border-radius: 5px;" data-code="{{val.consult}}">
+					<p class="article-title  c-bold c-nowrap">{{val.title}}</p>
+					<p class="c-333 c-f15">发病时间：{{val.when}}</p>
+					<p class="c-333 c-f15 c-nowrap">主要症状：{{val.content}}</p>
+				</div>
+			</li>
+			{{/each}}
+		</script>
+		<script src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../widget/mobiscroll/2.17.1/js/mobiscroll.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../../../widget/mobiscroll/2.17.1/css/mobiscroll.css" />
+		<script src="../../../js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var postUrl = "doctor/consult/public/list";
+			var diseaseUrl = "common/data/diseases";
+			var diseCode = ["0"];
+			var diseName = ["全部咨询"];
+			var currCode="";
+//			window.onload=function(){
+//				getDiseaseList();
+//				getConsultData(0);
+//			}
+			
+			mui.plusReady(function() {
+				getDiseaseList();
+				getConsultData(0);
+			});
+			/*
+			 * 获取疾病列表
+			 */
+			function getDiseaseList() {
+				sendPost(diseaseUrl, {}, null, function(res) {
+					if (res.status == 200) {
+						if (res.list.length > 0) {
+							var temp = res.list;
+							for (var i = 0; i < temp.length; i++) {
+								diseCode.push(temp[i].code);
+								diseName.push(temp[i].name);
+							}
+						}
+					}
+				});
+			}
+
+			/*
+			 * 获取咨询列表
+			 */
+			function getConsultData(disease) {
+				if (!disease || disease == 0) {
+					disease = "";
+				}
+				sendPost(postUrl, {
+					type: 0,
+					id: 0,
+					pagesize: 10,
+					disease: disease
+				}, null, handleSucc);
+			}
+			/*
+			 * 咨询列表成功
+			 */
+			function handleSucc(res) {
+				if (res.status == 200) {
+					if (res.list.length == 0) {
+						//mui.toast("暂无数据");
+						$("#wushuju").removeClass("c-hide");
+						return;
+					}
+					template.helper("setPhoto", function(p) {
+						if (!p || p.length == 0) {
+							return "../../../images/p-default.png";
+						} else {
+							return p
+						}
+					});
+					var cont = template("item_tmpl", res);
+					document.getElementById("item_list").innerHTML = cont;
+					$("#load_more").removeClass("c-hide");
+					if (!$("#wushuju").hasClass("c-hide")) {
+						$("#wushuju").addClass("c-hide");
+					}
+				}
+			}
+			mui(".mod-article").on("tap", ".content", function() {
+				var code = this.getAttribute("data-code");
+				mui.openWindow('ggzx-zixunxiangqing.html', 'ggzx-zixunxiang', {
+					extras: {
+						conCode: code
+					}
+				});
+			});
+			/*
+			 * 加载更多
+			 */
+			$("#load_more").click(function() {
+				var $this = $(this);
+				var id = $("#item_list").children().last().attr("data-id");
+				if (currCode==0) {
+					currCode="";
+				}
+				loadMore(id, currCode, $this);
+			});
+			//加载更多方法
+			function loadMore(id, disease, $dom) {
+				sendPost(postUrl, {
+					type: 0,
+					id: id,
+					pagesize: 5,
+					disease: disease
+				}, null, function(res) {
+					console.log(JSON.stringify(res));
+					if (res.status == 200) {
+						if (res.list.length == 0) {
+							mui.toast("无更多数据");
+							$dom.text("无更多数据");
+							return;
+						}
+						template.helper("setPhoto", function(p) {
+							if (!p || p.length == 0) {
+								return "../../../images/p-default.png";
+							} else {
+								return p
+							}
+						});
+						var cont = template("item_tmpl", res);
+						$("#item_list").append(cont);
+					}
+				});
+			}
+			/*
+			 * 筛选类型
+			 */
+			var opt1 = {
+				theme: 'ios',
+				lang: 'zh',
+				formatValue: function(d) {
+					return d.join(',');
+				},
+				customWheels: true,
+				wheels: [ //如果值非常多请事先按需求生成好
+					[{
+						keys: diseCode,
+						values: diseName
+					}]
+				],
+				onSelect: function(valueText, inst) {
+					var dd = eval("[" + valueText + "]");
+					$('#disease_type').val(dd[0].values);
+					currCode = dd[0].keys;
+					console.error(currCode);
+//					if (currCode == "0") {
+//						currCode = "";
+//					}
+					getConsultData(currCode);
+					$("#load_more").text("点击加载更多");
+				}
+			};
+			$('#disease_type').mobiscroll(opt1);
+			/*
+			 * 筛选疾病类型
+			 */
+		</script>
+	</body>
+
+</html>

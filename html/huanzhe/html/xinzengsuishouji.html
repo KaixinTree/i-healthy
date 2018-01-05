@@ -1,0 +1,344 @@
+<!doctype html>
+<html>
+	<!--修改内容：增加片段后的样式要和初步诊断的样式一个样-->
+
+	<head>
+		<meta charset="utf-8">
+		<title>新增随手记</title>
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" type="text/css" href="../../../common/cross/css/cross.css">
+		<link rel="stylesheet" type="text/css" href="../../../common/cross/css/cross.ui.css">
+		<link rel="stylesheet" type="text/css" href="../../../common/iconfont/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="../../../common/css/doc-style.css">
+		<script src="../../../js/app.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="c-main">
+			<div class="h45">
+				<div class="demo-comtop">
+					<a class="mui-action-back"></a>
+					<h1 class="c-f18">新增随手记</h1>
+				</div>
+			</div>
+			<!--<div class="c-007cd9 mt10">-->
+			<!--<div class="mch-tit"><i class="iconfont icon-benzi mr5"></i>标题</div>
+				<div class="mch-text"><input type="text" class="c-boxs bgc-f3f3f3" /></div>
+				<a onclick="openWebview('huanzhezixunjilu.html')" class="mch-link">选择</a>-->
+			<!--</div>-->
+
+			<ul class="total-frag">
+				<!--<li>-->
+				<!--<div class="medic-add-text bgc-fff mt10">-->
+				<!--<div class="madd-top">初步诊断：<i class="tfrag-del" onclick="medicDel(this);"></i></div>-->
+				<!--<div class="madd-top">初步诊断：<i class="tfrag-del"></i></div>-->
+				<!--<textarea class="madd-texa c-boxs" placeholder="初步诊断"></textarea>-->
+				<!--</div>-->
+				<!--</li>-->
+				<!--<li>
+					<div class="medic-add-text bgc-fff mt10">
+						<div class="madd-top">病例史<i class="tfrag-del"></i></div>
+						<textarea class="madd-texa c-boxs" placeholder="病例史内容">原发性高血压</textarea>
+					</div>
+				</li>
+				<li>
+					<div class="medic-add-text bgc-fff mt10">
+						<div class="madd-top">初步诊断：<i class="tfrag-del"></i></div>
+						<textarea class="madd-texa c-boxs" placeholder="输入片段内容"></textarea>
+					</div>
+				</li>-->
+			</ul>
+			<!--<div class="medic-add-text bgc-fff mt10">
+				<div class="madd-top">初步诊断：<i class="iconfont icon-guanbi1" onclick="medicDel(this);"></i></div>
+				<textarea class="madd-texa c-boxs" placeholder="初步诊断"></textarea>
+			</div>-->
+
+			<div class="m10">
+				<a id="save" class="btn c-btn-full c-btn-1ca3e7 c-btn-radius" >保 存</a>
+				<!--<a href="javascript:;" class="addfrag-btn">增加片段</a>-->
+			</div>
+
+
+			<div class="c-hide add-part" id="add-part-list">
+				<div class="add-part-top c-f16">随手记名称</div>
+				<ul id="part_name_list" >
+					<!--<li>胃病</li>
+					<li>糖尿病</li>
+					<li>腰椎病</li>
+					<li>月经不调</li>-->
+				</ul>
+				<div class="add-part-input c-hide"><input type="text" name="part" placeholder="请输入片段名称" maxlength="20" /></div>
+				<div class="add-part-add"><i class="iconfont icon-jiatupian mr5"></i>新建</div>
+			</div>
+			<div class="c-hide add-part" id="add-part-item-list">
+				<div class="add-part-top c-f16"><span></span></div>
+				<ul id="part_content_list">
+
+					<!--<li>片段标题2</li>
+					<li>片段标题3</li>
+					<li>片段标题4</li>
+					<li>片段标题5</li>-->
+				</ul>
+				<div class="add-part-input c-hide"><input type="text" name="content" placeholder="请输入片段内容" maxlength="60" /></div>
+				<div class="add-part-add"><i class="iconfont icon-jiatupian mr5"></i>新建</div>
+			</div>
+		</div>
+		<script type="text/html" id="part_name_tmpl">
+			{{each list as val i}}
+			<li class="c-f16" data-code="{{val.code}}">{{val.name}}</li>
+			{{/each}}
+		</script>
+		<script type="text/html" id="part_content_tmpl">
+			{{each items as val j}}
+			<li class="c-f16" data-part="{{val.part}}">{{val.content}}</li>
+			{{/each}}
+		</script>
+
+		<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+		<script src="../../../widget/artDialog/6.0.5/js/dialog-plus.min.js"></script>
+		<link rel="stylesheet" href="../../../widget/artDialog/6.0.5/css/ui-dialog.min.css">
+		<!--<script src="../../../widget/scale/scale.js"></script>-->
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var patiCode;
+			var self;
+			mui.plusReady(function() {
+				 self= plus.webview.currentWebview();
+				patiCode = self.pCode;
+				index();
+				click();
+			})
+			var newList = {};
+			sendPost("doctor/medical/record/parts", {}, null, function(res) {
+				if (res.status == 200) {
+					var cont1 = template("part_name_tmpl", res);
+					document.getElementById("part_name_list").innerHTML = cont1;
+					var val = res.list;
+					for (var i = 0; i < val.length; i++) {
+						var tempCode = val[i].code;
+						var tempItems = val[i].items;
+						newList[tempCode] = tempItems;
+					}
+				}
+			});
+			var addPart;
+			var secPart;
+			var ifone = false;
+			var newPartCode; //新增片段标识
+			var oldContent; //从列表获得的片段内容
+			function fragNext(val, state) {
+				if (state) {
+					$("#add-part-item-list").find(".add-part-top span").text(val)
+					addPart.close().remove();
+					ifone = false;
+					secPart = dialog({
+						content: $("#add-part-item-list"),
+						button: [{
+							value: '上一步',
+							callback: function() {
+								secPart.close().remove();
+								addPart = dialog({
+									content: $("#add-part-list"),
+									cancel: function() {
+										mui.back();
+									}
+								}).showModal();
+								$(".ui-dialog-content").css("display", "block");
+								ifone = true;
+							}
+						}, {
+							value: '取消',
+							callback: function() {
+								mui.back();
+							}
+						}]
+					}).showModal();
+					$(".ui-dialog-content").css("display", "block");
+				} else {
+					var titval = $("#add-part-item-list").find(".add-part-top span").text()
+					var rhtml = '';
+					rhtml += '<li>';
+					rhtml += '	<div class="medic-add-text bgc-fff mt10 c-f16">';
+					rhtml += '		<div class="madd-top">' + titval + '<i class="tfrag-del"></i></div>';
+					rhtml += '		<textarea class="madd-texa c-boxs" placeholder="输入片段内容" maxlength="500">' + val + '</textarea>';
+					rhtml += '	</div>';
+					rhtml += '</li>';
+					//					rhtml += '<li>';
+					//					rhtml += '    <div class="medic-add-top">' + titval + '</div>';
+					//					rhtml += '    <div class="tfrag-name"><label>' + val + '</label><i class="tfrag-del"></i></div>';
+					//					rhtml += '</li>';
+					$(".total-frag").append(rhtml);
+					oldContent = val;
+					secPart.close().remove();
+				}
+			}
+			//图片缩放
+			//			function scaleRefresh(dom) {
+			//				ImagesZoom.init({
+			//					"elem": dom,
+			//					"delBack": function(index) {
+			//						$(".pic-count").text($(".pic-count").text() - 1); //删除图片后的回调
+			//						$(dom).find("li").eq(index).remove();
+			//					}
+			//				});
+			//			}
+			//删除初步诊断
+			function medicDel(nth) {
+				$(nth).parents(".medic-add-text").remove();
+				//				$(nth).parent().remove();
+			}
+
+			function index() {
+				addPart = dialog({
+					content: $("#add-part-list"),
+					quickClose: true,
+					cancel: function() {
+						mui.back();
+					}
+				}).showModal();
+				$(".ui-dialog-content").css("display", "block");
+				ifone = true;
+			};
+			$(function() {
+				//				//图片缩放（ 动态添加了上传的图片后运行一下下面这条这个）
+				//				scaleRefresh(".mr-detail-img");
+				//				$(".addfrag-btn").on("click", function() {
+				//					addPart = dialog({
+				//						content: $("#add-part-list"),
+				//						quickClose: true,
+				//						cancel: function() {}
+				//					}).showModal();
+				//					$(".ui-dialog-content").css("display", "block");
+				//					ifone = true;
+				//				});
+				var dwords;
+				$("#add-part-list").on("click", "li", function() {
+					dwords = $(this).text();
+					var tempCode = $(this).attr("data-code");
+					newPartCode = tempCode;
+					var item = newList[tempCode];
+					var tempObj = {};
+					tempObj.items = item;
+					var cont2 = template("part_content_tmpl", tempObj);
+					document.getElementById("part_content_list").innerHTML = cont2;
+					fragNext(dwords, ifone);
+				});
+				$("#add-part-item-list").on("click", "li", function() {
+					var fwords = $(this).text();
+					fragNext(fwords, ifone);
+				});
+			});
+			//删除
+			$(".c-main").on("click", ".tfrag-del", function() {
+				var _this = $(this);
+				dialog({
+					title: '',
+					content: '确认删除?',
+					padding: '25px 15px 25px 15px',
+					ok: function() {
+						_this.parents("li").remove();
+					},
+					cancel: function() {}
+				}).showModal();
+			});
+			//点击新建
+			$("body").on("click", ".add-part-add", function() {
+				var _this = $(this);
+				var afocus = _this.siblings(".add-part-input").is(":hidden");
+				var atext = _this.siblings(".add-part-input").find("input").val();
+				var inputName = _this.siblings(".add-part-input").find("input").attr("name");
+				if (afocus) {
+					_this.siblings(".add-part-input").show();
+					_this.siblings(".add-part-input").find("input").focus();
+					_this.html("确定");
+					_this.parents(".add-part").scrollTop(10000);
+				} else {
+					if ($.trim(atext) == "") {
+						dialog({
+							contentType: 'tipsbox',
+							content: '不能为空'
+						}).showModal();
+						//						_this.siblings(".add-part-input").find("input").focus();
+					} else {
+						if (inputName == "part") {
+							sendPost("doctor/medical/record/add_part", {
+								name: atext
+							}, null, function(res) {
+								if (res.status == 200) {
+									newPartCode = res.code;
+									fragNext(atext, ifone);
+									//									newPartCode = null;
+								}
+							})
+						} else if (inputName == "content") {
+							//							sendPost("doctor/medical/record/add_part_item", {
+							//								part: newPartCode,
+							//								content: atext
+							//							}, null, function(res) {
+							//								if (res.status == 200) {
+							fragNext(atext, ifone);
+							//								}
+							//							})
+						}
+					}
+				}
+			});
+			/*
+			 * 点击保存
+			 */
+			function click() {
+				$("#save").on("click", function() {
+					var obj = document.querySelector("li .medic-add-text");
+					var obj1 = $("li .medic-add-text");
+					if (obj) {
+						var name = obj1.children(".madd-top").text();
+						var content = obj1.children("textarea").val();
+							//							if (oldContent == content) {
+							//								savePartRecord(content);
+							//							}
+							//							else {
+						plus.nativeUI.showWaiting();
+						sendPost("doctor/medical/record/add_part_item", {
+							part: newPartCode,
+							content: content
+						}, null, function(res) {
+							if (res.status == 200) {
+								savePartRecord(content);
+							}
+						});
+						//						}
+					}else{
+						mui.toast("请先添加随手记内容");
+						mui.later(function(){
+							index();
+						},1000);
+					}
+				});
+			};
+
+			function savePartRecord(cont) {
+				sendPost("doctor/medical/record/add_part_record", {
+					patient: patiCode,
+					part: newPartCode,
+					content: cont
+				}, null, function(res) {
+					if (res.status == 200) {
+						var wv = plus.webview.getWebviewById("huanzhexinxi");
+//						wv.reload(true);
+						mui.fire(wv,"addSuiShouJi");
+						plus.nativeUI.closeWaiting();
+						mui.toast(res.msg);
+						mui.back();
+					}
+				});
+			};
+		</script>
+	</body>
+
+</html>

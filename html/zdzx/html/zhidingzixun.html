@@ -1,0 +1,573 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>指定咨询</title>
+		<link rel="stylesheet" href="../css/cross.css" type="text/css" />
+		<link rel="stylesheet" href="../../../common/cross/css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../css/yy-qygl.css">
+		<link rel="stylesheet" type="text/css" href="../css/yy-style.css">
+		<link rel="stylesheet" type="text/css" href="../css/dhzs.css">
+		<link rel="stylesheet" type="text/css" href="../../../common/css/doc-style.css" />
+	</head>
+
+	<body>
+		<!--<div class="h45">
+			<div class="demo-comtop">
+				<a class="mui-action-back"></a>
+				<h1>指定咨询</h1>
+			</div>
+		</div>-->
+		<!--<div class="mt10">-->
+		<div class="sign-comonhd plr10 pt10 bgc-fff c-border-tb">
+			<div class="sanp-flex curr">
+				<p class="c-f16">咨询我的</p>
+			</div>
+			<div class="sanp-flex">
+				<p class="c-f16">我回复的</p>
+			</div>
+			<div class="sanp-flex">
+				<p class="c-f16">已完成</p>
+			</div>
+			<!--<div class="sanp-flex">
+					<div class="pic p-04"></div>
+					<p>已解约</p>
+				</div>-->
+		</div>
+		<div class="c-failstate c-t-center c-hide" id="wushuju">
+			<i class="icon-noset"></i>
+			<p class="c-5b5b5b">暂无相关消息</p>
+			<a class="c-btn c-btn-full c-btn-37a6ec c-boxs border-radius-rounded mt15" onclick="mui.back()">返回</a>
+		</div>
+		<div class="mt10 ax-naills">
+			<ul class="c-list c-border-tb" id="ask_me_list">
+				<!--<li class="c-list-cover">
+						<div class="c-avatar-m"><img src="../images/sample-doc-img.png"></div>
+						<div class="c-list-info ptb10">
+							<h4 class="c-nowrap">黄小致<span class="c-909090 c-f12 ml10">男 35岁</span><span class="fr c-ccc c-f12">12:13</span></h4>
+							<p class="c-nowrap mt5">感冒头疼发烧怎么办？要吃什么药，发烧90度..</p>
+						</div>
+					</li>-->
+			</ul>
+			<div class="view-more">
+				<a id="load_more_ask_me" class="c-hide c-f14">点击加载更多</a>
+			</div>
+		</div>
+		<div class="mt10 ax-naills c-hide">
+			<ul class="c-list c-border-tb" id="my_respont_list">
+				<!--<li class="c-list-cover">
+						<div class="c-avatar-m"><img src="../images/sample-doc-img.png"></div>
+						<div class="c-list-info ptb10">
+							<h4 class="c-nowrap">黄小致<span class="c-909090 c-f12 ml10">男 35岁</span><span class="fr c-ccc c-f12">12:13</span></h4>
+							<p class="c-nowrap mt5">感冒头疼发烧怎么办？要吃什么药，发烧90度..</p>
+						</div>
+					</li>-->
+			</ul>
+			<div class="view-more">
+				<a id="load_more_my_respont" class="c-hide c-f14">点击加载更多</a>
+			</div>
+		</div>
+
+		<div class="mt10 ax-naills c-hide">
+			<div id="over_list">
+				<!--<ul class="n-list mt10 c-border-tb">
+					<li class="ptb10">
+						<div class="n-list-key">
+							<div class="n-avatar-m">
+								<img src="../images/tx.png" />
+							</div>
+						</div>
+						<div class="n-list-info pl10">
+							<p class="c-f12">
+								<span class="fr c-909090">3-24</span>
+								<span>方文婷</span>
+								<span class="pl10 c-909090">女</span>
+								<span class="pl5 c-909090">35岁</span>
+								<span class="ax-qybox b-2d8cdc ml10">复诊</span>
+							</p>
+							<p class="c-f12 c-nowrap">
+								<span class="c-909090">感冒头疼发烧怎么办？要吃什么药40度怎么办?</span>
+							</p>
+						</div>
+					</li>
+					<li style="border-top:none;">
+						<div class="n-list-key">
+							<div class="n-avatar-m">
+
+							</div>
+						</div>
+						<div class="n-list-info pl10 pt5 pb10" style="border-top:1px solid #f2f2f2;;">
+							<div class="c-f12 c-999">
+								平均回复时长：<span class="c-333 mr15">2分钟</span>咨询评价：未评价
+							</div>
+						</div>
+					</li>
+					<li class="ptb10 n-list-cover c-t-center spec-btn" style="background: #fbfcfc;">
+						<div class="n-list-info width-25 c-boxs plr5">
+							<a onclick="openWebview('xiachufang.html')" class="c-btn c-btn-b c-btn-tiny c-btn-full">查看处方</a>
+						</div>
+						<div class="n-list-info width-25 c-boxs plr5">
+							<a   class="c-btn c-btn-b c-btn-tiny c-btn-full">转诊记录</a>
+						</div>
+						<div class="n-list-info width-25 c-boxs plr5">
+							<a onclick="openWebview('jianchajianyan.html')" class="c-btn c-btn-b c-btn-tiny c-btn-full">查看检查</a>
+						</div>
+						<div class="n-list-info width-25 c-boxs plr5">
+							<a onclick="openWebview('../../../zxyy/html/my-appointment.html')" class="c-btn c-btn-b c-btn-tiny c-btn-full">查看预约</a>
+						</div>
+					</li>
+				</ul>-->
+			</div>
+			<div class="view-more">
+				<a id="load_more_over" class="c-hide c-f14">点击加载更多</a>
+			</div>
+		</div>
+		<!--</div>-->
+	</body>
+
+	<script type="text/html" id="consult_tmpl">
+		{{each list as val i}}
+		<li class="c-list-cover" data-consult="{{val.consult}}" data-id="{{val.id}}" data-patient="{{val.patient}}">
+			<div class="c-avatar-m"><img src="{{val.photo | setPhoto}}"></div>
+			<div class="c-list-info ptb10">
+				<h4 class="c-nowrap">{{val.name}}
+					<span class="c-909090 c-f15 ml10">{{val.sex | setSex}} {{val.age}}岁</span>
+					<span class="fr c-ccc c-f14">{{val.time}}</span></h4>
+				<p class="c-nowrap mt5 c-f15">{{val.title}}</p>
+			</div>
+		</li>
+		{{/each}}
+	</script>
+	<script type="text/html" id="over_tmpl">
+		{{each list as val i}}
+		<ul class="n-list mt10 c-border-tb" data-id="{{val.id}}">
+			<li class="ptb10" data-consult="{{val.consult}}" data-patient="{{val.patient}}" onclick="tiaozhuan('{{val.consult}}','{{val.patient}}')">
+				<div class="n-list-key">
+					<div class="n-avatar-m">
+						<img src="{{val.photo | setPhoto}}" />
+					</div>
+				</div>
+				<div class="n-list-info pl10">
+					<p class="c-f17">
+						<span class="fr c-909090 c-f14">{{val.time}}</span>
+						<span>{{val.name}}</span>
+						<span class="pl10 c-909090 c-f15">{{val.sex | setSex}}</span>
+						<span class="pl5 c-909090 c-f15">{{val.age}}岁</span>
+					</p>
+					<p class="c-f15 c-nowrap">
+						<span class="c-909090">{{val.title}}</span>
+					</p>
+				</div>
+			</li>
+			<li style="border-top:none;" onclick="openWebview('zixunxiangqing.html')">
+				{{if val.comment }} {{if val.comment.length > 0}}
+				<div class="n-list-key">
+					<div class="n-avatar-m">
+
+					</div>
+				</div>
+				<div class="n-list-info pl10 pt5 pb10" style="border-top:1px solid #f2f2f2;">
+					<div class="seval-hold">
+						<div class="seval-tit">评价</div>
+						<div class="seval-con">{{val.comment}}</div>
+					</div>
+				</div>
+				{{/if}} {{/if}}
+			</li>
+			<li class="ptb10 n-list-cover c-t-center">
+
+				<div class="n-list-info width-33 c-boxs plr5  ">
+					<a onclick="clickAppo(this)" class="c-btn c-btn-b c-btn-tiny c-btn-full c-f16" data-pati-code="{{val.patient}}">转诊预约</a>
+				</div>
+				<div class="n-list-info width-33 c-boxs plr5">
+					<a onclick="clickBlj(this)" class="c-btn c-btn-b c-btn-tiny c-btn-full c-f16" data-pati-code="{{val.patient}}">添加随手记</a>
+				</div>
+				<div class="n-list-info width-33 c-boxs plr5">
+					<a onclick="mui.toast('该功能暂未上线')" class="c-btn c-btn-b c-btn-tiny-grey c-btn-full c-f16">用药指导</a>
+				</div>
+			</li>
+		</ul>
+		{{/each}}
+	</script>
+	<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+	<script type="text/javascript" src="../js/base.js"></script>
+	<script type="text/javascript" src="../../../js/mui.min.js"></script>
+	<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//	window.onload=function () {
+//		ask_me_click();
+//	}
+	
+		mui.plusReady(function() {
+			plus.nativeUI.showWaiting("", {
+				back: "none"
+			});
+			ask_me_click();
+		});
+
+		mui("#ask_me_list").on("tap", "li", function() {
+			var consId = this.getAttribute("data-consult");
+			var patiId = this.getAttribute("data-patient");
+			plus.storage.setItem("flagZx", "1"); //已结束标签
+			mui.openWindow('jiankangzixunxiangqing.html', 'jiankangzixunxiangqing', {
+				extras: {
+					consult: consId,
+					patient: patiId
+				}
+			})
+		});
+
+		/*
+		 * 已回复跳转
+		 */
+		/*mui("#over_tmpl").on("tap", "li", function() {
+			var consId = this.getAttribute("data-consult");
+			var patiId = this.getAttribute("data-patient");
+			mui.openWindow('jiankangzixunxiangqing.html', 'jiankangzixunxiangqing', {
+				extras: {
+					consult: consId,
+					patient: patiId
+				}
+			})
+		});*/
+		/*$("#over").click(function(){
+			var consId = this.getAttribute("data-consult");
+			var patiId = this.getAttribute("data-patient");
+			mui.openWindow('jiankangzixunxiangqing.html', 'jiankangzixunxiangqing', {
+				extras: {
+					consult: consId,
+					patient: patiId
+				}
+			})
+		});*/
+
+		function tiaozhuan(consult, patient) {
+			mui.openWindow('jiankangzixunxiangqing.html', 'jiankangzixunxiangqing', {
+				extras: {
+					consult: consult,
+					patient: patient
+				}
+			})
+			if($(this).index() == -1) {
+				plus.storage.setItem("flagZx", "4"); //已结束标签
+			}
+		}
+
+		mui("#my_respont_list").on("tap", "li", function() {
+			var consId = this.getAttribute("data-consult");
+			var patiId = this.getAttribute("data-patient");
+			mui.openWindow('jiankangzixunxiangqing.html', 'jiankangzixunxiangqing', {
+				extras: {
+					consult: consId,
+					patient: patiId
+				}
+			})
+		});
+
+		$(function() {
+			$(".sign-comonhd div").click(function() {
+				$(".sign-comonhd div").removeClass("curr");
+				$(this).addClass("curr");
+				$(".ax-naills").hide().eq($(this).index()).show();
+				switch($(this).index()) {
+					case 0:
+						ask_me_click();
+						break;
+					case 1:
+						my_respont_click();
+						break;
+					case 2:
+						over_click();
+						break;
+				}
+			});
+		});
+		var ask_me_json;
+		var my_respont_json;
+		var over_json;
+		/*
+		 * 点击“咨询我的”后触发事件
+		 */
+		function ask_me_click() {
+			if(!ask_me_json) {
+				sendPost("doctor/consult/list", {
+					type: 1,
+					id: 0,
+					pagesize: 10
+				}, null, handleSucc1);
+			} else {
+				$("#wushuju").addClass("c-hide");
+				dealTmpl("consult_tmpl", ask_me_json, "ask_me_list");
+			}
+		}
+		/*
+		 * 点击“我回复的”后触发事件 方法
+		 */
+		function my_respont_click() {
+			if(!my_respont_json) {
+				sendPost("doctor/consult/list", {
+					type: 3,
+					id: 0,
+					pagesize: 10
+				}, null, handleSucc3);
+			} else {
+				$("#wushuju").addClass("c-hide");
+				dealTmpl("consult_tmpl", my_respont_json, "my_respont_list");
+			}
+		}
+		/*
+		 * 已完成 点击事件方法
+		 */
+		function over_click() {
+			if(!over_json) {
+				sendPost("doctor/consult/list", {
+					type: 4,
+					id: 0,
+					pagesize: 5
+				}, null, handleSucc4);
+			} else {
+				$("#wushuju").addClass("c-hide");
+				dealTmpl("over_tmpl", over_json, "over_list");
+			}
+		}
+		/*
+		 * 咨询我的  接收数据成功后处理数据 方法
+		 */
+		function handleSucc1(res) {
+//			console.log(JSON.stringify(res));
+			if(res.status != 200) {
+				$("#load_more_ask_me").addClass("c-hide");
+				mui.toast("数据加载失败");
+				plus.nativeUI.closeWaiting();
+				return;
+			}
+			if(res.list.length == 0) {
+				$("#load_more_ask_me").addClass("c-hide");
+				$("#ask_me_list").addClass("c-hide");
+				//				mui.toast("暂无数据");
+				if($("#wushuju").hasClass("c-hide")) {
+					$("#wushuju").removeClass("c-hide");
+				}
+				plus.nativeUI.closeWaiting();
+				return
+			}
+			ask_me_json = res;
+			$("#wushuju").addClass("c-hide");
+			dealTmpl("consult_tmpl", res, "ask_me_list");
+			loadMore("#load_more_ask_me", "#ask_me_list", 1, 10, "consult_tmpl");
+			plus.nativeUI.closeWaiting();
+
+		};
+		/*
+		 * 我回复的 接收数据称谷歌后处理数据 方法
+		 */
+		function handleSucc3(res) {
+			if(res.status != 200) {
+				$("#load_more_my_respont").addClass("c-hide");
+				mui.toast("数据加载失败");
+				plus.nativeUI.closeWaiting();
+				return
+			}
+			if(res.list.length == 0) {
+				$("#load_more_my_respont").addClass("c-hide");
+				$("#my_respont_list").addClass("c-hide")
+					//				mui.toast("暂无数据");
+				if($("#wushuju").hasClass("c-hide")) {
+					$("#wushuju").removeClass("c-hide");
+				}
+				plus.nativeUI.closeWaiting();
+				return
+			}
+			my_respont_json = res;
+			$("#wushuju").addClass("c-hide");
+			dealTmpl("consult_tmpl", res, "my_respont_list");
+			loadMore("#load_more_my_respont", "#my_respont_list", 3, 10, "consult_tmpl");
+			plus.nativeUI.closeWaiting();
+		};
+		/*
+		 * 已完成的 接收数据称谷歌后处理数据 方法
+		 */
+		function handleSucc4(res) {
+			console.log(JSON.stringify(res));
+			if(res.status != 200) {
+				$("#load_more_over").addClass("c-hide");
+				mui.toast("数据加载失败");
+				plus.nativeUI.closeWaiting();
+				return
+			}
+			if(res.list.length == 0) {
+				$("#load_more_over").addClass("c-hide");
+				//				mui.toast("暂无数据");
+				if($("#wushuju").hasClass("c-hide")) {
+					$("#wushuju").removeClass("c-hide");
+				}
+				plus.nativeUI.closeWaiting();
+				return
+			}
+			over_json = res;
+			$("#wushuju").addClass("c-hide");
+			dealTmpl("over_tmpl", res, "over_list");
+			loadMore("#load_more_over", "#over_list", 4, 5, "over_tmpl");
+			plus.nativeUI.closeWaiting();
+		};
+		/*
+		 * 处理模板 逻辑，
+		 */
+		function dealTmpl(tmplId, tmplData, domId) {
+			template.helper("setSex", function(s) {
+				if(s == 1) {
+					return "男"
+				} else if(s == 2) {
+					return "女"
+				}
+			});
+			template.helper("setPhoto", function(p) {
+				if(!p || p.length == 0) {
+					return "../../../images/p-default.png";
+				} else {
+					return p
+				}
+			});
+			var cont = template(tmplId, tmplData);
+			document.getElementById(domId).innerHTML = cont;
+			plus.nativeUI.closeWaiting();
+		}
+		/*
+		 * 加载更多 咨询我的
+		 */
+		function loadMore(loadId, ulId, type, pagesize, tmplId) {
+			$(loadId).removeClass("c-hide");
+			$(loadId).click(function() {
+				var $this = $(this);
+				//				var index= $(ulId).children().length
+				//				var id=document.querySelector(ulId+":first-child").getAttribute("data-id");
+				var lastId = $(ulId).children().last().attr("data-id");
+				if(!lastId) {
+					$this.text("暂无数据");
+					mui.toast("暂无数据")
+					return;
+				}
+				plus.nativeUI.showWaiting();
+				sendPost("doctor/consult/list", {
+					type: type,
+					id: lastId,
+					pagesize: pagesize
+				}, null, function(res) {
+					if(res.status == 200) {
+						if(res.list.length == 0) {
+							$this.text("无更多数据");
+							plus.nativeUI.closeWaiting();
+							mui.toast("没有更多数据")
+							return
+						}
+						var cont = template(tmplId, res);
+						$(ulId).append(cont);
+						//						} else {
+						//							$this.text("无更多数据");
+						//						}
+						plus.nativeUI.closeWaiting();
+					}
+				});
+			});
+		}
+		/*
+		 * 检查建议
+		 */
+		function clickCheck(dom) {
+			var patientCode = dom.getAttribute("data-pati-code");
+			var consultCode = dom.getAttribute("data-consult");
+			var rhtml = '';
+			rhtml += '<div class="referral-pop">';
+			rhtml += '    <div class="referral-pop-hold">';
+			/*rhtml += '        <a onclick="zicha(this)" data-consult="' + consultCode + '" data-pati-code="' + patientCode + '">居民自查</a>';*/
+			rhtml += '        <a onclick="jiancha(this)"  data-consult="' + consultCode + '"  data-pati-code="' + patientCode + '">检查检验</a>';
+			rhtml += "        <a href=\"javascript:;\" onclick=\"$('.referral-pop').remove();\">取消</a>";
+			rhtml += '    </div>';
+			rhtml += '    <div class="referral-pop-mb"></div>';
+			rhtml += '</div>';
+			$('body').append(rhtml);
+		}
+		/*
+		 * 居民自查
+		 */
+		var zicha = function(dom) {
+				var patientCode = dom.getAttribute("data-pati-code");
+				var consultCode = dom.getAttribute("data-consult");
+				mui.openWindow('zdzx-huanzhezicha.html', 'zdzx-huanzhezicha', {
+					extras: {
+						patient: patientCode,
+						consult: consultCode
+					}
+				});
+				$('.referral-pop').remove();
+			}
+			/*
+			 * 检查检验
+			 */
+		var jiancha = function(dom) {
+				var patientCode = dom.getAttribute("data-pati-code");
+				var consultCode = dom.getAttribute("data-consult");
+				mui.openWindow('zdzx-jianchajianyan.html', 'zdzx-jianchajianyan', {
+					extras: {
+						patient: patientCode,
+						consult: consultCode
+					}
+				});
+				$('.referral-pop').remove();
+			}
+			/*
+			 * 病例夹
+			 */
+		function clickBlj(dom) {
+			var patientCode = dom.getAttribute("data-pati-code");
+			mui.openWindow('../../huanzhe/html/xinzengsuishouji.html', 'xinzengsuishouji', {
+				extras: {
+					pCode: patientCode
+				}
+			});
+
+			//			mui.openWindow('../../../blgl/html/binglijiaxiangqing.html', 'binglijiaxiangqing', {
+			//				extras: {
+			//					pCode: patientCode
+			//				}
+			//			});
+		}
+		/*
+		 * 转诊
+		 */
+		function clickAppo(dom) {
+			var patientCode = dom.getAttribute("data-pati-code");
+			//			alert(patientCode);
+			mui.openWindow('../../zxyy/html/xuanzeyiyuan.html', 'xuanzeyiyuan', {
+				extras: {
+					pCode: patientCode
+				}
+			});
+		}
+
+		function clickYyzd(dom) {
+			var patientCode = dom.getAttribute("data-pati-code");
+			mui.openWindow('../../../blgl/html/yongyaozhidao.html', 'binglijiaxiangqing', {
+				extras: {
+					pCode: patientCode
+				}
+			});
+		}
+
+		function clickyygl(dom) {
+			mui.openWindow('yongyaozhidao.html', 'yongyaozhidao');
+		}
+
+		window.addEventListener("update", function() {
+			ask_me_click();
+		});
+	</script>
+
+</html>

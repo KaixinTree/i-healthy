@@ -1,0 +1,587 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="yihu.com" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>签约管理</title>
+		<link rel="stylesheet" href="../css/cross.css" type="text/css" />
+		<link rel="stylesheet" href="../css/cross.ui.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../css/yy-qygl.css">
+		<script src="../../../js/app.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="h45">
+			<div class="demo-comtop">
+				<a class="mui-action-back"></a>
+				<h1>签约管理</h1>
+			</div>
+		</div>
+		<div class="mt10">
+			<div class="sign-comonhd plr10 pt10 bgc-fff c-border-tb">
+				<div class="sanp-flex curr">
+					<div class="pic p-01"></div>
+					<p>待签约</p>
+				</div>
+				<div class="sanp-flex">
+					<div class="pic p-02"></div>
+					<p>待解约</p>
+				</div>
+				<div class="sanp-flex">
+					<div class="pic p-03"></div>
+					<p>已签约</p>
+				</div>
+				<div class="sanp-flex">
+					<div class="pic p-04"></div>
+					<p>已解约</p>
+				</div>
+			</div>
+			<div class="posater-oper">
+				<ul class="c-list c-border-tb mt10 " id="dqy_list">
+					<!--<li class="c-list-cover" data-info="程森|男 45岁|15926508571">
+						<div class="c-avatar-m">
+							<img src="../../../images/p-default.png">
+						</div>
+						<div class="c-list-info c-list-indent-m">
+							<h4 class="c-nowrap">程森<span class="c-909090">2015-12-25</span></h4>
+							<p class="c-nowrap">福建省 厦门市 集美区</p>
+							<p class="c-nowrap">集美村8楼12号</p>
+							
+						</div>
+						<div class="c-list-action">
+							<div class="c-btn c-btn-tiny c-btn-rounded c-btn-fff" data-type="refuse" data-name="程森">拒绝</div>
+							<div class="c-btn c-btn-tiny c-btn-rounded c-btn-1ca3e7" data-type="agree" data-name="程森">同意</div>
+						</div>
+					</li>-->
+				</ul>
+				<div class="view-more"><a id="load_more_dqy" class="c-hide">点击加载更多</a></div>
+			</div>
+			<div class="posater-oper c-hide">
+				<ul class="c-list c-border-tb mt10 " id="djy_list">
+					<!--<li class="c-list-cover" data-info="陈易|男 29岁|13859786031">
+						<div class="c-avatar-m"><img src="../../../images/p-default.png"></div>
+						<div class="c-list-info c-list-indent-m">
+							<h4 class="c-nowrap">陈易<span class="c-909090">2016-02-25</span></h4>
+							<p class="c-nowrap">福建省 厦门市 湖里区</p>
+							<p class="c-nowrap">七星西路12楼</p>
+							<p class="c-nowrap"><span class="c-f00">病情已基本全癒</span></p>
+						</div>
+						<div class="c-list-action">
+							<div class="c-btn c-btn-tiny c-btn-rounded c-btn-fff" data-type="refuse" data-name="陈易">拒绝</div>
+							<div class="c-btn c-btn-tiny c-btn-rounded c-btn-1ca3e7" data-type="agree" data-name="陈易">同意</div>
+						</div>
+					</li>
+					<li class="c-list-cover" data-info="白景|女 40岁|13859956108">
+						<div class="c-avatar-m"><img src="../images/p-female.png"></div>
+						<div class="c-list-info c-list-indent-m">
+							<h4 class="c-nowrap">白景<span class="c-909090">2016-01-05</span></h4>
+							<p class="c-nowrap">福建省 厦门市 同安区</p>
+							<p class="c-nowrap">影视城附近19号</p>
+							<p class="c-nowrap"><span class="c-f00">6月去美国接受新的治疗</span></p>
+						</div>
+						<div class="c-list-action">
+							<div class="">待确认</div>
+						</div>
+					</li>-->
+				</ul>
+				<div class="view-more"><a id="load_more_djy" class="c-hide">点击加载更多</a></div>
+			</div>
+			<div id="" class="posater-oper c-hide">
+				<ul class="c-list c-border-tb mt10 long " id="yqy_list">
+					<!--<li class="c-list-cover" data-info="李碧玉|女 35岁|15960208571">
+						<div class="c-avatar-m"><img src="../images/p-female.png"></div>
+						<div class="c-list-info c-list-indent-m">
+							<h4 class="c-nowrap">李碧玉<span class="c-909090">2015-05-07</span></h4>
+							<p class="c-nowrap">福建省 厦门市 思明区</p>
+							<p class="c-nowrap">前埔南路店上东里20#502</p>
+						</div>
+						<div class="c-list-action">
+							<div class="c-btn c-btn-tiny c-btn-rounded c-btn-fff unbjy" data-type="surr">解约</div>
+						</div>
+					</li>-->
+				</ul>
+				<div class="view-more"><a id="load_more_yqy" class="c-hide">点击加载更多</a></div>
+			</div>
+			<div class="posater-oper c-hide">
+				<ul class="c-list c-border-tb mt10 " id="yjy_list">
+					<!--<li class="c-list-cover" data-info="谢平|女 35岁|13859985220">
+						<div class="c-avatar-m"><img src="../../../images/p-default.png"></div>
+						<div class="c-list-info c-list-indent-m">
+							<h4 class="c-nowrap">谢平<span class="c-909090">2015-12-25</span></h4>
+							<p class="c-nowrap">福建省 厦门市 思明区</p>
+							<p class="c-nowrap">何厝20#502</p>
+						</div>
+						<div class="c-list-action">
+							<div class="">解约</div>
+						</div>
+					</li>
+					<li class="c-list-cover" data-info="王云|女 25岁|13859956033">
+						<div class="c-avatar-m">
+							<img src="../images/p-female.png">
+						</div>
+						<div class="c-list-info c-list-indent-m">
+							<h4 class="c-nowrap">王云<span class="c-909090">2015-12-25</span></h4>
+							<p class="c-nowrap">福建省 厦门市 湖里区</p>
+							<p class="c-nowrap">万达大厦</p>
+						</div>
+						<div class="c-list-action">
+							<div class="">拒绝</div>
+						</div>
+					</li>-->
+				</ul>
+				<div class="view-more"><a id="load_more_yjy" class="c-hide">点击加载更多</a></div>
+			</div>
+		</div>
+	</body>
+	<script type="text/html" id="dqy_tmpl">
+		{{each list as val i}}
+		<li class="c-list-cover" data-code="{{val.code}}" data-id="{{val.id}}" data-patient="{{val.patientCode}}">
+			<div class="c-avatar-m">
+				<img src="{{val.photo | setPhoto}}" />
+			</div>
+			<div class="c-list-info c-list-indent-m">
+				<h4 class="c-nowrap">{{val.patientName}}<span class="c-909090 ml15">{{val.applyDate}}</span></h4>
+				<p class="c-nowrap">{{val.provinceName}} {{val.cityName}} {{val.townName}}</p>
+				<p class="c-nowrap">{{val.address}}</p>
+			</div>
+			<div class="c-list-action">
+				<!--<div class="c-btn c-btn-tiny c-btn-rounded c-btn-fff" data-type="refuse" data-name="{{val.patientName}}">拒绝</div>-->
+				<div class="c-btn c-btn-tiny c-btn-rounded c-btn-1ca3e7" data-type="agree" data-name="{{val.patientName}}">同意</div>
+			</div>
+		</li>
+		{{/each}}
+	</script>
+
+	<script type="text/html" id="djy_tmpl">
+		{{each list as val i}}
+		<li class="c-list-cover" data-code="{{val.code}}" data-id="{{val.id}}" data-patient="{{val.patientCode}}">
+			<div class="c-avatar-m"><img src="{{val.photo | setPhoto}}" /></div>
+			<div class="c-list-info c-list-indent-m">
+				<h4 class="c-nowrap">{{val.patientName}}<span class="c-909090 ml15">{{val.applyDate}}</span></h4>
+				<p class="c-nowrap">{{val.provinceName}} {{val.cityName}} {{val.townName}}</p>
+				<p class="c-nowrap">{{val.address}}</p>
+				<p class="c-nowrap"><span class="c-f00">{{val.releaseSpeak}}</span></p>
+			</div>
+			<div class="c-list-action">
+				{{if val.status==3}}
+				<!--<div class="c-btn c-btn-tiny c-btn-rounded c-btn-fff" data-type="refuse" data-name="{{val.patientName}}">拒绝</div>-->
+				<div class="c-btn c-btn-tiny c-btn-rounded c-btn-1ca3e7" data-type="agree" data-name="{{val.patientName}}">同意</div>
+				{{/if}} {{if val.status==4}}
+				<div class="">待确认</div>
+				{{/if}}
+			</div>
+		</li>
+		{{/each}}
+	</script>
+
+	<script type="text/html" id="yqy_tmpl">
+		{{each list as val i}}
+		<li class="c-list-cover" data-code="{{val.code}}" data-id="{{val.id}}" data-patient="{{val.patientCode}}">
+			<div class="c-avatar-m"><img src="{{val.photo | setPhoto}}" /></div>
+			<div class="c-list-info c-list-indent-m">
+				<h4 class="c-nowrap">{{val.patientName}}<span class="c-909090 ml15">{{val.applyDate}}</span></h4>
+				<p class="c-nowrap">{{val.provinceName}} {{val.cityName}} {{val.townName}}</p>
+				<p class="c-nowrap">{{val.address}}</p>
+			</div>
+			<div class="c-list-action">
+				<div class="c-btn c-btn-tiny c-btn-rounded c-btn-fff unbjy" data-type="surr">解约</div>
+			</div>
+		</li>
+		{{/each}}
+	</script>
+
+	<script type="text/html" id="yjy_tmpl">
+		{{each list as val i}}
+		<li class="c-list-cover" data-code="{{val.patient}}" data-id="{{val.id}}" data-patient="{{val.patientCode}}">
+			<div class="c-avatar-m"><img src="{{val.photo | setPhoto}}"></div>
+			<div class="c-list-info c-list-indent-m">
+				<h4 class="c-nowrap">{{val.patientName}}<span class="c-909090 ml15">{{val.applyDate}}</span></h4>
+				<p class="c-nowrap">{{val.provinceName}} {{val.cityName}} {{val.townName}}</p>
+				<p class="c-nowrap">{{val.address}}</p>
+			</div>
+			<div class="c-list-action">
+				<div class="">{{val.status | setStatus}}</div>
+			</div>
+		</li>
+		{{/each}}
+	</script>
+
+	<script type="text/javascript" src="../../../js/jquery/2.1.3/jquery.js"></script>
+	<script type="text/javascript" src="../js/base.js"></script>
+	<script type="text/javascript" src="../../../js/mui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../widget/artDialog/6.0.5/css/ui-dialog.min.css">
+	<script src="../../../widget/artDialog/6.0.5/js/dialog-plus.min.js"></script>
+	<script src="../../../js/common_http.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/template.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		var postUrl = "doctor/sign/sign_info";
+		//			var postUrl = "doctor/sign/list";
+		mui.plusReady(function() {
+			getData(0, 0, handleSucc1);
+		});
+
+		function getData(type, id, handelSucc) {
+			sendPost(postUrl, {
+				status: type,
+				//					type: type,
+				id: id,
+				pageSize: 10
+			}, null, handelSucc);
+		};
+		/*
+		 * 待签约
+		 */
+		var dqyObj;
+
+		function handleSucc1(res) {
+			if (res.status == 200) {
+				if (res.list.length == 0) {
+					mui.toast("无待签约记录");
+					return;
+				}
+				dqyObj = res;
+				dealTmpl(res, "dqy_tmpl", "dqy_list");
+				$("#load_more_dqy").removeClass("c-hide");
+				$("#load_more_dqy").click(function() {
+						loadMore("#dqy_list", 0, this);
+					})
+					//					activEvent();
+			}
+		}
+		/*
+		 * 待解约
+		 */
+		var djyObj;
+
+		function handleSucc2(res) {
+			if (res.status == 200) {
+				if (res.list.length == 0) {
+					mui.toast("无待解约约记录");
+					return;
+				}
+				djyObj = res;
+				dealTmpl(res, "djy_tmpl", "djy_list");
+				$("#load_more_djy").removeClass("c-hide");
+				$("#load_more_djy").click(function() {
+						loadMore("#djy_list", 3, this);
+					})
+					//					activEvent();
+			}
+		}
+		/*
+		 * 已签约
+		 */
+		var yqyObj;
+
+		function handleSucc3(res) {
+			if (res.status == 200) {
+				if (res.list.length == 0) {
+					mui.toast("无已签约记录");
+					return;
+				}
+				yqyObj = res;
+				dealTmpl(res, "yqy_tmpl", "yqy_list");
+				$("#load_more_yqy").removeClass("c-hide");
+				$("#load_more_yqy").click(function() {
+						loadMore("#yqy_list", 2, this);
+					})
+					//					activEvent();
+			}
+		}
+		/*
+		 * 已解约
+		 */
+		var yjyObj;
+
+		function handleSucc4(res) {
+			if (res.status == 200) {
+				if (res.list.length == 0) {
+					mui.toast("无已解约记录");
+					return;
+				}
+				yjyObj = res;
+				dealTmpl(res, "yjy_tmpl", "yjy_list");
+				$("#load_more_yjy").removeClass("c-hide");
+				$("#load_more_yjy").click(function() {
+						loadMore("#yjy_list", 1, this);
+					})
+					//					activEvent();
+			}
+		}
+		/*
+		 * 拼接模板数据
+		 */
+		function dealTmpl(res, tmplId, ulId) {
+			template.helper("setPhoto", function(p) {
+				if (!p || p.length == 0) {
+					return "../../../images/p-default.png";
+				} else {
+					return p
+				}
+			});
+			template.helper("setStatus", function(s) {
+				switch (s) {
+					case 0:
+						return "待签约";
+						break;
+					case 1:
+						return "已解约";
+						break;
+					case 2:
+						return "已签约";
+						break;
+					case 3:
+						return "已解约";
+						break;
+					default:
+						break;
+				}
+			});
+			var cont = template(tmplId, res);
+			document.getElementById(ulId).innerHTML = cont;
+		}
+		/*
+		 * 详情页面
+		 */
+		mui("body").on("tap", "li .c-avatar-m", function() {
+			var pCode = this.parentElement.getAttribute("data-patient")
+			mui.openWindow({
+				url: "patient-manage.html",
+				id: "patient-manage",
+				extras: {
+					patientCode: pCode
+				}
+			})
+		})
+		mui("body").on("tap", "li .c-list-info", function() {
+			var pCode = this.parentElement.getAttribute("data-patient")
+			mui.openWindow({
+				url: "patient-manage.html",
+				id: "patient-manage",
+				extras: {
+					patientCode: pCode
+				}
+			})
+		})
+		$(function() {
+			//lab
+			$(".sign-comonhd").find(".sanp-flex").click(function() {
+				$(".sign-comonhd").find(".sanp-flex").removeClass("curr");
+				$(this).addClass("curr");
+				var index = $(this).index();
+				$(".posater-oper").hide().eq(index).show();
+				switch (index) {
+					case 0:
+						if (dqyObj) {
+							dealTmpl(dqyObj, "dqy_tmpl", "dqy_list");
+						} else {
+							getData(0, 0, handleSucc1);
+						}
+						break;
+					case 1:
+						if (djyObj) {
+							dealTmpl(djyObj, "djy_tmpl", "djy_list");
+						} else {
+							getData(3, 0, handleSucc2);
+						}
+						break;
+					case 2:
+						if (yqyObj) {
+							dealTmpl(yqyObj, "yqy_tmpl", "yqy_list");
+						} else {
+							getData(2, 0, handleSucc3);
+						}
+						break;
+					case 3:
+						if (yjyObj) {
+							dealTmpl(yjyObj, "yjy_tmpl", "yjy_list");
+						} else {
+							getData(1, 0, handleSucc4);
+						}
+						break;
+				}
+			});
+		});
+		/*
+		 * 获取时间
+		 */
+		function getSysDate(plus) {
+			var d = new Date();
+			var year = d.getFullYear();
+			var month = d.getMonth() + 1;
+			var day = d.getDate();
+			//				var week = d.getDay();
+			var h = d.getHours();
+			var mins = d.getMinutes();
+			var s = d.getSeconds();
+			if (month < 10) month = "0" + month;
+			if (day < 10) month = "0" + day;
+			if (h < 10) h = "0" + h;
+			if (mins < 10) mins = "0" + mins;
+			if (s < 10) s = "0" + s;
+			if (!plus) {
+				return year + "-" + month + "-" + day + "" + h + ":" + mins + ":" + s;
+			} else {
+				return (year + 1) + "-" + month + "-" + day + "" + h + ":" + mins + ":" + s;
+			}
+		}
+		/*
+		 * 修改签约状态
+		 */
+		var updateUrl = "patient/sign/update_status";
+		mui("#dqy_list").on("tap", "[data-type=agree]", function() {
+			var name = $(this).attr("data-name");
+			var code = $(this).parents("li").attr("data-code");
+			dialog({
+				content: '是否同意与 ' + name + ' 签约',
+				padding: '30px 15px 30px 15px',
+				button: [{
+					value: '取消'
+				}, {
+					value: '同意',
+					callback: function() {
+						plus.nativeUI.showWaiting();
+						sendPost(updateUrl, {
+							code: code,
+							status: 2,
+							startDate: getSysDate(0),
+							endDate: getSysDate(1)
+						}, null, function(res) {
+							if (res.status == 200) {
+								plus.webview.currentWebview().reload(true);
+							}
+							plus.nativeUI.closeWaiting();
+						});
+					}
+				}]
+			}).showModal();
+		});
+		//				mui("#dqy_list").on("tap","[data-type=refuse]",function() {
+		//					var name = $(this).attr("data-name");
+		//					dialog({
+		//						content: '确定拒绝与 ' + name + ' 的签约?',
+		//						padding: '30px 15px 30px 15px',
+		//						button: [{
+		//							value: '下次再说'
+		//						}, {
+		//							value: '确定',
+		//							callback: function() {
+		//								//								window.location.href = 'sign_refuse.html'
+		//								openWebview('sign_refuse.html');
+		//							}
+		//						}]
+		//					}).showModal();
+		//				});
+		/*
+		 * 待解约点击
+		 */
+		mui("#djy_list").on("tap", "[data-type=agree]", function() {
+			var name = $(this).attr("data-name");
+			var code = $(this).parents("li").attr("data-code");
+			dialog({
+				content: '是否同意与 ' + name + '解约',
+				padding: '30px 15px 30px 15px',
+				button: [{
+					value: '取消'
+				}, {
+					value: '同意',
+					callback: function() {
+						plus.nativeUI.showWaiting();
+						sendPost(updateUrl, {
+							code: code,
+							status: 5
+						}, null, function(res) {
+							if (res.status == 200) {
+								plus.webview.currentWebview().reload(true);
+							}
+							plus.nativeUI.closeWaiting();
+						});
+					}
+				}]
+			}).showModal();
+		});
+		//				mui("#djy_list").on("tap","[data-type=refuse]",function() {
+		//					var name = $(this).attr("data-name");
+		//					dialog({
+		//						content: '确定拒绝与 ' + name + ' 的解约?',
+		//						padding: '30px 15px 30px 15px',
+		//						button: [{
+		//							value: '下次再说'
+		//						}, {
+		//							value: '确定',
+		//							callback: function() {
+		//								//								window.location.href = 'sign_refuse.html'
+		//								openWebview('sign_refuse.html');
+		//							}
+		//						}]
+		//					}).showModal();
+		//				});
+		/*
+		 * 解约点击
+		 */
+		mui("#yqy_list").on("tap", "[data-type=surr]", function() {
+			var code = $(this).parents("li").attr("data-code");
+			dialog({
+				content: '解约后您将无法向居民提供随访干预等健康服务，是否确定解约？',
+				padding: '30px 15px 30px 15px',
+				button: [{
+					value: '取消'
+				}, {
+					value: '确定',
+					callback: function() {
+						//								window.location.href = 'sign_surrender.html'
+						//						openWebview('sign_surrender.html')
+						mui.openWindow('sign_surrender.html', 'sign_surrender', {
+							extras: {
+								signCode: code
+							}
+						});
+					}
+				}]
+			}).showModal();
+		});
+		/*
+		 * 加载更多
+		 */
+		function loadMore(ulId, type, domClick) {
+			var $this = $(domClick);
+			var id = $(ulId).children().last().attr("data-id");
+			getData(type, id, function(res) {
+				if (res.status == 200) {
+					if (res.list.length == 0) {
+						mui.toast("无更多记录");
+						$this.text("无更多记录");
+						return
+					}
+					var tmplId, domUl;
+					switch (type) {
+						case 0:
+							tmplId = "dqy_tmpl";
+							domUl = $("#dqy_list");
+							break;
+						case 3:
+							tmplId = "djy_tmpl";
+							domUl = $("#djy_list");
+							break;
+						case 2:
+							tmplId = "yqy_tmpl";
+							domUl = $("#yqy_list");
+							break;
+						case 1:
+							tmplId = "yjy_tmpl";
+							domUl = $("#yjy_list");
+							break;
+					}
+					var cont = template(tmplId, res);
+					domUl.append(cont);
+				}
+			});
+		}
+	</script>
+
+</html>
